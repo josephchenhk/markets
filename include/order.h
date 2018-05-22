@@ -1,3 +1,6 @@
+#ifndef ORDER_H
+#define ORDER_H
+
 #include "instrument.h"
 
 enum class OrderType {marketBuy, marketSell};
@@ -28,3 +31,4 @@ public:
     unsigned int id() const;
 };
 
+#endif // ORDER_H
