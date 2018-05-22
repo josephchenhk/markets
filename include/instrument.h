@@ -16,14 +16,13 @@ class Instrument
 public:
     
     // uniquely identifying symbol
-    const std::string symbol;
+    const std::string m_symbol;
     
     /**
      * @brief Constructs an Instrument with the provided symbol
      * @param s denotes the symbol
      */
-    
-    Instrument(const std::string& symbol): symbol(symbol) {}
+    Instrument(const std::string& symbol);
 };
 
 #endif // INSTRUMENT_H
