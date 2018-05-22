@@ -2,7 +2,7 @@
 #ifndef MARKET_BAR_H
 #define MARKET_BAR_H
 
-#include <stdexcept>
+#include <chrono>
 
 /**
  * @class MarketBar
@@ -17,12 +17,15 @@ class MarketBar
 {
 public:
 
+    using Time = std::chrono::time_point<std::chrono::system_clock>;
+
     // market bar elements
-    const double open_price;
-    const double high_price;
-    const double low_price;
-    const double close_price;
-    const long volume;
+    const double m_open;
+    const double m_high;
+    const double m_low;
+    const double m_close;
+    const unsigned int m_volume;
+    const Time m_close_time;
     
     /**
      * @brief Constructs a MarketBar from the provided parameters
@@ -32,17 +35,10 @@ public:
      * @param low denotes the instrument low price during the period
      * @param close denotes the instrument closing price of the period
      * @param vol denotes the instrument volume over the period
+     * @param close_time is the time of the close
      */
     
-    MarketBar(double open, double high, double low, double close, long vol): 
-    open_price(open), high_price(high), low_price(low), close_price(close), volume(vol)
-    {
-        if (open_price <= 0.0) throw std::invalid_argument("Open price must be positive");
-        if (high_price <= 0.0) throw std::invalid_argument("High price must be positive");
-        if (low_price <= 0.0) throw std::invalid_argument("Low price must be positive");
-        if (close_price <= 0.0) throw std::invalid_argument("Close price must be positive");
-        if (volume < 0) throw std::invalid_argument("Volume must be non-negative");
-    }
+    MarketBar(const double &open, const double &high, const double &low, const double &close, const unsigned int &vol, const Time &close_time);
 };
 
 #endif // MARKET_BAR_H
