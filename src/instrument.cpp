@@ -10,3 +10,9 @@ Instrument::Instrument(const std::string& symbol)
         throw std::invalid_argument("String must contain only uppercase letters");
     }
 }
+
+
+bool Instrument::operator<(const Instrument& other) const
+{
+    return m_symbol < other.m_symbol;
+}

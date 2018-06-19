@@ -23,6 +23,14 @@ public:
      * @param s denotes the symbol
      */
     Instrument(const std::string& symbol);
+    
+
+    /**
+     * @brief relational operator required by std::map
+     * @param left
+     * @param right
+     */
+    bool operator<(const Instrument& other) const;
 };
 
 #endif // INSTRUMENT_H
