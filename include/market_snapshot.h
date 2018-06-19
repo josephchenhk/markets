@@ -28,18 +28,7 @@ public:
      * @param bars denotes the snapshot market data
      */
     
-    MarketSnapshot(const MarketBar::Time &time,
-                   const std::map<Instrument,MarketBar> &bars):
-                   m_time(time), m_bars(bars) 
-    {
-        for (auto &elem : bars)
-        {
-            if (elem.second.m_close_time != this->m_time)
-            {
-                throw std::invalid_argument("Inconsistent time");
-            }
-        }
-    }
+    MarketSnapshot(const MarketBar::Time &time, const std::map<Instrument,MarketBar> &bars);
 };
 
 #endif // MARKET_SNAPHOT_H
