@@ -14,3 +14,31 @@ MarketBar::MarketBar(const double &open, const double &high, const double &low, 
     if (high < low) throw std::invalid_argument("high must be greater than or equal to low price");
 }
 
+
+const double& MarketBar::open() const
+{
+    return m_open;
+}
+
+
+const double& MarketBar::high() const
+{
+    return m_high;
+}
+
+const double& MarketBar::low() const
+{
+    return m_low;
+}
+
+
+const double& MarketBar::close() const
+{
+    return m_close;
+}
+
+
+auto MarketBar::time() const -> const Time&
+{
+    return m_close_time;
+}
