@@ -30,6 +30,20 @@ public:
      * @return realized pnl
      */
     const double& get_rpnl() const;
+
+    
+    /**
+     * @brief get the average price (never negative because cost and qty are always the same sign)
+     * @return the average price
+     */
+    const double& get_avg_price() const;    
+    
+    
+    /**
+     * @brief get the current quantity of shares owned (or sold if negative)
+     * @return the number of shares as an integer
+     */
+    const int& get_qty() const;
     
     
 private:

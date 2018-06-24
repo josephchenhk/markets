@@ -30,17 +30,18 @@ void pnl_calc::on_fill(const int& fill_qty, const double& price)
     
     m_qty += fill_qty;
     m_cost = new_cost;    
+
+    if(m_qty != 0){
+        m_avg_price = m_cost / m_qty;
+    }else{
+        m_avg_price = 0.0;
+    }
     
 }
     
 
 void pnl_calc::on_price(const double& price)
 {
-    if(m_qty != 0){
-        m_avg_price = m_cost / m_qty;
-    }else{
-        m_avg_price = 0.0;
-    }
     m_mkt_val = m_qty * price;
 }
 
@@ -54,4 +55,16 @@ int pnl_calc::sgn(const double& val)
 const double& pnl_calc::get_rpnl() const
 {
     return m_rlzd_pnl;
+}
+
+
+const double& pnl_calc::get_avg_price() const
+{
+    return m_avg_price;
+}
+
+
+const int& pnl_calc::get_qty() const
+{
+    return m_qty;
 }
