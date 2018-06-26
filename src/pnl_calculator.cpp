@@ -7,7 +7,7 @@ pnl_calc::pnl_calc() : m_qty(0), m_cost(0.0), m_mkt_val(0.0), m_rlzd_pnl(0.0), m
 }
 
 
-void pnl_calc::on_fill(const int& fill_qty, const double& price)
+void pnl_calc::on_fill(const int& fill_qty, const double& price, CommissionStyle cstyle)
 {
     int direction = sgn(fill_qty);
     int prev_direction = sgn(m_qty); 
@@ -36,6 +36,9 @@ void pnl_calc::on_fill(const int& fill_qty, const double& price)
     }else{
         m_avg_price = 0.0;
     }
+    
+    // subtract commissions
+    m_rlzd_pnl -= get_commission(fill_qty, price, cstyle);
     
 }
     
@@ -68,3 +71,16 @@ const int& pnl_calc::get_qty() const
 {
     return m_qty;
 }
+
+
+double pnl_calc::get_commission(const int& qty, const double& price, CommissionStyle cstyle)
+{
+    if( cstyle == CommissionStyle::IBFT){
+        // North American Fixed Tier pricing scheme for equities 
+        // https://www.interactivebrokers.com/en/index.php?f=1590&p=stocks1
+        // qty may be negative
+        double prelim_comm = std::abs(qty)*.005 > 1.0 ? std::abs(qty)*.005 : 1.0;
+        return .01*std::abs(qty)*price > prelim_comm ? prelim_comm : .01*std::abs(qty)*price; 
+    }
+}
+

@@ -1,6 +1,9 @@
 #ifndef PNL_CALCULATOR_H
 #define PNL_CALCULATOR_H
 
+/** Enum class used for deciding which commission formula. */ 
+enum class CommissionStyle {IBFT};
+
 class pnl_calc{
 
 public:
@@ -16,7 +19,7 @@ public:
      * @param fill_qty signed (negative for sold) amount of shares in the most recent transaction
      * @param price the price (taken or received) for the transaction 
      */
-    void on_fill(const int& fill_qty, const double& price);
+    void on_fill(const int& fill_qty, const double& price, CommissionStyle cstyle);
     
     /**
      * @brief Call this method every time there is a market price movement.
@@ -52,7 +55,9 @@ private:
     double m_mkt_val; // total dollar amount currently worth
     double m_rlzd_pnl; // realized profit and loss
     double m_avg_price; // cost / qty
+    
     int sgn(const double& val); 
+    double get_commission(const int& qty, const double& price, CommissionStyle cstyle);
 };
 
 #endif // PNL_CALCULATOR_H
