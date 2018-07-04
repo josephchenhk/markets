@@ -90,8 +90,8 @@ double pnl_calc::get_commission(const int& qty, const double& price, CommissionS
         }
 
         if(qty < 0){
-            prelim_comm += 0.0000130 * trade_val; // transaction fees
-            prelim_comm += 0.000119 * abs_qty; // finra fees
+            comm += 0.0000130 * trade_val; // transaction fees
+            comm += 0.000119 * abs_qty; // finra fees
         }
     }
 }
