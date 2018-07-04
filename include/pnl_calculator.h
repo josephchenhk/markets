@@ -2,7 +2,7 @@
 #define PNL_CALCULATOR_H
 
 /** Enum class used for deciding which commission formula. */ 
-enum class CommissionStyle {IBFT};
+enum class CommissionStyle {IBFixed};
 
 class pnl_calc{
 

@@ -75,12 +75,24 @@ const int& pnl_calc::get_qty() const
 
 double pnl_calc::get_commission(const int& qty, const double& price, CommissionStyle cstyle)
 {
-    if( cstyle == CommissionStyle::IBFT){
-        // North American Fixed Tier pricing scheme for equities 
+    if( cstyle == CommissionStyle::IBFixed){
+        // North American Fixed pricing scheme for equities 
         // https://www.interactivebrokers.com/en/index.php?f=1590&p=stocks1
+        // this ignores the "exceptions" which include API orders
+        
         // qty may be negative
-        double prelim_comm = std::abs(qty)*.005 > 1.0 ? std::abs(qty)*.005 : 1.0;
-        return .01*std::abs(qty)*price > prelim_comm ? prelim_comm : .01*std::abs(qty)*price; 
+        unsigned int abs_qty = std::abs(qty);
+        double comm = std::abs(qty)*.005 > 1.0 ? abs_qty*.005 : 1.0;
+        double trade_val = abs_qty*price;
+        double ib_max = .01*trade_val;
+        if(ib_max > 1.0){
+            comm = ib_max > comm ? comm : ib_max;
+        }
+
+        if(qty < 0){
+            prelim_comm += 0.0000130 * trade_val; // transaction fees
+            prelim_comm += 0.000119 * abs_qty; // finra fees
+        }
     }
 }
 
