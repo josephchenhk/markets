@@ -1,6 +1,8 @@
 #ifndef PNL_CALCULATOR_H
 #define PNL_CALCULATOR_H
 
+#include "instrument.h"
+
 /** Enum class used for deciding which commission formula. */ 
 enum class CommissionStyle {IBFixed};
 
@@ -11,7 +13,7 @@ public:
     /**
      * @brief Default Ctor. Sets everything to 0.0
      */
-    pnl_calc();
+    pnl_calc(const std::string& ticker);
 
 
     /**
@@ -49,7 +51,15 @@ public:
     const int& get_qty() const;
     
     
+    /**
+     * @brief get the instrument name
+     * @return the name of the instrument
+     */
+    const Instrument& instr() const;
+    
+    
 private:
+    Instrument m_ticker;
     int m_qty; // this is signed 
     double m_cost; // total dollar amount invested (negative for short)
     double m_mkt_val; // total dollar amount currently worth

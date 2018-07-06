@@ -3,7 +3,7 @@
 
 #include "instrument.h"
 
-enum class OrderType {marketBuy, marketSell};
+enum class OrderType {marketBuy, marketSell, limitBuy, limitSell};
 
 class Order
 {

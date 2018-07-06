@@ -31,6 +31,14 @@ public:
      * @param right
      */
     bool operator<(const Instrument& other) const;
+    
+    
+    /**
+     * @brief equality operator
+     * @param other the Instrument object you're comparing to
+     */
+    bool operator==(const Instrument& other) const;
+    
 };
 
 #endif // INSTRUMENT_H

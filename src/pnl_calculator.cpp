@@ -2,7 +2,7 @@
 
 #include <algorithm> // min
 
-pnl_calc::pnl_calc() : m_qty(0), m_cost(0.0), m_mkt_val(0.0), m_rlzd_pnl(0.0), m_avg_price(0.0)
+pnl_calc::pnl_calc(const std::string& ticker) : m_ticker(ticker), m_qty(0), m_cost(0.0), m_mkt_val(0.0), m_rlzd_pnl(0.0), m_avg_price(0.0)
 {    
 }
 
@@ -70,6 +70,12 @@ const double& pnl_calc::get_avg_price() const
 const int& pnl_calc::get_qty() const
 {
     return m_qty;
+}
+
+
+const Instrument& pnl_calc::instr() const
+{
+    return m_ticker;
 }
 
 

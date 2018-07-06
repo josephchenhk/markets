@@ -4,43 +4,52 @@
 
 #include <map>
 #include <instrument.h>
-#include <market_bar.h>
-#include <stdexcept>
+#include <vector>
 
-enum PositionType {LONG, SHORT, NONE}
+#include "market_snapshot.h"
+#include "pnl_calculator.h"
+#include "fill.h"
+
 
 /**
  * @class PositionSummary
- * @author Benjamin
- * @date 24/05/18
+ * @author t
+ * @date 06/07/18
  * @file position_summary.h
- * @brief Provides summary info for a particular position
+ * @brief Provides a collection of Position objects.
  */
-
 class PositionSummary
 {
+    
+private:
+
+    std::vector<pnl_calc> m_positions;
+    CommissionStyle m_cs;
+
 public:
 
-    // summary info
-    const PositionType m_position_type;
-    const unsigned m_quantity;
-    const double m_floating_pl;
+  
+    /**
+     * @brief sets up a zero position for each symbol
+     * @param tickers, the ordered collection of which stocks you want to keep track of
+     */
+    PositionSummary(const std::vector<std::string>& tickers, CommissionStyle cs);
+  
     
     /**
-     * @brief Constructs a new PositionSummary with the provided information
-     * @param position_type denotes the type of aggregate position taken
-     * @param quantity denotes the net quantity of the position
-     * @param floating_pl denotes the current profit/loss of this position
+     * @brief updates the positions with prices changing.
+     * @param ms a market snapshot 
      */
+    void onSnapshot(const MarketSnapshot& ms);
     
-    PositionSummary(PositionType position_type, 
-                    unsigned quantity, 
-                    double floating_pl): m_position_type(position_type), 
-                                         m_quantity(quantity), 
-                                         m_floating_pl(floating_pl) 
-    {
-        if (quantity < 0) throw std::invalid_argument("Quantity must be positive");
-    }
+    
+    /**
+     * @brief updates the positions after a fill has been received.
+     * @param fill a Fill event
+     */
+    void onFill(const Fill& fill);
+  
+
 };
 
 #endif // POSITION_SUMMARY_H

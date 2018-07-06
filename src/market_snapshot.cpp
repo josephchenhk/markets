@@ -7,6 +7,7 @@
 #include "instrument.h"
 #include "market_bar.h"
 
+
 MarketSnapshot::MarketSnapshot(const MarketBar::Time &time, const std::map<Instrument,MarketBar> &bars)
     : m_time(time), m_bars(bars) 
 {

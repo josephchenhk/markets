@@ -16,3 +16,9 @@ bool Instrument::operator<(const Instrument& other) const
 {
     return m_symbol < other.m_symbol;
 }
+
+
+bool Instrument::operator==(const Instrument& other) const
+{
+    return m_symbol == other.m_symbol;
+}

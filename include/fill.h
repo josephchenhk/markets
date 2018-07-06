@@ -21,6 +21,7 @@ public:
     const double m_orderPrice;
     const double m_executePrice;
     const double m_commission;
+    const unsigned int m_order_id;
 
     /**
      * @brief ctor
@@ -33,7 +34,8 @@ public:
         const Direction &dir, 
         const double &oPrice, 
         const double &ePrice, 
-        const double &totalCommission);
+        const double &totalCommission, 
+        const unsigned int &order_id);
 
     /**
      * @brief gets the slippage

@@ -22,8 +22,13 @@ private:
     std::map<Instrument,MarketBar> m_bars;
 
 public:
-
     
+    /**
+     * @brief default constructor
+     */
+    MarketSnapshot() = default;
+    
+
     /**
      * @brief Constructs a new MarketSnapshot from the provided information
      * @param time denotes the snapshot time
