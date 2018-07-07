@@ -20,7 +20,6 @@ public:
     const Direction m_direction;
     const double m_orderPrice;
     const double m_executePrice;
-    const double m_commission;
     const unsigned int m_order_id;
 
     /**
@@ -34,7 +33,6 @@ public:
         const Direction &dir, 
         const double &oPrice, 
         const double &ePrice, 
-        const double &totalCommission, 
         const unsigned int &order_id);
 
     /**

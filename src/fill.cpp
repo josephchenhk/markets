@@ -9,12 +9,10 @@ Fill::Fill(
     const Direction &dir, 
     const double &oPrice, 
     const double &ePrice, 
-    const double &totalCommission,
     const unsigned int &order_id)
     : m_instr(instr), m_fill_time(fill_time), m_exch(exch)
     , m_qty(qty), m_direction(dir), m_orderPrice(oPrice)
-    , m_executePrice(ePrice), m_commission(totalCommission)
-    , m_order_id(order_id)
+    , m_executePrice(ePrice), m_order_id(order_id)
 {    
 }
 
