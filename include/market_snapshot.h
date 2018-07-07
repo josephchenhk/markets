@@ -59,6 +59,13 @@ public:
      */
     std::map<Instrument,MarketBar> bars() const;
 
+
+    /**
+     * @brief returns the MarketBar with instrument name `instr_name`
+     * @param instr_name
+     * @return the associated MarketBar item
+     */
+    MarketBar& operator[](Instrument instr_name);
 };
 
 #endif // MARKET_SNAPHOT_H

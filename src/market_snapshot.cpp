@@ -44,3 +44,10 @@ std::map<Instrument,MarketBar> MarketSnapshot::bars() const
 {
     return m_bars;
 }
+
+
+MarketBar& MarketSnapshot::operator[](Instrument instr_name)
+{
+    return m_bars[instr_name];
+}
+
