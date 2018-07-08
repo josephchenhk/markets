@@ -23,7 +23,7 @@ class PositionSummary
     
 private:
 
-    std::vector<pnl_calc> m_positions;
+    std::vector<pnl_calc> m_positions; ///  TODO: this would be a lot more helpful if this was a map
     CommissionStyle m_cs;
 
 public:
@@ -49,6 +49,13 @@ public:
      */
     void onFill(const Fill& fill);
   
+  
+    /**
+     * @brief gets the market value for a particular position.
+     * @param instr an instrument you're interested in.
+     * @return the current market value for Instrument "instr"
+     */
+    double getInstrumentsMktVal(const Instrument& instr);
 
 };
 

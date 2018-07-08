@@ -30,3 +30,13 @@ void PositionSummary::onFill(const Fill& fill)
 }
 
 
+double PositionSummary::getInstrumentsMktVal(const Instrument& instr)
+{
+    for(auto& pos : m_positions){
+        if(pos.instr() == instr)
+            return pos.get_mkt_val();
+    }
+}
+
+
+

@@ -27,7 +27,6 @@ private:
     double m_liquidation_value;
     MarketSnapshot m_last_snapshot;
     std::vector<Instrument> m_ordered_tickers;
-    Eigen::Matrix<double,dimobs,1> m_ideal_wts;
     PositionSummary m_pos_summary;
     unsigned int m_todo_step;
 
@@ -38,8 +37,8 @@ public:
     
     // call these in order
     void readAllFills(std::queue<Fill>& q);
-    void readNewPrices(const MarketSnapshot& ms);
-    void updateOnNewIdealWts(const Eigen::Matrix<double,dimobs,1>& wts_to_be, std::queue<Order>& order_q);
+    void readNewPrices(MarketSnapshot ms);
+    void updateOnNewIdealWts(const Eigen::Matrix<double,dimobs,1>& ideal_wts_to_be, std::queue<Order>& order_q);
 };
 
 
@@ -48,7 +47,6 @@ public:
 template<size_t dimobs>
 Portfolio<dimobs>::Portfolio(const double& starting_cash, const std::vector<std::string>& tickers, CommissionStyle cs) 
     : m_liquidation_value(starting_cash)
-    , m_ideal_wts(Eigen::Matrix<double,dimobs,1>::Zero())
     , m_pos_summary(tickers, cs)
     , m_todo_step(1)
 {
@@ -79,7 +77,7 @@ void Portfolio<dimobs>::readAllFills(std::queue<Fill>& q)
 
 
 template<size_t dimobs>
-void Portfolio<dimobs>::readNewPrices(const MarketSnapshot& ms)
+void Portfolio<dimobs>::readNewPrices(MarketSnapshot ms)
 {
     if(m_todo_step != 2)
         throw std::runtime_error("Portfolio methods are being called out of order");
@@ -93,30 +91,42 @@ void Portfolio<dimobs>::readNewPrices(const MarketSnapshot& ms)
 
 
 template<size_t dimobs>
-void Portfolio<dimobs>::updateOnNewIdealWts(const Eigen::Matrix<double,dimobs,1>& wts_to_be, std::queue<Order>& order_q)
+void Portfolio<dimobs>::updateOnNewIdealWts(const Eigen::Matrix<double,dimobs,1>& ideal_wts_to_be, std::queue<Order>& order_q)
 {
+
+    // generate and submit orders based on these new ideal weights.
+    // to calculate the order_qty, keep in mind that:
+    // 
+    //             signed_order_qty * this_order_price + current_position_mkt_value <= ideal_wt * liquidation_value
+    //
+    // where current_position_mkt_value = current_position_signed_qty * current_ave_price
+    
+    // NB1: the fixed order_price might be "outdated" if it's based on the previously most recent price
+    // NB3: this function assumes that it is only called after the previous UNFILLED order is expired. 
+    // It does not check for unfilled orders...just previously filled orders (via the position). 
+    // If this function were called too quickly, it would potentially submit multiple orders on 
+    // top of other orders for the same symbols. 
     
     if(m_todo_step != 3)
         throw std::runtime_error("Portfolio methods are being called out of order");
     
-    // 1. set new ideal weights
-    m_ideal_wts = wts_to_be;
-    
-    // 2. generate and submit orders based on these new ideal weights 
-    // order_price * order_qty <= liquid_val * ideal_wts (for each instrument)
-    // NB1: the fixed order_price might be "outdated" if its based on the previously most recent price
     int signed_qty;
     unsigned int pos_qty;
     for(size_t i = 0; i < m_ordered_tickers.size(); ++i){
+        
         Instrument instr(m_ordered_tickers[i]);
-        signed_qty = std::trunc(m_liquidation_value*m_ideal_wts[i] / m_last_snapshot[instr].close());
+        double this_orders_price = m_last_snapshot[instr].close();
+        double current_position_value = m_pos_summary.getInstrumentsMktVal(instr);
+        signed_qty = std::trunc((m_liquidation_value*ideal_wts_to_be[i] - current_position_value)/this_orders_price);
+        
         if(signed_qty < 0){ // sell order
             pos_qty = -signed_qty;
-            order_q.push(Order(instr, OrderType::limitSell, pos_qty));
+            order_q.push(Order(instr, OrderType::limitSell, this_orders_price, pos_qty));
             std::cout << "successfully submitted an order!\n";
+            
         }else{ // buy order
             pos_qty = signed_qty;
-            order_q.push(Order(instr, OrderType::limitBuy, pos_qty));
+            order_q.push(Order(instr, OrderType::limitBuy, this_orders_price, pos_qty));
             std::cout << "successfully submitted an order!\n";
         }
     }

@@ -66,6 +66,7 @@ public:
      * @return the associated MarketBar item
      */
     MarketBar& operator[](Instrument instr_name);
+
 };
 
 #endif // MARKET_SNAPHOT_H

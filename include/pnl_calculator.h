@@ -58,6 +58,13 @@ public:
     const Instrument& instr() const;
     
     
+    /**
+     * @brief gets the current market-value 
+     * @return the current market value
+     */
+    const double& get_mkt_val() const;
+    
+    
 private:
     Instrument m_ticker;
     int m_qty; // this is signed 

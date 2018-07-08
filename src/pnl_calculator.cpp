@@ -79,6 +79,12 @@ const Instrument& pnl_calc::instr() const
 }
 
 
+const double& pnl_calc::get_mkt_val() const
+{
+    return m_mkt_val;
+}
+
+
 double pnl_calc::get_commission(const int& qty, const double& price, CommissionStyle cstyle)
 {
     if( cstyle == CommissionStyle::IBFixed){

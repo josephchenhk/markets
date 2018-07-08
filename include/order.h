@@ -8,7 +8,6 @@ enum class OrderType {marketBuy, marketSell, limitBuy, limitSell};
 class Order
 {
     static unsigned int totalOrders;
-    unsigned int m_id;
     
 public:
     
@@ -16,12 +15,14 @@ public:
     const Instrument m_instr;
     const OrderType m_otype;
     const unsigned int m_qty;
+    double m_price; 
+    unsigned int m_id;
     
     
     /**
      * @brief ctor
      */
-    Order(const Instrument &instr, const OrderType &otype, const unsigned int &qty);
+    Order(const Instrument &instr, const OrderType &otype, const double& price, const unsigned int &qty);
     
     
     /**
