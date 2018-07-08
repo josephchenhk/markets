@@ -23,10 +23,12 @@ void PositionSummary::onFill(const Fill& fill)
         if(pos.instr() == fill.m_instr){
             int signed_qty = (fill.m_direction == Direction::BOUGHT) ? fill.m_qty : -1*(int)fill.m_qty;
             pos.on_fill(signed_qty, fill.m_executePrice, m_cs);
-        }else{
-            throw std::invalid_argument("fill is for a symbol not tracked by your positions");
+            return;
         }
     }
+    
+    // if you get here, that means you received a fill for an unexpected symbol, which is very strange...
+    throw std::runtime_error("there was a fill received for an untracked instrument\n");    
 }
 
 

@@ -6,6 +6,14 @@
 #include "fill.h"
 #include "market_snapshot.h"
 
+
+/**
+ * @class ExecHandler
+ * @author t
+ * @date 08/07/18
+ * @file execution_handler.h
+ * @brief 
+ */
 class ExecHandler{
 
 private:
@@ -14,6 +22,7 @@ private:
 public:
     ExecHandler();
     void process_orders_yield_fills(MarketSnapshot ms, std::queue<Fill>& fills_q);
+    void addOrder(const Order& incoming_order);
     
 };
 

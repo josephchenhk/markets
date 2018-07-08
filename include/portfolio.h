@@ -6,8 +6,7 @@
 #include <queue>
 
 #include "position_summary.h"
-#include "order.h"
-
+#include "execution_handler.h"
 
 /**
  * @class Portfolio
@@ -38,7 +37,7 @@ public:
     // call these in order
     void readAllFills(std::queue<Fill>& q);
     void readNewPrices(MarketSnapshot ms);
-    void updateOnNewIdealWts(const Eigen::Matrix<double,dimobs,1>& ideal_wts_to_be, std::queue<Order>& order_q);
+    void updateOnNewIdealWts(const Eigen::Matrix<double,dimobs,1>& ideal_wts_to_be, ExecHandler& order_q);
 };
 
 
@@ -91,7 +90,7 @@ void Portfolio<dimobs>::readNewPrices(MarketSnapshot ms)
 
 
 template<size_t dimobs>
-void Portfolio<dimobs>::updateOnNewIdealWts(const Eigen::Matrix<double,dimobs,1>& ideal_wts_to_be, std::queue<Order>& order_q)
+void Portfolio<dimobs>::updateOnNewIdealWts(const Eigen::Matrix<double,dimobs,1>& ideal_wts_to_be, ExecHandler& order_q)
 {
 
     // generate and submit orders based on these new ideal weights.
@@ -121,12 +120,12 @@ void Portfolio<dimobs>::updateOnNewIdealWts(const Eigen::Matrix<double,dimobs,1>
         
         if(signed_qty < 0){ // sell order
             pos_qty = -signed_qty;
-            order_q.push(Order(instr, OrderType::limitSell, this_orders_price, pos_qty));
+            order_q.addOrder(Order(instr, OrderType::limitSell, this_orders_price, pos_qty));
             std::cout << "successfully submitted an order!\n";
             
         }else{ // buy order
             pos_qty = signed_qty;
-            order_q.push(Order(instr, OrderType::limitBuy, this_orders_price, pos_qty));
+            order_q.addOrder(Order(instr, OrderType::limitBuy, this_orders_price, pos_qty));
             std::cout << "successfully submitted an order!\n";
         }
     }

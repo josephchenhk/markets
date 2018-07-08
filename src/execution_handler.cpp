@@ -79,3 +79,9 @@ void ExecHandler::process_orders_yield_fills(MarketSnapshot ms, std::queue<Fill>
         m_orders.pop();
     }
 }
+
+
+void ExecHandler::addOrder(const Order& incoming_order)
+{
+    m_orders.push(incoming_order);
+}
