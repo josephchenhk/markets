@@ -1,7 +1,7 @@
 #include "position_summary.h"
 
 
-PositionSummary::PositionSummary(const std::vector<std::string>& tickers, CommissionStyle cs) : m_cs(cs)
+PositionSummary::PositionSummary(double initial_capital, const std::vector<std::string>& tickers, CommissionStyle cs) : m_starting_cash(initial_capital), m_cs(cs)
 {
     for(auto ticker : tickers)
         m_positions.push_back(pnl_calc(ticker));
@@ -20,19 +20,20 @@ void PositionSummary::onSnapshot(const MarketSnapshot& ms)
 void PositionSummary::onFill(const Fill& fill)
 {
     for(auto& pos : m_positions){
+        
         if(pos.instr() == fill.m_instr){
             int signed_qty = (fill.m_direction == Direction::BOUGHT) ? fill.m_qty : -1*(int)fill.m_qty;
             pos.on_fill(signed_qty, fill.m_executePrice, m_cs);
-            return;
+            
         }
+        
     }
     
-    // if you get here, that means you received a fill for an unexpected symbol, which is very strange...
-    throw std::runtime_error("there was a fill received for an untracked instrument\n");    
+    // TODO: take into account unexpected instrument fills
 }
 
 
-double PositionSummary::getInstrumentsMktVal(const Instrument& instr)
+double PositionSummary::getInstrumentsMktVal(const Instrument& instr) const
 {
     for(auto& pos : m_positions){
         if(pos.instr() == instr)
@@ -41,4 +42,12 @@ double PositionSummary::getInstrumentsMktVal(const Instrument& instr)
 }
 
 
+double PositionSummary::getBalance() const
+{
+    double balance = m_starting_cash;
+    for(auto& pos : m_positions){
+        balance += pos.get_rpnl();
+    }
+    return balance;
+}
 

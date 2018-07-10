@@ -1,4 +1,5 @@
 #include "execution_handler.h"
+#include <iostream>
 
 ExecHandler::ExecHandler()
 {
@@ -55,6 +56,8 @@ void ExecHandler::process_orders_yield_fills(MarketSnapshot ms, std::queue<Fill>
                                   o.m_price, 
                                   o.m_price, //ms[o.m_instr].close(), // not current close... asked for price 
                                   o.m_id)); // just set it equal to the order ID                
+            }else{
+                std::cout << "limit buy failed to fill for " << o.m_instr.m_symbol << "\n";
             }
 
             
@@ -69,6 +72,8 @@ void ExecHandler::process_orders_yield_fills(MarketSnapshot ms, std::queue<Fill>
                                   o.m_price, 
                                   o.m_price, //ms[o.m_instr].close(), // not current close... asked for price 
                                   o.m_id)); // just set it equal to the order ID                
+            }else{
+                std::cout << "limit buy failed to fill for " << o.m_instr.m_symbol << "\n";
             }
 
         }else{

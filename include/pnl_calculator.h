@@ -69,7 +69,7 @@ private:
     Instrument m_ticker;
     int m_qty; // this is signed 
     double m_cost; // total dollar amount invested (negative for short)
-    double m_mkt_val; // total dollar amount currently worth
+    double m_mkt_val; // total dollar amount position currently worth
     double m_rlzd_pnl; // realized profit and loss
     double m_avg_price; // cost / qty
     

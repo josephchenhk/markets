@@ -33,7 +33,11 @@ int main(int argc, char **argv)
         // data handler just to help converting market snapshots to Eigen::Vectors 
         // so math stuff can be done outside Portfolio object
         dh.onData(data[i]);
-        
+        std::cout << "data arriving:" 
+                  << "\ncloses: " << dh.closes().transpose() 
+                  << "\nlows: " << dh.lows().transpose()
+                  << "\nhighs: " << dh.highs().transpose()
+                  << "\n";
         
         // Broker 1. check for orders that were submitted at (the end of ) the last time period
         // this code should be hidden from the end user (you)
@@ -44,15 +48,19 @@ int main(int argc, char **argv)
         
         // portfolio 2. prices
         my_port.readNewPrices(data[i]);
+        std::cout << "current balance is: " << my_port.getBalance() << "\n";
         
         /// Math stuff: here is all the hard work where you will compute predictions, 
         // and then obtain the weights
         Eigen::Matrix<double,2,1> ideal_wts;
         if(i%3 == 0){
+            std::cout << "setting weights to be 0\n";
             ideal_wts = Eigen::Matrix<double,2,1>::Zero();
         }else if(i % 3 == 1){
+            std::cout << "setting weights to be .5\n";
             ideal_wts = Eigen::Matrix<double,2,1>::Constant(.5);            
         }else{
+            std::cout << "setting weights to be 1, 0\n";
             ideal_wts = Eigen::Matrix<double,2,1>::Zero();
             ideal_wts(0) = 1.0;
         }

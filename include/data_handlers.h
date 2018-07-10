@@ -20,6 +20,8 @@ public:
     void onData(const MarketSnapshot& new_data);
     Eigen::VectorXd logReturns() const;
     Eigen::VectorXd lows() const;
+    Eigen::VectorXd closes() const;
+    Eigen::VectorXd highs() const;
 };
 
 

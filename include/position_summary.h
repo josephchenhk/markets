@@ -10,6 +10,7 @@
 #include "pnl_calculator.h"
 #include "fill.h"
 
+// TODO: figure out how to get total liquidation value in terms of realized pnl, unrealized pnl, current market value, cost basis
 
 /**
  * @class PositionSummary
@@ -22,7 +23,7 @@ class PositionSummary
 {
     
 private:
-
+    double m_starting_cash; // starting_cash + realized pnls of all positions
     std::vector<pnl_calc> m_positions; ///  TODO: this would be a lot more helpful if this was a map
     CommissionStyle m_cs;
 
@@ -33,7 +34,7 @@ public:
      * @brief sets up a zero position for each symbol
      * @param tickers, the ordered collection of which stocks you want to keep track of
      */
-    PositionSummary(const std::vector<std::string>& tickers, CommissionStyle cs);
+    PositionSummary(double initial_capital, const std::vector<std::string>& tickers, CommissionStyle cs);
   
     
     /**
@@ -55,7 +56,14 @@ public:
      * @param instr an instrument you're interested in.
      * @return the current market value for Instrument "instr"
      */
-    double getInstrumentsMktVal(const Instrument& instr);
+    double getInstrumentsMktVal(const Instrument& instr) const;
+
+
+    /**
+     * @brief gets the current balance (starting cash plus all realized pnls)
+     * @return the balance as a double
+     */
+    double getBalance() const;
 
 };
 

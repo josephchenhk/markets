@@ -31,7 +31,7 @@ Eigen::VectorXd DataHandler::logReturns() const
     Eigen::VectorXd rets(n);
     std::map<Instrument,MarketBar> new_bars = m_new_snapshot.bars();
     std::map<Instrument,MarketBar> old_bars = m_old_snapshot.bars();
-    for(unsigned int i = 0; i < n; ++i){
+    for(size_t i = 0; i < n; ++i){
         rets(i) = 100*std::log(new_bars[Instrument(m_ordered_tickers[i])].close()) - 100*std::log(old_bars[Instrument(m_ordered_tickers[i])].close());
     }
     
@@ -48,8 +48,38 @@ Eigen::VectorXd DataHandler::lows() const
     unsigned int n = m_ordered_tickers.size();
     Eigen::VectorXd lows(n);
     std::map<Instrument,MarketBar> new_bars = m_new_snapshot.bars();
-    for(unsigned int i = 0; i < n; ++i)
+    for(size_t i = 0; i < n; ++i)
         lows(i) = new_bars[Instrument(m_ordered_tickers[i])].low();
         
     return lows;
+}
+
+
+Eigen::VectorXd DataHandler::closes() const
+{
+    if(m_num_data_seen == 0)
+        throw std::runtime_error("you need atleast 1 datum to look at closes");
+
+    unsigned int n = m_ordered_tickers.size();
+    Eigen::VectorXd closes(n);
+    std::map<Instrument,MarketBar> new_bars = m_new_snapshot.bars();
+    for(size_t i = 0; i < n; ++i)
+        closes(i) = new_bars[Instrument(m_ordered_tickers[i])].close();
+        
+    return closes;
+}
+
+
+Eigen::VectorXd DataHandler::highs() const
+{
+    if(m_num_data_seen == 0)
+        throw std::runtime_error("you need atleast 1 datum to look at highs");
+        
+    unsigned int n = m_ordered_tickers.size();
+    Eigen::VectorXd highs(n);
+    std::map<Instrument,MarketBar> new_bars = m_new_snapshot.bars();
+    for(size_t i = 0; i < n; ++i)
+        highs(i) = new_bars[Instrument(m_ordered_tickers[i])].high();
+    
+    return highs;
 }
