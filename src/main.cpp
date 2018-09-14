@@ -11,12 +11,19 @@
 int main(int argc, char **argv)
 {
 
-    std::vector<std::string> files;
-    files.push_back("/home/t/s/data/XLB.csv");
-    files.push_back("/home/t/s/data/XLE.csv");
+    // get the data directory
+    if(argc < 2){
+        std::cout << "please enter the data directory with a trailing slash";
+        return 1;
+    }
+
+    // get the particular files  
     std::vector<std::string> tickers;
     tickers.push_back("XLB");
     tickers.push_back("XLE");
+    std::vector<std::string> files;
+    files.push_back(std::string(argv[1]) + "XLB.csv");
+    files.push_back(std::string(argv[1]) + "XLE.csv");
     MarketSnapshotsMakerFromCsv dr(files, ",", tickers);
     std::vector<MarketSnapshot> data = dr.data();
 

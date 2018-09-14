@@ -27,7 +27,7 @@ DEPFLAGS = -MT $@ -MD -MP -MF $(DEPDIR)/$*.Td
 # compile c++ source files and link objects to binary
 COMPILE.cc = $(CXX) $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) -c -o $@
 LINK.o = $(LD) $(LDFLAGS) -o $@
-PRECOMPILE = @echo %.cpp
+PRECOMPILE = 
 POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
 
 all: $(BIN)
