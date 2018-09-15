@@ -8,35 +8,20 @@
 #include "market_bar.h"
 
 
-MarketSnapshot::MarketSnapshot(const MarketBar::Time &time, const std::map<Instrument,MarketBar> &bars)
-    : m_time(time), m_bars(bars) 
-{
-    // TODO: do we even need MarketSnapshot to have its own time member, then?
-    for (auto &elem : bars){
-        if (elem.second.time() != this->m_time) throw std::invalid_argument("Inconsistent time");
-    }
-}
-
-
-MarketSnapshot::MarketSnapshot(const std::string& time, const std::map<Instrument,MarketBar> &bars, const std::string& time_format)
+MarketSnapshot::MarketSnapshot(const std::map<Instrument,MarketBar> &bars)
     : m_bars(bars) 
 {
-    // convert time string into m_time
-    std::tm tm = {};
-    std::stringstream ss(time);
-    ss >> std::get_time(&tm, time_format.c_str());
-    m_time = std::chrono::system_clock::from_time_t(std::mktime(&tm));
-    
+    // take the first element's time and make sure everything is the same
+    MarketBar::Time firstTime = m_bars.begin()->second.time();
     for (auto &elem : bars){
-        if (elem.second.time() != this->m_time) throw std::invalid_argument("Inconsistent time");
+        if (elem.second.time() != firstTime) throw std::invalid_argument("Inconsistent time");
     }
 }
-
 
 
 auto MarketSnapshot::time() const -> MarketBar::Time
 {
-    return m_time;
+    return m_bars.begin()->second.time();
 }
 
 

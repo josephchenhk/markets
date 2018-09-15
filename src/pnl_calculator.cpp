@@ -36,10 +36,13 @@ void pnl_calc::on_fill(const int& fill_qty, const double& price, CommissionStyle
     }else{
         m_avg_price = 0.0;
     }
-    
+
     // subtract commissions
     m_rlzd_pnl -= get_commission(fill_qty, price, cstyle);
-    
+
+    // call this to update market value
+    pnl_calc::on_price(price);
+
 }
     
 
@@ -94,7 +97,7 @@ double pnl_calc::get_commission(const int& qty, const double& price, CommissionS
         
         // qty may be negative
         unsigned int abs_qty = std::abs(qty);
-        double comm = std::abs(qty)*.005 > 1.0 ? abs_qty*.005 : 1.0;
+        double comm = abs_qty*.005 > 1.0 ? abs_qty*.005 : 1.0;
         double trade_val = abs_qty*price;
         double ib_max = .01*trade_val;
         if(ib_max > 1.0){
@@ -105,6 +108,7 @@ double pnl_calc::get_commission(const int& qty, const double& price, CommissionS
             comm += 0.0000130 * trade_val; // transaction fees
             comm += 0.000119 * abs_qty; // finra fees
         }
+        return comm;
     }
 }
 

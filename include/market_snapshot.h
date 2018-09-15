@@ -3,8 +3,9 @@
 #define MARKET_SNAPHOT_H
 
 #include <map>
-#include <instrument.h>
-#include <market_bar.h>
+
+#include "instrument.h"
+#include "market_bar.h"
 
 /**
  * @class MarketSnapshot
@@ -18,7 +19,6 @@ class MarketSnapshot
 {
 private:    
     
-    MarketBar::Time m_time;
     std::map<Instrument,MarketBar> m_bars;
 
 public:
@@ -31,19 +31,9 @@ public:
 
     /**
      * @brief Constructs a new MarketSnapshot from the provided information
-     * @param time denotes the snapshot time
      * @param bars denotes the snapshot market data
      */
-    MarketSnapshot(const MarketBar::Time &time, const std::map<Instrument,MarketBar> &bars);
-
-
-    /**
-     * @brief Constructs a new MarketSnapshot from the provided information
-     * @param time denotes the snapshot time
-     * @param bars denotes the snapshot market data
-     * @param time_format denotes the string_format of the time
-     */
-    MarketSnapshot(const std::string& time, const std::map<Instrument,MarketBar> &bars, const std::string& time_format = "%Y-%m-%d %H:%M:%S");
+    MarketSnapshot(const std::map<Instrument,MarketBar> &bars);
 
     
     /**

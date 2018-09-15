@@ -81,10 +81,9 @@ MarketSnapshotsMakerFromCsv::MarketSnapshotsMakerFromCsv(
             Instrument instr(m_tickers[j]);
             le_map.insert(std::pair<Instrument,MarketBar>(instr, bar));
         }
-        MarketSnapshot ms(datasets[0][i][0], le_map); // takes the first dataset because it assumes all of the time points are the same for all instruments
+        MarketSnapshot ms(le_map); 
         m_data.push_back(ms);        
-    }
-    
+    } 
 }
 
 
