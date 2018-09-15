@@ -19,9 +19,10 @@ public:
     DataHandler(const std::vector<std::string>& ordered_tickers);
     void onData(const MarketSnapshot& new_data);
     Eigen::VectorXd logReturns() const;
+    Eigen::VectorXd opens() const;
+    Eigen::VectorXd highs() const;
     Eigen::VectorXd lows() const;
     Eigen::VectorXd closes() const;
-    Eigen::VectorXd highs() const;
 };
 
 

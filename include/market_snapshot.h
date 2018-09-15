@@ -57,6 +57,14 @@ public:
      */
     MarketBar& operator[](Instrument instr_name);
 
+
+    /**
+     * @brief returns the MarketBar with the instrument name 'instr_name'
+     * @param instr_name the name of which instrument/stock
+     * @return the associated MarketBar item
+     */
+    MarketBar& operator[](std::string instr_name);
+
 };
 
 #endif // MARKET_SNAPHOT_H

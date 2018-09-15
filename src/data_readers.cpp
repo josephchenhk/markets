@@ -4,8 +4,6 @@
 #include <sstream>      // std::istringstream
 
 
-
-
 CSVReader::CSVReader(std::string filename, std::string delm, unsigned int meaningless_rows) 
     : m_fileName(filename), m_delimeter(delm[0]), m_ignore_rows(meaningless_rows)
 { 
@@ -15,17 +13,15 @@ CSVReader::CSVReader(std::string filename, std::string delm, unsigned int meanin
 }
 
 
-
 std::vector<std::vector<std::string> > CSVReader::getData()
 {
-	std::vector<std::vector<std::string> > allData;
+    std::vector<std::vector<std::string> > allData;
+    std::ifstream file(m_fileName);
 
-	std::ifstream file(m_fileName);
-
-	std::string line = "";
-    unsigned int c(1);
-	while (std::getline(file, line))
-	{
+    std::string line = "";
+    unsigned int c(1); // this is not the row number of the data
+    while (std::getline(file, line))
+    {
         if(c > m_ignore_rows){
             std::vector<std::string> tokens;
             std::string token;
@@ -37,57 +33,74 @@ std::vector<std::vector<std::string> > CSVReader::getData()
             allData.push_back(tokens);
         }
         c++;
-	}
-	file.close();
-
-	return allData;
-}
-
-
-
-
-MarketSnapshotsMakerFromCsv::MarketSnapshotsMakerFromCsv(
-                                    std::vector<std::string> filenames, 
-                                    std::string delimeter, 
-                                    std::vector<std::string> tickers
-                                                        ) : m_tickers(tickers)
-{
-    // we assume the filenames and the tickers are given in the same order!
-    
-    // make a bunch of raw file content arrays
-    std::vector<std::vector<std::vector<std::string>>> datasets;
-    datasets.resize(filenames.size());
-    for(unsigned int i = 0; i < filenames.size(); ++i){
-        CSVReader csvr(filenames[i], ",", 0);
-        datasets[i] = csvr.getData();
     }
+	
+    file.close();
+    return allData;
+}
+
+// TODO: make sure this doesn't get choked up when two of the things have the same data
+MarketSnapshotsMaker::MarketSnapshotsMaker(
+                                    std::vector<std::string> filenames, 
+                                    std::string delimiter, 
+                                    std::vector<std::string> tickers) 
+    : m_tickers(tickers)
+{
+    // NB: assumes all files have the same number of rows
+    // NB: you kind of have to iterate in a weird way because you need to go a row at a time for each data file for each market snapshot! 
     
-    // iterate through eaach row of data
-    for(unsigned int i = 1; i < datasets[0].size(); ++i){
+    // the assumed format for each file is: 
+    // period,bid_price_open,bid_price_high,bid_price_low,bid_price_close,ask_price_open,ask_price_high,ask_price_low,ask_price_close,volume
+    // 2000-01-03 00:00:00,17.48,17.49,17.00,17.02,17.48,17.49,17.00,17.02,140500
+
+    unsigned int num_tickers, num_rows, csv_reader_start_row; 
+    num_tickers = m_tickers.size();
+    csv_reader_start_row = 1; // skip the column names
+    std::vector<std::vector<std::vector<std::string>>> all_raw_data;
+
+    // store all raw data so we can iterate over it in a weird way
+    for(size_t ticker = 0; ticker < num_tickers; ++ticker){
         
-        // the assumed format for each file is: 
-        // period,bid_price_open,bid_price_high,bid_price_low,bid_price_close,ask_price_open,ask_price_high,ask_price_low,ask_price_close,volume
-        // 2000-01-03 00:00:00,17.48,17.49,17.00,17.02,17.48,17.49,17.00,17.02,140500
-        std::map<Instrument, MarketBar> le_map;
-        for(unsigned int j = 0; j < datasets.size(); ++j){
-            
-            auto time = datasets[j][i][0];
-            double open = std::stod(datasets[j][i][1]);
-            double high = std::stod(datasets[j][i][2]);
-            double low = std::stod(datasets[j][i][3]);
-            double close = std::stod(datasets[j][i][4]);
-            unsigned int vol = std::stoul(datasets[j][i][9]);
-            MarketBar bar(open, high, low, close, vol, time);
-            Instrument instr(m_tickers[j]);
-            le_map.insert(std::pair<Instrument,MarketBar>(instr, bar));
+        // raw string content for each ticker
+        CSVReader csvr(filenames[ticker], delimiter, csv_reader_start_row);
+        all_raw_data.push_back(csvr.getData());
+
+        if(ticker == 0){
+            num_rows = all_raw_data[0].size();
         }
-        MarketSnapshot ms(le_map); 
-        m_data.push_back(ms);        
-    } 
+
+    }
+
+    // iterate over each time point/row of data
+    for(size_t time = 0; time < num_rows; ++time){
+
+        // go snapshot by snapshot...
+        double open, high, low, close;
+        unsigned int vol;
+        std::map<Instrument,MarketBar> temp_map;
+        for(size_t ticker = 0; ticker < num_tickers; ++ticker){
+
+            // make one ticker's bar
+            auto tstamp =            all_raw_data[ticker][time][0];
+            open        = std::stod( all_raw_data[ticker][time][1]);
+            high        = std::stod( all_raw_data[ticker][time][2]);
+            low         = std::stod( all_raw_data[ticker][time][3]);
+            close       = std::stod( all_raw_data[ticker][time][4]);
+            vol         = std::stoul(all_raw_data[ticker][time][9]);
+    
+            MarketBar bar(open, high, low, close, vol, tstamp);
+            Instrument instr(m_tickers[ticker]);
+            temp_map.insert(std::pair<Instrument,MarketBar>(instr, bar));
+        }
+
+        // add the complete snapshot (made from the now-complete map)
+        MarketSnapshot ms(temp_map);
+        m_data.push_back(ms);
+    }
 }
 
 
-std::vector<MarketSnapshot> MarketSnapshotsMakerFromCsv::data() const
+std::vector<MarketSnapshot> MarketSnapshotsMaker::data() const
 {
     return m_data;
 }

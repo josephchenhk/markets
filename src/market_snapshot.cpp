@@ -36,3 +36,8 @@ MarketBar& MarketSnapshot::operator[](Instrument instr_name)
     return m_bars[instr_name];
 }
 
+
+MarketBar& MarketSnapshot::operator[](std::string instr_name)
+{
+    return m_bars[Instrument(instr_name)];
+}
