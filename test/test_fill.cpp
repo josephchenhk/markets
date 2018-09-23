@@ -21,6 +21,7 @@ TEST(test_fill){
                 EPRICE,
                 123);
 
+	// check slippage works
     CHECK_CLOSE(EPRICE - OPRICE, myFill.getSlippage(), PREC);
 
 }

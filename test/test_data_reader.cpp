@@ -29,7 +29,8 @@ TEST(test_market_snapshot_maker_from_csv){
     MarketSnapshotsMaker msmaker(paths, ",", tickers);
     std::vector<MarketSnapshot> data = msmaker.data();
 
-    // first row:
+	// check the first row
+    // it looks like this in the text file:
     // 2000-01-03 00:00:00,10.34,10.34,9.90,9.97,10.34,10.34,9.90,9.97,1185600
     MarketSnapshot first_snapshot = data[0].bars();
     MarketBar bar1 = first_snapshot["ABC"];

@@ -1,9 +1,9 @@
-
 #ifndef MARKET_BAR_H
 #define MARKET_BAR_H
 
 #include <chrono>
 #include <string>
+
 
 /**
  * @class MarketBar
@@ -18,6 +18,7 @@ class MarketBar
 {
 public:
 
+    /* type alias for time stuff */ 
     using Time = std::chrono::time_point<std::chrono::system_clock>;
     
     

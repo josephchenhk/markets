@@ -3,26 +3,26 @@
 
 Fill::Fill(
     const Instrument &instr, 
-    const Time &fill_time, 
+    const Time &f_time, 
     const Exchange &exch, 
     const unsigned int &qty, 
     const Direction &dir, 
     const double &oPrice, 
-    const double &ePrice, 
-    const unsigned int &order_id)
-    : m_instr(instr), m_fill_time(fill_time), m_exch(exch)
-    , m_qty(qty), m_direction(dir), m_orderPrice(oPrice)
-    , m_executePrice(ePrice), m_order_id(order_id)
+    const double &ePrice,
+    const unsigned int& o_id)
+    : instrument(instr), fill_time(f_time), exchange(exch)
+    , quantity(qty), direction(dir), order_price(oPrice)
+    , execute_price(ePrice), order_id(o_id)
 {    
 }
 
 
 double Fill::getSlippage() const
 {
-    if(m_direction == Direction::BOUGHT){
-        return m_executePrice - m_orderPrice;
+    if(direction == Direction::BOUGHT){
+        return execute_price - order_price;
     }else{ // sold or shorted
-        return m_orderPrice - m_executePrice;
+        return order_price - execute_price;
     }
 }
 

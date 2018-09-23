@@ -22,9 +22,8 @@ TEST(successful_buy){
     // quantity, market value, realized pnl, and average cost 
     // at each stage in the process of a successul long position
 
-    // initialize and check name
-    pnl_calc mc("XYZ");
-    CHECK_EQUAL("XYZ", mc.instr().m_symbol);
+    // initialize
+    pnl_calc mc;
    
     // check that you'r flat before you buy anything
     CHECK_CLOSE(0.0, mc.get_mkt_val(), PREC);
@@ -76,9 +75,8 @@ TEST(successful_buy){
 
 TEST(unsuccessful_buy){
 
-    // initialize and check name
-    pnl_calc mc("XYZ");
-    CHECK_EQUAL("XYZ", mc.instr().m_symbol);
+    // initialize
+    pnl_calc mc;
    
     // check that you'r flat before you buy anything
     CHECK_CLOSE(0.0, mc.get_mkt_val(), PREC);
@@ -130,9 +128,8 @@ TEST(unsuccessful_buy){
 
 TEST(successful_short){
 
-    // initialize and check name
-    pnl_calc mc("XYZ");
-    CHECK_EQUAL("XYZ", mc.instr().m_symbol);
+    // initialize
+    pnl_calc mc;
    
     // check that you'r flat before you buy anything
     CHECK_CLOSE(0.0, mc.get_mkt_val(), PREC);
@@ -181,9 +178,8 @@ TEST(successful_short){
 
 TEST(unsuccessful_short){
 
-    // initialize and check name
-    pnl_calc mc("XYZ");
-    CHECK_EQUAL("XYZ", mc.instr().m_symbol);
+    // initialize
+    pnl_calc mc;
    
     // check that you'r flat before you buy anything
     CHECK_CLOSE(0.0, mc.get_mkt_val(), PREC);

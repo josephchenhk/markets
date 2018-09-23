@@ -1,4 +1,3 @@
-
 #ifndef MARKET_SNAPHOT_H
 #define MARKET_SNAPHOT_H
 
@@ -6,6 +5,7 @@
 
 #include "instrument.h"
 #include "market_bar.h"
+
 
 /**
  * @class MarketSnapshot

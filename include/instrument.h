@@ -15,18 +15,18 @@ class Instrument
 {
 public:
     
-    // uniquely identifying symbol
-    const std::string m_symbol;
+    // uniquely identifying ticker symbol
+    const std::string symbol;
     
     /**
      * @brief Constructs an Instrument with the provided symbol
      * @param s denotes the symbol
      */
-    Instrument(const std::string& symbol);
+    Instrument(const std::string& sym);
     
 
     /**
-     * @brief relational operator required by std::map
+     * @brief relational operator that orders the ticker symbols
      * @param left
      * @param right
      */
@@ -34,7 +34,7 @@ public:
     
     
     /**
-     * @brief equality operator
+     * @brief equality operator for the ticker symbols
      * @param other the Instrument object you're comparing to
      */
     bool operator==(const Instrument& other) const;

@@ -7,7 +7,6 @@
 
 #define PREC .001
 
-// NB: uppercase/lowercase?
 // NB: check inconsistent times?
 
 TEST(test_market_snapshot){

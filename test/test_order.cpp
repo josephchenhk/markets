@@ -16,9 +16,9 @@ TEST(test_order){
             QTY);
 
     // check all public members
-    CHECK(o.m_instr == instr);
-    CHECK(o.m_otype == OrderType::marketBuy);
-    CHECK_EQUAL(QTY, o.m_qty);
-    CHECK_CLOSE(PRICE, o.m_price, PREC);
+    CHECK(o.instrument == instr);
+    CHECK(o.type == OrderType::marketBuy);
+    CHECK_EQUAL(QTY, o.quantity);
+    CHECK_CLOSE(PRICE, o.price, PREC);
 
 }

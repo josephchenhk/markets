@@ -5,31 +5,45 @@
 
 enum class OrderType {marketBuy, marketSell, limitBuy, limitSell};
 
+
+/**
+ * @class Order
+ * @author t
+ * @file order.h
+ * @brief an order class with const public data members
+ */
 class Order
 {
-    static unsigned int totalOrders;
+
+private:
+
+    static unsigned int s_totalOrders;
     
 public:
     
-    // data 
-    const Instrument m_instr;
-    const OrderType m_otype;
-    const unsigned int m_qty;
-    double m_price; 
-    unsigned int m_id;
-    
-    
-    /**
+   /**
      * @brief ctor
+     * @param instr the instrument 
+     * @param order_type the type of order
+     * @param order_price the order price (NB: if market order, this only is for slippage calc purposes)
+     * @param qty the number of shares
      */
-    Order(const Instrument &instr, const OrderType &otype, const double& price, const unsigned int &qty);
+    Order(const Instrument &instr, const OrderType &order_type, const double& order_price, const unsigned int &qty);
     
-    
-    /**
-     * @brief get the order id
-     * @return the order id
-     */
-    unsigned int id() const;
+    /* instrument */ 
+    const Instrument instrument;
+
+    /* order type */
+    const OrderType type;
+
+    /* number of shares ordered */
+    const unsigned int quantity;
+
+    /* the order price */
+    double price; 
+
+    /* the unique order id */
+    unsigned int id;
 };
 
 #endif // ORDER_H

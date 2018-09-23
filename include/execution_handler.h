@@ -15,15 +15,33 @@
  * @brief 
  */
 class ExecHandler{
+   
+public:
+
+    /**
+     * @brief ctor
+     * @param marketSlippage is the dollar amount of slippage that will be assessed
+     */
+    ExecHandler(const double& marketSlippage = .01);
+
+
+    /**
+     * @brief process orders to see if they were filled
+     * @param ms the most recent MarketSnapshot
+     * @param fills_q is the place that fills will be put
+     */
+    void process_orders_yield_fills(MarketSnapshot ms, std::queue<Fill>& fills_q);
+
+
+    /**
+     * @brief add an order to the queue
+     * @brief incoming_order an order that may or may not be triggered
+     */
+    void addOrder(const Order& incoming_order);
 
 private:
     std::queue<Order> m_orders;
-    
-public:
-    ExecHandler();
-    void process_orders_yield_fills(MarketSnapshot ms, std::queue<Fill>& fills_q);
-    void addOrder(const Order& incoming_order);
-    
+    double m_ave_slip;    
 };
 
 

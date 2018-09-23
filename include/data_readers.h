@@ -71,6 +71,7 @@ public:
 
     /**
      * @brief returns data in a useable format
+     * @return a std::vector of MarketSnapshots
      */
     std::vector<MarketSnapshot> data() const;
 

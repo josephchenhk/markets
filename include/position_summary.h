@@ -22,13 +22,7 @@
 class PositionSummary
 {
     
-private:
-    double m_starting_cash; // starting_cash + realized pnls of all positions
-    std::vector<pnl_calc> m_positions; ///  TODO: this would be a lot more helpful if this was a map
-    CommissionStyle m_cs;
-
 public:
-
   
     /**
      * @brief sets up a zero position for each symbol
@@ -56,7 +50,15 @@ public:
      * @param instr an instrument you're interested in.
      * @return the current market value for Instrument "instr"
      */
-    double getInstrumentsMktVal(const Instrument& instr) const;
+    double getInstrumentMktVal(const Instrument& instr) const;
+
+
+    /**
+     * @brief gets the market value for a particular position
+     * @param a std::string of the parameter you're interested in
+     * @return the current market value for Instrument "instr"
+     */
+    double getInstrumentMktVal(const std::string& sym) const;
 
 
     /**
@@ -64,6 +66,13 @@ public:
      * @return the balance as a double
      */
     double getBalance() const;
+
+
+private:
+
+    double m_starting_cash; // starting_cash + realized pnls of all positions
+    std::map<Instrument,pnl_calc> m_positions; 
+    CommissionStyle m_cs;
 
 };
 
