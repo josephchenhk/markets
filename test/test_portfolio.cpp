@@ -1,7 +1,7 @@
 #include <UnitTest++/UnitTest++.h>
 #include <Eigen/Dense>
 #include <iostream>
-
+#include <cmath>
 
 #include "portfolio.h"
 
@@ -108,15 +108,38 @@ TEST(test_portfolio){
     // step 1/3 round two! check for fills
     p.readAllFills(fill_q);
 
+    //
+    int correct_shares_abc = std::floor(.5*start_cash/100.00);
+    int correct_shares_xyz = std::floor(.5*start_cash/120.00);
     // TODO: investigate a potential other bug: if you try to get balance before you see up-to-date data (eg fill came more recently than data)
-    //std::cerr << "balance: " << p.getBalance() << "  \n";
-    //CHECK_CLOSE(start_cash - 1.0, // commission gets subtracted now and no realized profits
-    //            p.getBalance(),
-    //            PREC);
-    // TODO: pick up here. check the right number of shares were bought
+    CHECK_CLOSE(correct_shares_abc*100.0,
+                p.getMktVal("ABC"),
+                PREC);
+    CHECK_CLOSE(correct_shares_xyz*120.00,
+                p.getMktVal("XYZ"),
+                PREC);
+    
 
-    // step 2 read in the most recent prices
-    // step 3 receive weights and send orders
+    // step 2/3 round two: read in the most recent prices
+    MarketBar::Time t3 = std::chrono::system_clock::now();
+    MarketBar bar5(1000.0, 1010.00, 990.00, 1000.0, 1000, t3);
+    MarketBar bar6(1200.0, 1210.00, 1190.00, 1200.00, 1000, t3);
+    std::map<Instrument,MarketBar> test_bars3;
+    test_bars3.insert(std::pair<Instrument,MarketBar>(instr1, bar5));
+    test_bars3.insert(std::pair<Instrument,MarketBar>(instr2, bar6));
+    MarketSnapshot ms3(test_bars3);
+    p.readNewPrices(ms3);
+
+    // step 2 of 3: process a market snapshot
+    CHECK_CLOSE(1000*correct_shares_abc,
+                p.getMktVal("ABC"),
+                PREC);
+    CHECK_CLOSE(1200*correct_shares_xyz,
+                p.getMktVal("XYZ"),
+                PREC);
+    
+
+
 
 
 }
