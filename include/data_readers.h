@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <filesystem>
 
 #include "market_snapshot.h"
 
@@ -18,12 +19,7 @@
  */
 class CSVReader
 {
-private:
 
-    std::string m_fileName;
-    char m_delimeter;
-    unsigned int m_ignore_rows;
- 
 public:
 
     /**
@@ -40,6 +36,12 @@ public:
      * @return a block of string data
      */
     std::vector<std::vector<std::string> > getData();
+
+private:
+
+    std::string m_fileName;
+    char m_delimeter;
+    unsigned int m_ignore_rows; 
 };
 
 
@@ -60,6 +62,14 @@ private:
 
 public:
 
+
+    /**
+     * @brief alternative ctor. Will read in every file in a directory and try to get the ticker names automatically
+     * @param data_directory where the files are...will try to read in all of the files in their 
+     * @param delimiter column delimiter
+     */
+    MarketSnapshotsMaker(const std::string& data_directory, std::string delimiter);
+
     /**
      * @brief ctor
      * @param filenames the paths to the files you want to read in
@@ -76,6 +86,7 @@ public:
     std::vector<MarketSnapshot> data() const;
 
 };
+
 
 
 

@@ -42,15 +42,14 @@ Eigen::VectorXd DataHandler::logReturns() const
 
 Eigen::VectorXd DataHandler::opens() const
 {
-    if(m_num_data_seen == 0)
-        throw std::runtime_error("you need at least 1 datum to look at the opens");
+    if(m_num_data_seen == 0) throw std::runtime_error("you need at least 1 datum to look at the opens");
 
-	unsigned int n = m_ordered_tickers.size();
-	Eigen::VectorXd opens(n);
+    unsigned int n = m_ordered_tickers.size();
+    Eigen::VectorXd opens(n);
     std::map<Instrument,MarketBar> new_bars = m_new_snapshot.bars();
-    for(size_t i = 0; i < n; ++i)
+    for(size_t i = 0; i < n; ++i){
         opens(i) = new_bars[Instrument(m_ordered_tickers[i])].open();
-        
+    }
     return opens;
 }
 

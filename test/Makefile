@@ -12,13 +12,13 @@ $(shell mkdir -p $(DEPDIR))
 $(shell mkdir -p $(dir $(OBJS)) >/dev/null)
 
 # compiler and linker stuff
-CXX := g++
-LD := g++
-CXXFLAGS := -std=c++11 -g -Wall
+CXX := g++-8
+LD := g++-8
+CXXFLAGS := -std=c++17 -g -Wall
 CPPFLAGS := -I/usr/local/include/UnitTest++ -I/usr/include/eigen3 -I../include
 LDFLAGS := "-L../bin" "-L/usr/local/lib"
 DEPFLAGS = -MT $@ -MD -MP -MF $(DEPDIR)/$*.Td
-LDLIBS := -lUnitTest++ -lmarkets
+LDLIBS := -lUnitTest++ -lmarkets -lstdc++fs
 
 # compile C++ source files
 COMPILE.cc = $(CXX) $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) -c -o $@

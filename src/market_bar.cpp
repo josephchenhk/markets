@@ -12,7 +12,7 @@ MarketBar::MarketBar(const double &open, const double &high, const double &low, 
     if (high <= 0.0) throw std::invalid_argument("High price must be positive");
     if (low <= 0.0) throw std::invalid_argument("Low price must be positive");
     if (close <= 0.0) throw std::invalid_argument("Close price must be positive");
-    if (vol < 0) throw std::invalid_argument("Volume must be non-negative");
+    // if (vol < 0) throw std::invalid_argument("Volume must be non-negative"); this is always false!
     if (high < low) throw std::invalid_argument("high must be greater than or equal to low price");
 }
 
@@ -26,7 +26,7 @@ MarketBar::MarketBar(const double &open, const double &high, const double &low, 
     if (high <= 0.0) throw std::invalid_argument("High price must be positive");
     if (low <= 0.0) throw std::invalid_argument("Low price must be positive");
     if (close <= 0.0) throw std::invalid_argument("Close price must be positive");
-    if (vol < 0) throw std::invalid_argument("Volume must be non-negative");
+    // always false: if (vol < 0) throw std::invalid_argument("Volume must be non-negative");
     if (high < low) throw std::invalid_argument("high must be greater than or equal to low price");
 }
 

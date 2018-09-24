@@ -2,6 +2,7 @@
 
 #include <fstream>      // std::ifstream
 #include <sstream>      // std::istringstream
+#include <filesystem>
 
 
 CSVReader::CSVReader(std::string filename, std::string delm, unsigned int meaningless_rows) 
@@ -38,6 +39,60 @@ std::vector<std::vector<std::string> > CSVReader::getData()
     file.close();
     return allData;
 }
+
+
+
+MarketSnapshotsMaker::MarketSnapshotsMaker(const std::string& data_directory, std::string delimiter)
+{
+    // this is almost identical to the code in the construtor below
+
+    unsigned int num_tickers, num_rows, csv_reader_start_row;
+    num_tickers = 0; // incremement this in the first for loop
+    csv_reader_start_row = 1;
+    std::vector<std::vector<std::vector<std::string>>> all_raw_data;
+    
+    for(auto & p : std::filesystem::directory_iterator(data_directory)){
+    
+        // TODO get the ticker symbol and store it
+        CSVReader csvr(p.path().string(), delimiter, csv_reader_start_row);
+        all_raw_data.push_back(csvr.getData());
+
+        if(num_tickers == 0){
+            num_rows = all_raw_data[0].size();
+        }
+
+        // count the number of tickers
+        num_tickers++;
+    }
+
+    for(size_t time = 0; time < num_rows; ++time){
+        
+        // go snapshot by snapshot
+        double open, high, low, close;
+        unsigned int vol;
+        std::map<Instrument,MarketBar> temp_map;
+        for(size_t ticker = 0; ticker < num_tickers; ++ticker){
+
+            // make one ticker's bar
+            auto tstamp =            all_raw_data[ticker][time][0];
+            open        = std::stod( all_raw_data[ticker][time][1]);
+            high        = std::stod( all_raw_data[ticker][time][2]);
+            low         = std::stod( all_raw_data[ticker][time][3]);
+            close       = std::stod( all_raw_data[ticker][time][4]);
+            vol         = std::stoul(all_raw_data[ticker][time][9]);
+    
+            MarketBar bar(open, high, low, close, vol, tstamp);
+            Instrument instr(m_tickers[ticker]);
+            temp_map.insert(std::pair<Instrument,MarketBar>(instr, bar));
+        }
+
+        // add the complete snapshot (made from the now-complete map)
+        MarketSnapshot ms(temp_map);
+        m_data.push_back(ms);
+    
+   }
+}
+
 
 // TODO: make sure this doesn't get choked up when two of the things have the same data
 MarketSnapshotsMaker::MarketSnapshotsMaker(

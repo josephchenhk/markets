@@ -1,6 +1,8 @@
 #include "pnl_calculator.h"
 
 #include <algorithm> // min
+#include <stdexcept> // invalid_argument
+
 
 pnl_calc::pnl_calc() : m_qty(0), m_cost(0.0), m_mkt_val(0.0), m_rlzd_pnl(0.0), m_avg_price(0.0)
 {    
@@ -103,6 +105,9 @@ double pnl_calc::get_commission(const int& qty, const double& price, CommissionS
             comm += 0.000119 * abs_qty; // finra fees
         }
         return comm;
+    }else{
+
+        throw std::invalid_argument("invalid commission style\n");
     }
 }
 
