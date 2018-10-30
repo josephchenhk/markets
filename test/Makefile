@@ -16,7 +16,7 @@ CXX := g++-8
 LD := g++-8
 CXXFLAGS := -std=c++17 -g -Wall
 CPPFLAGS := -I/usr/local/include/UnitTest++ -I/usr/include/eigen3 -I../include
-LDFLAGS := "-L../bin" "-L/usr/local/lib"
+LDFLAGS := -no-pie "-L../bin" "-L/usr/local/lib"
 DEPFLAGS = -MT $@ -MD -MP -MF $(DEPDIR)/$*.Td
 LDLIBS := -lUnitTest++ -lmarkets -lstdc++fs
 
