@@ -49,7 +49,18 @@ public:
      * @param ms a market snapshot
      */
     void readNewPrices(MarketSnapshot ms);
-    
+
+
+    /**
+     * @brief calculates the weights you need.
+     * @param Sigma the positive definite covariance matrix
+     * @param mu the mean returns 
+     * @param riskTolerance the nonnegative risk tolerance. must be nonnegative. 0 is the most conservative.
+     * @param currentSharePrices the most up-to-date sharePrices
+     * @param currentWeights the current weights you have
+     */    
+    Eigen::VectorXd getWeights1(const Eigen::MatrixXd& Sigma, const Eigen::VectorXd& mu, const double& riskTolerance);
+
     
     /**
      * @brief take in suggested weights from a statistical model for one time period ahead in the future, compute orders, then submit orders to a queue
@@ -75,6 +86,9 @@ public:
 
 private:
     
+    // solves quadratic program with equality constraints
+    Eigen::VectorXd quadProg1(const Eigen::MatrixXd& Q, const Eigen::VectorXd& c, const Eigen::MatrixXd&A, const Eigen::VectorXd& b);
+
     MarketSnapshot m_last_snapshot;
     std::vector<Instrument> m_ordered_tickers;
     PositionSummary m_pos_summary;

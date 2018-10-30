@@ -39,6 +39,33 @@ void Portfolio::readNewPrices(MarketSnapshot ms)
 }
 
 
+Eigen::VectorXd Portfolio::getWeights1(const Eigen::MatrixXd& Sigma, const Eigen::VectorXd& mu, const double& riskTolerance)
+{
+    // this uses quadProg1 
+    // it ignores transaction costs
+    // Q = 2 Sigma
+    // c = - riskTol * mu
+    // A = (1,1,1,1,1,1)
+    // b = 1 (scalar)
+    if(riskTolerance < 0.0) throw std::invalid_argument("riskTolerance must be positive\n");
+    Eigen::MatrixXd A = Eigen::MatrixXd::Constant(1, mu.rows(), 1.0);
+    Eigen::MatrixXd b = Eigen::MatrixXd::Constant(1,1,1.0);
+    return quadProg1(2*Sigma, -riskTolerance*mu, A, b);
+}
+
+
+Eigen::VectorXd Portfolio::quadProg1(const Eigen::MatrixXd& Q, const Eigen::VectorXd& c, const Eigen::MatrixXd&A, const Eigen::VectorXd& b)
+{
+    //finds min_x .5 x'Qx + x'c 
+    // such that A x = b
+    // also: we assume A is full (row) rank and 
+    // Q is positive definite. This will make KKT matrix invertible.
+    Eigen::MatrixXd Qinv = Q.inverse();
+    Eigen::VectorXd lambda = - (A * Qinv * A.transpose()).inverse() * (A * Qinv * c + b );
+    return - Qinv * A.transpose() * lambda - Qinv * c;
+}
+
+
 void Portfolio::updateOnNewIdealWts(const Eigen::VectorXd& ideal_wts_to_be, ExecHandler& order_q)
 {
     // generate and submit orders based on these new ideal weights.

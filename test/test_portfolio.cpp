@@ -8,6 +8,7 @@
 
 #define PREC .0001
 // TODO: this needs to be more complete
+// TODO: test optimization stuff
 
 TEST(test_portfolio){
 
