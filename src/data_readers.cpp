@@ -159,3 +159,14 @@ std::vector<MarketSnapshot> MarketSnapshotsMaker::data() const
 {
     return m_data;
 }
+
+
+std::vector<std::string> MarketSnapshotsMaker::tickers() const
+{
+    return m_tickers;
+}
+
+
+
+
+

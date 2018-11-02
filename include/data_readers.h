@@ -85,8 +85,14 @@ public:
      */
     std::vector<MarketSnapshot> data() const;
 
-};
 
+    /**
+     * @brief gives you the tickers currently available
+     * @ return the tickers in a std::vector<std::string>
+     */
+    std::vector<std::string> tickers() const;
+
+};
 
 
 
