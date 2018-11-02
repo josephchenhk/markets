@@ -1,0 +1,155 @@
+\hypertarget{classPortfolio}{}\section{Portfolio Class Reference}
+\label{classPortfolio}\index{Portfolio@{Portfolio}}
+
+
+{\ttfamily \#include $<$portfolio.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPortfolio_a24c03991b952db0c6c81210466b9a3ef}{Portfolio} (double starting\+\_\+cash, std\+::vector$<$ std\+::string $>$ tickers, \hyperlink{pnl__calculator_8h_ad733a3c57302a7ac3408d55dc65f2681}{Commission\+Style} cs=\hyperlink{pnl__calculator_8h_ad733a3c57302a7ac3408d55dc65f2681a4c7c9e42a09b0674cdd86bbbd41b42f3}{Commission\+Style\+::\+I\+B\+Fixed})
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+void \hyperlink{classPortfolio_aca045221440cf015b8e51f2f4d939745}{read\+All\+Fills} (std\+::queue$<$ \hyperlink{classFill}{Fill} $>$ \&q)
+\begin{DoxyCompactList}\small\item\em reads fills from a queue and processes them \end{DoxyCompactList}\item 
+void \hyperlink{classPortfolio_aeff3ceffcd454c7479cfef398798f830}{read\+New\+Prices} (\hyperlink{classMarketSnapshot}{Market\+Snapshot} ms)
+\begin{DoxyCompactList}\small\item\em processes new market data \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classPortfolio_a7a932e1e5b68e8fc8b91d16287f6de30}{get\+Weights1} (const Eigen\+::\+Matrix\+Xd \&Sigma, const Eigen\+::\+Vector\+Xd \&mu, const double \&risk\+Tolerance)
+\begin{DoxyCompactList}\small\item\em calculates the weights you need. \end{DoxyCompactList}\item 
+void \hyperlink{classPortfolio_a7824cb431b14cf199b07216f51533d8d}{update\+On\+New\+Ideal\+Wts} (const Eigen\+::\+Vector\+Xd \&ideal\+\_\+wts\+\_\+to\+\_\+be, \hyperlink{classExecHandler}{Exec\+Handler} \&order\+\_\+q)
+\begin{DoxyCompactList}\small\item\em take in suggested weights from a statistical model for one time period ahead in the future, compute orders, then submit orders to a queue \end{DoxyCompactList}\item 
+double \hyperlink{classPortfolio_aba2f09887f0859f9407cb961c10f0fef}{get\+Balance} () const
+\begin{DoxyCompactList}\small\item\em gets your balance \end{DoxyCompactList}\item 
+double \hyperlink{classPortfolio_aca678d7a74e62ea9fa30843685585b48}{get\+Mkt\+Val} (const std\+::string \&sym) const
+\begin{DoxyCompactList}\small\item\em gets the outstanding market value of a position on a given symbol @ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+t 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+06/07/18 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPortfolio_a24c03991b952db0c6c81210466b9a3ef}\label{classPortfolio_a24c03991b952db0c6c81210466b9a3ef}} 
+\index{Portfolio@{Portfolio}!Portfolio@{Portfolio}}
+\index{Portfolio@{Portfolio}!Portfolio@{Portfolio}}
+\subsubsection{\texorpdfstring{Portfolio()}{Portfolio()}}
+{\footnotesize\ttfamily Portfolio\+::\+Portfolio (\begin{DoxyParamCaption}\item[{double}]{starting\+\_\+cash,  }\item[{std\+::vector$<$ std\+::string $>$}]{tickers,  }\item[{\hyperlink{pnl__calculator_8h_ad733a3c57302a7ac3408d55dc65f2681}{Commission\+Style}}]{cs = {\ttfamily \hyperlink{pnl__calculator_8h_ad733a3c57302a7ac3408d55dc65f2681a4c7c9e42a09b0674cdd86bbbd41b42f3}{Commission\+Style\+::\+I\+B\+Fixed}} }\end{DoxyParamCaption})}
+
+
+
+ctor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em starting\+\_\+cash} & \\
+\hline
+{\em tickers} & all tickers that might have a position on at least once \\
+\hline
+{\em cs} & commission style \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPortfolio_aba2f09887f0859f9407cb961c10f0fef}\label{classPortfolio_aba2f09887f0859f9407cb961c10f0fef}} 
+\index{Portfolio@{Portfolio}!get\+Balance@{get\+Balance}}
+\index{get\+Balance@{get\+Balance}!Portfolio@{Portfolio}}
+\subsubsection{\texorpdfstring{get\+Balance()}{getBalance()}}
+{\footnotesize\ttfamily double Portfolio\+::get\+Balance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets your balance 
+
+\begin{DoxyReturn}{Returns}
+the balance in dollars (double) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPortfolio_aca678d7a74e62ea9fa30843685585b48}\label{classPortfolio_aca678d7a74e62ea9fa30843685585b48}} 
+\index{Portfolio@{Portfolio}!get\+Mkt\+Val@{get\+Mkt\+Val}}
+\index{get\+Mkt\+Val@{get\+Mkt\+Val}!Portfolio@{Portfolio}}
+\subsubsection{\texorpdfstring{get\+Mkt\+Val()}{getMktVal()}}
+{\footnotesize\ttfamily double Portfolio\+::get\+Mkt\+Val (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sym }\end{DoxyParamCaption}) const}
+
+
+
+gets the outstanding market value of a position on a given symbol @ 
+
+\mbox{\Hypertarget{classPortfolio_a7a932e1e5b68e8fc8b91d16287f6de30}\label{classPortfolio_a7a932e1e5b68e8fc8b91d16287f6de30}} 
+\index{Portfolio@{Portfolio}!get\+Weights1@{get\+Weights1}}
+\index{get\+Weights1@{get\+Weights1}!Portfolio@{Portfolio}}
+\subsubsection{\texorpdfstring{get\+Weights1()}{getWeights1()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Portfolio\+::get\+Weights1 (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{Sigma,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{mu,  }\item[{const double \&}]{risk\+Tolerance }\end{DoxyParamCaption})}
+
+
+
+calculates the weights you need. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Sigma} & the positive definite covariance matrix \\
+\hline
+{\em mu} & the mean returns \\
+\hline
+{\em risk\+Tolerance} & the nonnegative risk tolerance. must be nonnegative. 0 is the most conservative. \\
+\hline
+{\em current\+Share\+Prices} & the most up-\/to-\/date share\+Prices \\
+\hline
+{\em current\+Weights} & the current weights you have \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPortfolio_aca045221440cf015b8e51f2f4d939745}\label{classPortfolio_aca045221440cf015b8e51f2f4d939745}} 
+\index{Portfolio@{Portfolio}!read\+All\+Fills@{read\+All\+Fills}}
+\index{read\+All\+Fills@{read\+All\+Fills}!Portfolio@{Portfolio}}
+\subsubsection{\texorpdfstring{read\+All\+Fills()}{readAllFills()}}
+{\footnotesize\ttfamily void Portfolio\+::read\+All\+Fills (\begin{DoxyParamCaption}\item[{std\+::queue$<$ \hyperlink{classFill}{Fill} $>$ \&}]{q }\end{DoxyParamCaption})}
+
+
+
+reads fills from a queue and processes them 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & the queue of fills (passed by non-\/const reference) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPortfolio_aeff3ceffcd454c7479cfef398798f830}\label{classPortfolio_aeff3ceffcd454c7479cfef398798f830}} 
+\index{Portfolio@{Portfolio}!read\+New\+Prices@{read\+New\+Prices}}
+\index{read\+New\+Prices@{read\+New\+Prices}!Portfolio@{Portfolio}}
+\subsubsection{\texorpdfstring{read\+New\+Prices()}{readNewPrices()}}
+{\footnotesize\ttfamily void Portfolio\+::read\+New\+Prices (\begin{DoxyParamCaption}\item[{\hyperlink{classMarketSnapshot}{Market\+Snapshot}}]{ms }\end{DoxyParamCaption})}
+
+
+
+processes new market data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ms} & a market snapshot \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPortfolio_a7824cb431b14cf199b07216f51533d8d}\label{classPortfolio_a7824cb431b14cf199b07216f51533d8d}} 
+\index{Portfolio@{Portfolio}!update\+On\+New\+Ideal\+Wts@{update\+On\+New\+Ideal\+Wts}}
+\index{update\+On\+New\+Ideal\+Wts@{update\+On\+New\+Ideal\+Wts}!Portfolio@{Portfolio}}
+\subsubsection{\texorpdfstring{update\+On\+New\+Ideal\+Wts()}{updateOnNewIdealWts()}}
+{\footnotesize\ttfamily void Portfolio\+::update\+On\+New\+Ideal\+Wts (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{ideal\+\_\+wts\+\_\+to\+\_\+be,  }\item[{\hyperlink{classExecHandler}{Exec\+Handler} \&}]{order\+\_\+q }\end{DoxyParamCaption})}
+
+
+
+take in suggested weights from a statistical model for one time period ahead in the future, compute orders, then submit orders to a queue 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ideal\+\_\+wts\+\_\+to\+\_\+be} & these are based on an optimization procedure (probably) using the mean vector and covariace matrix of the future log returns \\
+\hline
+{\em order\+\_\+q,the} & order\+\_\+q you submit orders to \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{portfolio_8h}{portfolio.\+h}\end{DoxyCompactItemize}

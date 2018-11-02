@@ -1,0 +1,74 @@
+\hypertarget{classModelBank}{}\section{Model\+Bank Class Reference}
+\label{classModelBank}\index{Model\+Bank@{Model\+Bank}}
+
+
+a container of all your models  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+bank.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classModelBank_a781d168f7261cf3247cf1e201c181e09}{Model\+Bank} (const std\+::vector$<$ std\+::string $>$ \&ordered\+\_\+tickers, unsigned int pred\+\_\+type=1)
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+void \hyperlink{classModelBank_a504a7a18eab5bfc72f6760136713a70d}{process\+\_\+snapshot} (const \hyperlink{classMarketSnapshot}{Market\+Snapshot} \&ms)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classbase__mod}{base\+\_\+mod} $>$ $>$ \hyperlink{classModelBank_afc89ca7d54b80aed8bc12fec3e584bf0}{m\+\_\+all\+\_\+mods}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a container of all your models 
+
+\begin{DoxyAuthor}{Author}
+taylor stores all of your models user needs to subclass this and add models to the container of unique pointers example\+: m\+\_\+all\+\_\+mods.\+push\+\_\+back(std\+::unique\+\_\+ptr$<$mod4$>$(new mod4(param\+\_\+estimates))); for the bayesian model averaging stuff, assumes uniform priors 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classModelBank_a781d168f7261cf3247cf1e201c181e09}\label{classModelBank_a781d168f7261cf3247cf1e201c181e09}} 
+\index{Model\+Bank@{Model\+Bank}!Model\+Bank@{Model\+Bank}}
+\index{Model\+Bank@{Model\+Bank}!Model\+Bank@{Model\+Bank}}
+\subsubsection{\texorpdfstring{Model\+Bank()}{ModelBank()}}
+{\footnotesize\ttfamily Model\+Bank\+::\+Model\+Bank (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{ordered\+\_\+tickers,  }\item[{unsigned int}]{pred\+\_\+type = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+ctor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the} & tickers you\textquotesingle{}re looking at in order \\
+\hline
+{\em pred\+\_\+type} & 1 corresponds with the model that has the best posterior, 2 corresponds with an average \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classModelBank_a504a7a18eab5bfc72f6760136713a70d}\label{classModelBank_a504a7a18eab5bfc72f6760136713a70d}} 
+\index{Model\+Bank@{Model\+Bank}!process\+\_\+snapshot@{process\+\_\+snapshot}}
+\index{process\+\_\+snapshot@{process\+\_\+snapshot}!Model\+Bank@{Model\+Bank}}
+\subsubsection{\texorpdfstring{process\+\_\+snapshot()}{process\_snapshot()}}
+{\footnotesize\ttfamily void Model\+Bank\+::process\+\_\+snapshot (\begin{DoxyParamCaption}\item[{const \hyperlink{classMarketSnapshot}{Market\+Snapshot} \&}]{ms }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classModelBank_afc89ca7d54b80aed8bc12fec3e584bf0}\label{classModelBank_afc89ca7d54b80aed8bc12fec3e584bf0}} 
+\index{Model\+Bank@{Model\+Bank}!m\+\_\+all\+\_\+mods@{m\+\_\+all\+\_\+mods}}
+\index{m\+\_\+all\+\_\+mods@{m\+\_\+all\+\_\+mods}!Model\+Bank@{Model\+Bank}}
+\subsubsection{\texorpdfstring{m\+\_\+all\+\_\+mods}{m\_all\_mods}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::unique\+\_\+ptr$<$\hyperlink{classbase__mod}{base\+\_\+mod}$>$ $>$ Model\+Bank\+::m\+\_\+all\+\_\+mods\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{model__bank_8h}{model\+\_\+bank.\+h}\end{DoxyCompactItemize}

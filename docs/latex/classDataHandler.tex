@@ -1,0 +1,135 @@
+\hypertarget{classDataHandler}{}\section{Data\+Handler Class Reference}
+\label{classDataHandler}\index{Data\+Handler@{Data\+Handler}}
+
+
+{\ttfamily \#include $<$data\+\_\+handlers.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDataHandler_a754e8043d3c0249833f9bf47dcfff4cd}{Data\+Handler} (const std\+::vector$<$ std\+::string $>$ \&ordered\+\_\+tickers)
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+void \hyperlink{classDataHandler_af90bc55472239836a8d071710356ceb7}{on\+Data} (const \hyperlink{classMarketSnapshot}{Market\+Snapshot} \&new\+\_\+data)
+\begin{DoxyCompactList}\small\item\em takes in a \hyperlink{classMarketSnapshot}{Market\+Snapshot} event for processing \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classDataHandler_aed9c495d5134beaf1c796d5f828de229}{log\+Returns} () const
+\begin{DoxyCompactList}\small\item\em returns the vector of log returns \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classDataHandler_a56ff111f68c862739bd94c193abdf400}{opens} () const
+\begin{DoxyCompactList}\small\item\em returns the vector of open prices \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classDataHandler_a94ccb9422f3f7d50ad07c3a0553baab9}{highs} () const
+\begin{DoxyCompactList}\small\item\em returns the vector of high prices \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classDataHandler_ad0b44f8a121372a519922feea6dd02e4}{lows} () const
+\begin{DoxyCompactList}\small\item\em returns the vector of low prices \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classDataHandler_a18f429318b33936acaff563835729e1c}{closes} () const
+\begin{DoxyCompactList}\small\item\em returns the vector of closes \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+taylor 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDataHandler_a754e8043d3c0249833f9bf47dcfff4cd}\label{classDataHandler_a754e8043d3c0249833f9bf47dcfff4cd}} 
+\index{Data\+Handler@{Data\+Handler}!Data\+Handler@{Data\+Handler}}
+\index{Data\+Handler@{Data\+Handler}!Data\+Handler@{Data\+Handler}}
+\subsubsection{\texorpdfstring{Data\+Handler()}{DataHandler()}}
+{\footnotesize\ttfamily Data\+Handler\+::\+Data\+Handler (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{ordered\+\_\+tickers }\end{DoxyParamCaption})}
+
+
+
+ctor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ordered\+\_\+tickers} & the order of the info you want \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDataHandler_a18f429318b33936acaff563835729e1c}\label{classDataHandler_a18f429318b33936acaff563835729e1c}} 
+\index{Data\+Handler@{Data\+Handler}!closes@{closes}}
+\index{closes@{closes}!Data\+Handler@{Data\+Handler}}
+\subsubsection{\texorpdfstring{closes()}{closes()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Data\+Handler\+::closes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns the vector of closes 
+
+\begin{DoxyReturn}{Returns}
+an Eigen\+::\+Vector\+Xd of close prices 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataHandler_a94ccb9422f3f7d50ad07c3a0553baab9}\label{classDataHandler_a94ccb9422f3f7d50ad07c3a0553baab9}} 
+\index{Data\+Handler@{Data\+Handler}!highs@{highs}}
+\index{highs@{highs}!Data\+Handler@{Data\+Handler}}
+\subsubsection{\texorpdfstring{highs()}{highs()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Data\+Handler\+::highs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns the vector of high prices 
+
+\begin{DoxyReturn}{Returns}
+an Eigen\+::\+Vector\+Xd of highs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataHandler_aed9c495d5134beaf1c796d5f828de229}\label{classDataHandler_aed9c495d5134beaf1c796d5f828de229}} 
+\index{Data\+Handler@{Data\+Handler}!log\+Returns@{log\+Returns}}
+\index{log\+Returns@{log\+Returns}!Data\+Handler@{Data\+Handler}}
+\subsubsection{\texorpdfstring{log\+Returns()}{logReturns()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Data\+Handler\+::log\+Returns (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns the vector of log returns 
+
+\begin{DoxyReturn}{Returns}
+an Eigen\+::\+Vector\+Xd of the returns 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataHandler_ad0b44f8a121372a519922feea6dd02e4}\label{classDataHandler_ad0b44f8a121372a519922feea6dd02e4}} 
+\index{Data\+Handler@{Data\+Handler}!lows@{lows}}
+\index{lows@{lows}!Data\+Handler@{Data\+Handler}}
+\subsubsection{\texorpdfstring{lows()}{lows()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Data\+Handler\+::lows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns the vector of low prices 
+
+\begin{DoxyReturn}{Returns}
+an Eigen\+::\+Vector\+Xd of low prices 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataHandler_af90bc55472239836a8d071710356ceb7}\label{classDataHandler_af90bc55472239836a8d071710356ceb7}} 
+\index{Data\+Handler@{Data\+Handler}!on\+Data@{on\+Data}}
+\index{on\+Data@{on\+Data}!Data\+Handler@{Data\+Handler}}
+\subsubsection{\texorpdfstring{on\+Data()}{onData()}}
+{\footnotesize\ttfamily void Data\+Handler\+::on\+Data (\begin{DoxyParamCaption}\item[{const \hyperlink{classMarketSnapshot}{Market\+Snapshot} \&}]{new\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+takes in a \hyperlink{classMarketSnapshot}{Market\+Snapshot} event for processing 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+data} & your most recent \hyperlink{classMarketSnapshot}{Market\+Snapshot} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDataHandler_a56ff111f68c862739bd94c193abdf400}\label{classDataHandler_a56ff111f68c862739bd94c193abdf400}} 
+\index{Data\+Handler@{Data\+Handler}!opens@{opens}}
+\index{opens@{opens}!Data\+Handler@{Data\+Handler}}
+\subsubsection{\texorpdfstring{opens()}{opens()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Data\+Handler\+::opens (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns the vector of open prices 
+
+\begin{DoxyReturn}{Returns}
+an Eigen\+::\+Vector\+Xd of the open prices 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{data__handlers_8h}{data\+\_\+handlers.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,9 @@
+var searchData=
+[
+  ['marketbar',['MarketBar',['../classMarketBar.html#a547a73fdfc07436f859da36efb4d8809',1,'MarketBar::MarketBar()=default'],['../classMarketBar.html#ad58b9bb40288a36f1cb9839ce120ea30',1,'MarketBar::MarketBar(const double &amp;open, const double &amp;high, const double &amp;low, const double &amp;close, const unsigned int &amp;vol, const Time &amp;close_time)'],['../classMarketBar.html#a50833d5593d6a3a42f9b5f30772dcafc',1,'MarketBar::MarketBar(const double &amp;open, const double &amp;high, const double &amp;low, const double &amp;close, const unsigned int &amp;vol, const std::string &amp;close_time, const std::string &amp;format=&quot;%Y-%m-%d %H:%M:%S&quot;)']]],
+  ['marketsnapshot',['MarketSnapshot',['../classMarketSnapshot.html#afb9edf14f6472bfcae695c5f4a46abff',1,'MarketSnapshot::MarketSnapshot()=default'],['../classMarketSnapshot.html#a5e1530204818ffaea1e479d9371e77ae',1,'MarketSnapshot::MarketSnapshot(const std::map&lt; Instrument, MarketBar &gt; &amp;bars)']]],
+  ['marketsnapshotsmaker',['MarketSnapshotsMaker',['../classMarketSnapshotsMaker.html#a54050922d3dd9f554a5d3e4137e1963c',1,'MarketSnapshotsMaker::MarketSnapshotsMaker(const std::string &amp;data_directory, std::string delimiter)'],['../classMarketSnapshotsMaker.html#a8107a3b92c32118a667b5e86099ecde8',1,'MarketSnapshotsMaker::MarketSnapshotsMaker(std::vector&lt; std::string &gt; filenames, std::string delimiter, std::vector&lt; std::string &gt; tickers)']]],
+  ['meanvec',['meanVec',['../classbase__mod.html#a4191d277945f98b4a6eaa663cb70d678',1,'base_mod']]],
+  ['modelbank',['ModelBank',['../classModelBank.html#a781d168f7261cf3247cf1e201c181e09',1,'ModelBank']]],
+  ['moveave',['MoveAve',['../classMoveAve.html#a7ba3aea659277902e633d1fca06ddc36',1,'MoveAve::MoveAve()=delete'],['../classMoveAve.html#a455db6dea545c3bb47fed299740c5031',1,'MoveAve::MoveAve(const unsigned int &amp;width)']]]
+];

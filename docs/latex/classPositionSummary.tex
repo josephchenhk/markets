@@ -1,0 +1,135 @@
+\hypertarget{classPositionSummary}{}\section{Position\+Summary Class Reference}
+\label{classPositionSummary}\index{Position\+Summary@{Position\+Summary}}
+
+
+{\ttfamily \#include $<$position\+\_\+summary.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPositionSummary_a466b4163900712b20ef0c24661d6fc2f}{Position\+Summary} (double initial\+\_\+capital, const std\+::vector$<$ std\+::string $>$ \&tickers, \hyperlink{pnl__calculator_8h_ad733a3c57302a7ac3408d55dc65f2681}{Commission\+Style} cs)
+\begin{DoxyCompactList}\small\item\em sets up a zero position for each symbol \end{DoxyCompactList}\item 
+void \hyperlink{classPositionSummary_a4f26c2e4e1776ad2e53ada32d46095e1}{on\+Snapshot} (const \hyperlink{classMarketSnapshot}{Market\+Snapshot} \&ms)
+\begin{DoxyCompactList}\small\item\em updates the positions with prices changing. \end{DoxyCompactList}\item 
+void \hyperlink{classPositionSummary_a057618b9fbc23598a7353555ff280a44}{on\+Fill} (const \hyperlink{classFill}{Fill} \&fill)
+\begin{DoxyCompactList}\small\item\em updates the positions after a fill has been received. \end{DoxyCompactList}\item 
+double \hyperlink{classPositionSummary_acb0534c73c95999d2ff2739caedf0773}{get\+Instrument\+Mkt\+Val} (const \hyperlink{classInstrument}{Instrument} \&instr) const
+\begin{DoxyCompactList}\small\item\em gets the market value for a particular position. \end{DoxyCompactList}\item 
+double \hyperlink{classPositionSummary_a66ed8d8382b50aaca12fd889a2fd6c31}{get\+Instrument\+Mkt\+Val} (const std\+::string \&sym) const
+\begin{DoxyCompactList}\small\item\em gets the market value for a particular position \end{DoxyCompactList}\item 
+double \hyperlink{classPositionSummary_a1c8772fe401f8d00de795ff09b856d44}{get\+Balance} () const
+\begin{DoxyCompactList}\small\item\em gets the current balance (starting cash plus all realized pnls) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+t 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+06/07/18 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPositionSummary_a466b4163900712b20ef0c24661d6fc2f}\label{classPositionSummary_a466b4163900712b20ef0c24661d6fc2f}} 
+\index{Position\+Summary@{Position\+Summary}!Position\+Summary@{Position\+Summary}}
+\index{Position\+Summary@{Position\+Summary}!Position\+Summary@{Position\+Summary}}
+\subsubsection{\texorpdfstring{Position\+Summary()}{PositionSummary()}}
+{\footnotesize\ttfamily Position\+Summary\+::\+Position\+Summary (\begin{DoxyParamCaption}\item[{double}]{initial\+\_\+capital,  }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{tickers,  }\item[{\hyperlink{pnl__calculator_8h_ad733a3c57302a7ac3408d55dc65f2681}{Commission\+Style}}]{cs }\end{DoxyParamCaption})}
+
+
+
+sets up a zero position for each symbol 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tickers,the} & ordered collection of which stocks you want to keep track of \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPositionSummary_a1c8772fe401f8d00de795ff09b856d44}\label{classPositionSummary_a1c8772fe401f8d00de795ff09b856d44}} 
+\index{Position\+Summary@{Position\+Summary}!get\+Balance@{get\+Balance}}
+\index{get\+Balance@{get\+Balance}!Position\+Summary@{Position\+Summary}}
+\subsubsection{\texorpdfstring{get\+Balance()}{getBalance()}}
+{\footnotesize\ttfamily double Position\+Summary\+::get\+Balance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the current balance (starting cash plus all realized pnls) 
+
+\begin{DoxyReturn}{Returns}
+the balance as a double 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPositionSummary_acb0534c73c95999d2ff2739caedf0773}\label{classPositionSummary_acb0534c73c95999d2ff2739caedf0773}} 
+\index{Position\+Summary@{Position\+Summary}!get\+Instrument\+Mkt\+Val@{get\+Instrument\+Mkt\+Val}}
+\index{get\+Instrument\+Mkt\+Val@{get\+Instrument\+Mkt\+Val}!Position\+Summary@{Position\+Summary}}
+\subsubsection{\texorpdfstring{get\+Instrument\+Mkt\+Val()}{getInstrumentMktVal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double Position\+Summary\+::get\+Instrument\+Mkt\+Val (\begin{DoxyParamCaption}\item[{const \hyperlink{classInstrument}{Instrument} \&}]{instr }\end{DoxyParamCaption}) const}
+
+
+
+gets the market value for a particular position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instr} & an instrument you\textquotesingle{}re interested in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the current market value for \hyperlink{classInstrument}{Instrument} \char`\"{}instr\char`\"{} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPositionSummary_a66ed8d8382b50aaca12fd889a2fd6c31}\label{classPositionSummary_a66ed8d8382b50aaca12fd889a2fd6c31}} 
+\index{Position\+Summary@{Position\+Summary}!get\+Instrument\+Mkt\+Val@{get\+Instrument\+Mkt\+Val}}
+\index{get\+Instrument\+Mkt\+Val@{get\+Instrument\+Mkt\+Val}!Position\+Summary@{Position\+Summary}}
+\subsubsection{\texorpdfstring{get\+Instrument\+Mkt\+Val()}{getInstrumentMktVal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Position\+Summary\+::get\+Instrument\+Mkt\+Val (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sym }\end{DoxyParamCaption}) const}
+
+
+
+gets the market value for a particular position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & std\+::string of the parameter you\textquotesingle{}re interested in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the current market value for \hyperlink{classInstrument}{Instrument} \char`\"{}instr\char`\"{} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPositionSummary_a057618b9fbc23598a7353555ff280a44}\label{classPositionSummary_a057618b9fbc23598a7353555ff280a44}} 
+\index{Position\+Summary@{Position\+Summary}!on\+Fill@{on\+Fill}}
+\index{on\+Fill@{on\+Fill}!Position\+Summary@{Position\+Summary}}
+\subsubsection{\texorpdfstring{on\+Fill()}{onFill()}}
+{\footnotesize\ttfamily void Position\+Summary\+::on\+Fill (\begin{DoxyParamCaption}\item[{const \hyperlink{classFill}{Fill} \&}]{fill }\end{DoxyParamCaption})}
+
+
+
+updates the positions after a fill has been received. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fill} & a \hyperlink{classFill}{Fill} event \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPositionSummary_a4f26c2e4e1776ad2e53ada32d46095e1}\label{classPositionSummary_a4f26c2e4e1776ad2e53ada32d46095e1}} 
+\index{Position\+Summary@{Position\+Summary}!on\+Snapshot@{on\+Snapshot}}
+\index{on\+Snapshot@{on\+Snapshot}!Position\+Summary@{Position\+Summary}}
+\subsubsection{\texorpdfstring{on\+Snapshot()}{onSnapshot()}}
+{\footnotesize\ttfamily void Position\+Summary\+::on\+Snapshot (\begin{DoxyParamCaption}\item[{const \hyperlink{classMarketSnapshot}{Market\+Snapshot} \&}]{ms }\end{DoxyParamCaption})}
+
+
+
+updates the positions with prices changing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ms} & a market snapshot \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{position__summary_8h}{position\+\_\+summary.\+h}\end{DoxyCompactItemize}

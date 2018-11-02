@@ -1,0 +1,143 @@
+\hypertarget{classpnl__calc}{}\section{pnl\+\_\+calc Class Reference}
+\label{classpnl__calc}\index{pnl\+\_\+calc@{pnl\+\_\+calc}}
+
+
+{\ttfamily \#include $<$pnl\+\_\+calculator.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classpnl__calc_a0b2bc0285a608ec5025b4918f386d18f}{pnl\+\_\+calc} ()
+\begin{DoxyCompactList}\small\item\em Default Ctor. Sets everything to 0.\+0. \end{DoxyCompactList}\item 
+void \hyperlink{classpnl__calc_a542abad6402d68f140eaecfd1bb845a2}{on\+\_\+fill} (const int \&fill\+\_\+qty, const double \&price, \hyperlink{pnl__calculator_8h_ad733a3c57302a7ac3408d55dc65f2681}{Commission\+Style} cstyle)
+\begin{DoxyCompactList}\small\item\em Call this method every time there is a fill. \end{DoxyCompactList}\item 
+void \hyperlink{classpnl__calc_aa8fe2e20c0520c17dbba6a37066f2b9c}{on\+\_\+price} (const double \&price)
+\begin{DoxyCompactList}\small\item\em Call this method every time there is a market price movement. \end{DoxyCompactList}\item 
+const double \& \hyperlink{classpnl__calc_aab99d78b9e204b9a35c559e2f21db16a}{get\+\_\+rpnl} () const
+\begin{DoxyCompactList}\small\item\em get the realized pnl \end{DoxyCompactList}\item 
+const double \& \hyperlink{classpnl__calc_ab97da4de5a2d1b1c98b055b1256e0109}{get\+\_\+avg\+\_\+price} () const
+\begin{DoxyCompactList}\small\item\em get the average price (never negative because cost and qty are always the same sign) \end{DoxyCompactList}\item 
+const int \& \hyperlink{classpnl__calc_ae85f96910ab2ca12da816e3d20f69134}{get\+\_\+qty} () const
+\begin{DoxyCompactList}\small\item\em get the current quantity of shares owned (or sold if negative) \end{DoxyCompactList}\item 
+const \hyperlink{classInstrument}{Instrument} \& \hyperlink{classpnl__calc_a8fae6426142e1318162be3b8177b8e55}{instr} () const
+\begin{DoxyCompactList}\small\item\em get the instrument name \end{DoxyCompactList}\item 
+const double \& \hyperlink{classpnl__calc_a02d80e8a30ca4d9423961a3600ced266}{get\+\_\+mkt\+\_\+val} () const
+\begin{DoxyCompactList}\small\item\em gets the current market-\/value \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpnl__calc_a0b2bc0285a608ec5025b4918f386d18f}\label{classpnl__calc_a0b2bc0285a608ec5025b4918f386d18f}} 
+\index{pnl\+\_\+calc@{pnl\+\_\+calc}!pnl\+\_\+calc@{pnl\+\_\+calc}}
+\index{pnl\+\_\+calc@{pnl\+\_\+calc}!pnl\+\_\+calc@{pnl\+\_\+calc}}
+\subsubsection{\texorpdfstring{pnl\+\_\+calc()}{pnl\_calc()}}
+{\footnotesize\ttfamily pnl\+\_\+calc\+::pnl\+\_\+calc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default Ctor. Sets everything to 0.\+0. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classpnl__calc_ab97da4de5a2d1b1c98b055b1256e0109}\label{classpnl__calc_ab97da4de5a2d1b1c98b055b1256e0109}} 
+\index{pnl\+\_\+calc@{pnl\+\_\+calc}!get\+\_\+avg\+\_\+price@{get\+\_\+avg\+\_\+price}}
+\index{get\+\_\+avg\+\_\+price@{get\+\_\+avg\+\_\+price}!pnl\+\_\+calc@{pnl\+\_\+calc}}
+\subsubsection{\texorpdfstring{get\+\_\+avg\+\_\+price()}{get\_avg\_price()}}
+{\footnotesize\ttfamily const double\& pnl\+\_\+calc\+::get\+\_\+avg\+\_\+price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get the average price (never negative because cost and qty are always the same sign) 
+
+\begin{DoxyReturn}{Returns}
+the average price 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpnl__calc_a02d80e8a30ca4d9423961a3600ced266}\label{classpnl__calc_a02d80e8a30ca4d9423961a3600ced266}} 
+\index{pnl\+\_\+calc@{pnl\+\_\+calc}!get\+\_\+mkt\+\_\+val@{get\+\_\+mkt\+\_\+val}}
+\index{get\+\_\+mkt\+\_\+val@{get\+\_\+mkt\+\_\+val}!pnl\+\_\+calc@{pnl\+\_\+calc}}
+\subsubsection{\texorpdfstring{get\+\_\+mkt\+\_\+val()}{get\_mkt\_val()}}
+{\footnotesize\ttfamily const double\& pnl\+\_\+calc\+::get\+\_\+mkt\+\_\+val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the current market-\/value 
+
+\begin{DoxyReturn}{Returns}
+the current market value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpnl__calc_ae85f96910ab2ca12da816e3d20f69134}\label{classpnl__calc_ae85f96910ab2ca12da816e3d20f69134}} 
+\index{pnl\+\_\+calc@{pnl\+\_\+calc}!get\+\_\+qty@{get\+\_\+qty}}
+\index{get\+\_\+qty@{get\+\_\+qty}!pnl\+\_\+calc@{pnl\+\_\+calc}}
+\subsubsection{\texorpdfstring{get\+\_\+qty()}{get\_qty()}}
+{\footnotesize\ttfamily const int\& pnl\+\_\+calc\+::get\+\_\+qty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get the current quantity of shares owned (or sold if negative) 
+
+\begin{DoxyReturn}{Returns}
+the number of shares as an integer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpnl__calc_aab99d78b9e204b9a35c559e2f21db16a}\label{classpnl__calc_aab99d78b9e204b9a35c559e2f21db16a}} 
+\index{pnl\+\_\+calc@{pnl\+\_\+calc}!get\+\_\+rpnl@{get\+\_\+rpnl}}
+\index{get\+\_\+rpnl@{get\+\_\+rpnl}!pnl\+\_\+calc@{pnl\+\_\+calc}}
+\subsubsection{\texorpdfstring{get\+\_\+rpnl()}{get\_rpnl()}}
+{\footnotesize\ttfamily const double\& pnl\+\_\+calc\+::get\+\_\+rpnl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get the realized pnl 
+
+\begin{DoxyReturn}{Returns}
+realized pnl 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpnl__calc_a8fae6426142e1318162be3b8177b8e55}\label{classpnl__calc_a8fae6426142e1318162be3b8177b8e55}} 
+\index{pnl\+\_\+calc@{pnl\+\_\+calc}!instr@{instr}}
+\index{instr@{instr}!pnl\+\_\+calc@{pnl\+\_\+calc}}
+\subsubsection{\texorpdfstring{instr()}{instr()}}
+{\footnotesize\ttfamily const \hyperlink{classInstrument}{Instrument}\& pnl\+\_\+calc\+::instr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get the instrument name 
+
+\begin{DoxyReturn}{Returns}
+the name of the instrument 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpnl__calc_a542abad6402d68f140eaecfd1bb845a2}\label{classpnl__calc_a542abad6402d68f140eaecfd1bb845a2}} 
+\index{pnl\+\_\+calc@{pnl\+\_\+calc}!on\+\_\+fill@{on\+\_\+fill}}
+\index{on\+\_\+fill@{on\+\_\+fill}!pnl\+\_\+calc@{pnl\+\_\+calc}}
+\subsubsection{\texorpdfstring{on\+\_\+fill()}{on\_fill()}}
+{\footnotesize\ttfamily void pnl\+\_\+calc\+::on\+\_\+fill (\begin{DoxyParamCaption}\item[{const int \&}]{fill\+\_\+qty,  }\item[{const double \&}]{price,  }\item[{\hyperlink{pnl__calculator_8h_ad733a3c57302a7ac3408d55dc65f2681}{Commission\+Style}}]{cstyle }\end{DoxyParamCaption})}
+
+
+
+Call this method every time there is a fill. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fill\+\_\+qty} & signed (negative for sold) amount of shares in the most recent transaction \\
+\hline
+{\em price} & the price (taken or received) for the transaction \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpnl__calc_aa8fe2e20c0520c17dbba6a37066f2b9c}\label{classpnl__calc_aa8fe2e20c0520c17dbba6a37066f2b9c}} 
+\index{pnl\+\_\+calc@{pnl\+\_\+calc}!on\+\_\+price@{on\+\_\+price}}
+\index{on\+\_\+price@{on\+\_\+price}!pnl\+\_\+calc@{pnl\+\_\+calc}}
+\subsubsection{\texorpdfstring{on\+\_\+price()}{on\_price()}}
+{\footnotesize\ttfamily void pnl\+\_\+calc\+::on\+\_\+price (\begin{DoxyParamCaption}\item[{const double \&}]{price }\end{DoxyParamCaption})}
+
+
+
+Call this method every time there is a market price movement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em price} & the most up-\/to-\/date price of an instrument. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{pnl__calculator_8h}{pnl\+\_\+calculator.\+h}\end{DoxyCompactItemize}

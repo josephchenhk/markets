@@ -1,0 +1,128 @@
+\hypertarget{classMarketSnapshot}{}\section{Market\+Snapshot Class Reference}
+\label{classMarketSnapshot}\index{Market\+Snapshot@{Market\+Snapshot}}
+
+
+{\ttfamily \#include $<$market\+\_\+snapshot.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMarketSnapshot_afb9edf14f6472bfcae695c5f4a46abff}{Market\+Snapshot} ()=default
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\hyperlink{classMarketSnapshot_a5e1530204818ffaea1e479d9371e77ae}{Market\+Snapshot} (const std\+::map$<$ \hyperlink{classInstrument}{Instrument}, \hyperlink{classMarketBar}{Market\+Bar} $>$ \&\hyperlink{classMarketSnapshot_ae8ab3cf282daf2c0001c583ead3b3250}{bars})
+\begin{DoxyCompactList}\small\item\em Constructs a new \hyperlink{classMarketSnapshot}{Market\+Snapshot} from the provided information. \end{DoxyCompactList}\item 
+\hyperlink{classMarketBar_a0d7dabe1fd00e674ef72f54bb1ff9ad0}{Market\+Bar\+::\+Time} \hyperlink{classMarketSnapshot_a4bc2e6b766eff94c43aa5a45282f797f}{time} () const
+\begin{DoxyCompactList}\small\item\em gets the time \end{DoxyCompactList}\item 
+std\+::map$<$ \hyperlink{classInstrument}{Instrument}, \hyperlink{classMarketBar}{Market\+Bar} $>$ \hyperlink{classMarketSnapshot_ae8ab3cf282daf2c0001c583ead3b3250}{bars} () const
+\begin{DoxyCompactList}\small\item\em gets the map of bars \end{DoxyCompactList}\item 
+\hyperlink{classMarketBar}{Market\+Bar} \& \hyperlink{classMarketSnapshot_ad8ad2cc84487f9b21d3db3604d2b1590}{operator\mbox{[}$\,$\mbox{]}} (\hyperlink{classInstrument}{Instrument} instr\+\_\+name)
+\begin{DoxyCompactList}\small\item\em returns the \hyperlink{classMarketBar}{Market\+Bar} with instrument name {\ttfamily instr\+\_\+name} \end{DoxyCompactList}\item 
+\hyperlink{classMarketBar}{Market\+Bar} \& \hyperlink{classMarketSnapshot_a5029cc166d5c7b895686a25feb0c3af4}{operator\mbox{[}$\,$\mbox{]}} (std\+::string instr\+\_\+name)
+\begin{DoxyCompactList}\small\item\em returns the \hyperlink{classMarketBar}{Market\+Bar} with the instrument name \textquotesingle{}instr\+\_\+name\textquotesingle{} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Benjamin 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/05/18 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMarketSnapshot_afb9edf14f6472bfcae695c5f4a46abff}\label{classMarketSnapshot_afb9edf14f6472bfcae695c5f4a46abff}} 
+\index{Market\+Snapshot@{Market\+Snapshot}!Market\+Snapshot@{Market\+Snapshot}}
+\index{Market\+Snapshot@{Market\+Snapshot}!Market\+Snapshot@{Market\+Snapshot}}
+\subsubsection{\texorpdfstring{Market\+Snapshot()}{MarketSnapshot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Market\+Snapshot\+::\+Market\+Snapshot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+default constructor 
+
+\mbox{\Hypertarget{classMarketSnapshot_a5e1530204818ffaea1e479d9371e77ae}\label{classMarketSnapshot_a5e1530204818ffaea1e479d9371e77ae}} 
+\index{Market\+Snapshot@{Market\+Snapshot}!Market\+Snapshot@{Market\+Snapshot}}
+\index{Market\+Snapshot@{Market\+Snapshot}!Market\+Snapshot@{Market\+Snapshot}}
+\subsubsection{\texorpdfstring{Market\+Snapshot()}{MarketSnapshot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Market\+Snapshot\+::\+Market\+Snapshot (\begin{DoxyParamCaption}\item[{const std\+::map$<$ \hyperlink{classInstrument}{Instrument}, \hyperlink{classMarketBar}{Market\+Bar} $>$ \&}]{bars }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \hyperlink{classMarketSnapshot}{Market\+Snapshot} from the provided information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bars} & denotes the snapshot market data \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMarketSnapshot_ae8ab3cf282daf2c0001c583ead3b3250}\label{classMarketSnapshot_ae8ab3cf282daf2c0001c583ead3b3250}} 
+\index{Market\+Snapshot@{Market\+Snapshot}!bars@{bars}}
+\index{bars@{bars}!Market\+Snapshot@{Market\+Snapshot}}
+\subsubsection{\texorpdfstring{bars()}{bars()}}
+{\footnotesize\ttfamily std\+::map$<$\hyperlink{classInstrument}{Instrument},\hyperlink{classMarketBar}{Market\+Bar}$>$ Market\+Snapshot\+::bars (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the map of bars 
+
+\begin{DoxyReturn}{Returns}
+the O\+H\+LC bars 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMarketSnapshot_ad8ad2cc84487f9b21d3db3604d2b1590}\label{classMarketSnapshot_ad8ad2cc84487f9b21d3db3604d2b1590}} 
+\index{Market\+Snapshot@{Market\+Snapshot}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Market\+Snapshot@{Market\+Snapshot}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classMarketBar}{Market\+Bar}\& Market\+Snapshot\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{\hyperlink{classInstrument}{Instrument}}]{instr\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+returns the \hyperlink{classMarketBar}{Market\+Bar} with instrument name {\ttfamily instr\+\_\+name} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instr\+\_\+name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the associated \hyperlink{classMarketBar}{Market\+Bar} item 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMarketSnapshot_a5029cc166d5c7b895686a25feb0c3af4}\label{classMarketSnapshot_a5029cc166d5c7b895686a25feb0c3af4}} 
+\index{Market\+Snapshot@{Market\+Snapshot}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Market\+Snapshot@{Market\+Snapshot}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classMarketBar}{Market\+Bar}\& Market\+Snapshot\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{std\+::string}]{instr\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+returns the \hyperlink{classMarketBar}{Market\+Bar} with the instrument name \textquotesingle{}instr\+\_\+name\textquotesingle{} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instr\+\_\+name} & the name of which instrument/stock \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the associated \hyperlink{classMarketBar}{Market\+Bar} item 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMarketSnapshot_a4bc2e6b766eff94c43aa5a45282f797f}\label{classMarketSnapshot_a4bc2e6b766eff94c43aa5a45282f797f}} 
+\index{Market\+Snapshot@{Market\+Snapshot}!time@{time}}
+\index{time@{time}!Market\+Snapshot@{Market\+Snapshot}}
+\subsubsection{\texorpdfstring{time()}{time()}}
+{\footnotesize\ttfamily \hyperlink{classMarketBar_a0d7dabe1fd00e674ef72f54bb1ff9ad0}{Market\+Bar\+::\+Time} Market\+Snapshot\+::time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the time 
+
+\begin{DoxyReturn}{Returns}
+time 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{market__snapshot_8h}{market\+\_\+snapshot.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,113 @@
+\hypertarget{classMoveAve}{}\section{Move\+Ave Class Reference}
+\label{classMoveAve}\index{Move\+Ave@{Move\+Ave}}
+
+
+a simple moving average class used to store the most recent model log-\/likelihoods  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+bank.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMoveAve_a7ba3aea659277902e633d1fca06ddc36}{Move\+Ave} ()=delete
+\item 
+\hyperlink{classMoveAve_a455db6dea545c3bb47fed299740c5031}{Move\+Ave} (const unsigned int \&width)
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+void \hyperlink{classMoveAve_aedeb10294b2e248f27deb43e30b4a1fc}{on\+New\+Data} (const double \&new\+\_\+data)
+\begin{DoxyCompactList}\small\item\em takes in a new data point \end{DoxyCompactList}\item 
+double \hyperlink{classMoveAve_a5a48674a3d3a2d92baf896d8321cd909}{get\+Current\+Ave} () const
+\begin{DoxyCompactList}\small\item\em get the current average value \end{DoxyCompactList}\item 
+double \hyperlink{classMoveAve_a8976714955c304bea3149c51e0c8cd95}{get\+Current\+Sum} () const
+\begin{DoxyCompactList}\small\item\em get the current sum of all your data \end{DoxyCompactList}\item 
+bool \hyperlink{classMoveAve_a2511f0602d9bffdb8ddc8cd31d81ef66}{is\+Full} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a simple moving average class used to store the most recent model log-\/likelihoods 
+
+\begin{DoxyAuthor}{Author}
+taylor 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMoveAve_a7ba3aea659277902e633d1fca06ddc36}\label{classMoveAve_a7ba3aea659277902e633d1fca06ddc36}} 
+\index{Move\+Ave@{Move\+Ave}!Move\+Ave@{Move\+Ave}}
+\index{Move\+Ave@{Move\+Ave}!Move\+Ave@{Move\+Ave}}
+\subsubsection{\texorpdfstring{Move\+Ave()}{MoveAve()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Move\+Ave\+::\+Move\+Ave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classMoveAve_a455db6dea545c3bb47fed299740c5031}\label{classMoveAve_a455db6dea545c3bb47fed299740c5031}} 
+\index{Move\+Ave@{Move\+Ave}!Move\+Ave@{Move\+Ave}}
+\index{Move\+Ave@{Move\+Ave}!Move\+Ave@{Move\+Ave}}
+\subsubsection{\texorpdfstring{Move\+Ave()}{MoveAve()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Move\+Ave\+::\+Move\+Ave (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{width }\end{DoxyParamCaption})}
+
+
+
+ctor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & how many time points do you want to average over \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMoveAve_a5a48674a3d3a2d92baf896d8321cd909}\label{classMoveAve_a5a48674a3d3a2d92baf896d8321cd909}} 
+\index{Move\+Ave@{Move\+Ave}!get\+Current\+Ave@{get\+Current\+Ave}}
+\index{get\+Current\+Ave@{get\+Current\+Ave}!Move\+Ave@{Move\+Ave}}
+\subsubsection{\texorpdfstring{get\+Current\+Ave()}{getCurrentAve()}}
+{\footnotesize\ttfamily double Move\+Ave\+::get\+Current\+Ave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get the current average value 
+
+\begin{DoxyReturn}{Returns}
+the current moving average 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMoveAve_a8976714955c304bea3149c51e0c8cd95}\label{classMoveAve_a8976714955c304bea3149c51e0c8cd95}} 
+\index{Move\+Ave@{Move\+Ave}!get\+Current\+Sum@{get\+Current\+Sum}}
+\index{get\+Current\+Sum@{get\+Current\+Sum}!Move\+Ave@{Move\+Ave}}
+\subsubsection{\texorpdfstring{get\+Current\+Sum()}{getCurrentSum()}}
+{\footnotesize\ttfamily double Move\+Ave\+::get\+Current\+Sum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get the current sum of all your data 
+
+\begin{DoxyReturn}{Returns}
+the sum 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMoveAve_a2511f0602d9bffdb8ddc8cd31d81ef66}\label{classMoveAve_a2511f0602d9bffdb8ddc8cd31d81ef66}} 
+\index{Move\+Ave@{Move\+Ave}!is\+Full@{is\+Full}}
+\index{is\+Full@{is\+Full}!Move\+Ave@{Move\+Ave}}
+\subsubsection{\texorpdfstring{is\+Full()}{isFull()}}
+{\footnotesize\ttfamily bool Move\+Ave\+::is\+Full (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classMoveAve_aedeb10294b2e248f27deb43e30b4a1fc}\label{classMoveAve_aedeb10294b2e248f27deb43e30b4a1fc}} 
+\index{Move\+Ave@{Move\+Ave}!on\+New\+Data@{on\+New\+Data}}
+\index{on\+New\+Data@{on\+New\+Data}!Move\+Ave@{Move\+Ave}}
+\subsubsection{\texorpdfstring{on\+New\+Data()}{onNewData()}}
+{\footnotesize\ttfamily void Move\+Ave\+::on\+New\+Data (\begin{DoxyParamCaption}\item[{const double \&}]{new\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+takes in a new data point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+data} & the newest datum \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{model__bank_8h}{model\+\_\+bank.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="include/position_summary.h" name="include/position_summary.h">
+<area shape="rect" id="node3" href="$instrument_8h.html" title="Represents a tradable instrument in the financial markets. " alt="" coords="203,155,297,181"/>
+<area shape="rect" id="node6" href="$market__snapshot_8h.html" title="Represents a snapshot of the market at a particular point in time. " alt="" coords="38,80,171,107"/>
+<area shape="rect" id="node9" href="$pnl__calculator_8h.html" title="pnl_calculator.h" alt="" coords="247,80,360,107"/>
+<area shape="rect" id="node10" href="$fill_8h.html" title="fill.h" alt="" coords="384,80,431,107"/>
+<area shape="rect" id="node7" href="$market__bar_8h.html" title="Represents a summary of market data for a particular instrument over a given period of time..." alt="" coords="79,155,178,181"/>
+</map>

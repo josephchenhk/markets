@@ -1,0 +1,160 @@
+\hypertarget{classFill}{}\section{Fill Class Reference}
+\label{classFill}\index{Fill@{Fill}}
+
+
+{\ttfamily \#include $<$fill.\+h$>$}
+
+
+
+Collaboration diagram for Fill\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{classFill__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{classFill_ab2f91079415160baf6bae4ce4e651882}{Time} = std\+::chrono\+::time\+\_\+point$<$ std\+::chrono\+::system\+\_\+clock $>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFill_ac7abcfc5d69d92624d820ac2c54b26a9}{Fill} (const \hyperlink{classInstrument}{Instrument} \&instr, const \hyperlink{classFill_ab2f91079415160baf6bae4ce4e651882}{Time} \&f\+\_\+time, const \hyperlink{fill_8h_a0735734beae0a6b094ce815e727eeca0}{Exchange} \&exch, const unsigned int \&qty, const \hyperlink{fill_8h_a224b9163917ac32fc95a60d8c1eec3aa}{Direction} \&dir, const double \&o\+Price, const double \&e\+Price, const unsigned int \&o\+\_\+id)
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+double \hyperlink{classFill_afc13ac8bde0a76cb798f5fc9a62014fd}{get\+Slippage} () const
+\begin{DoxyCompactList}\small\item\em gets the slippage \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const \hyperlink{classInstrument}{Instrument} \hyperlink{classFill_ad8cc2217100d31b29c61554adfae4c89}{instrument}
+\item 
+const \hyperlink{classFill_ab2f91079415160baf6bae4ce4e651882}{Time} \hyperlink{classFill_a3c16af5c63d428b20e145bdd8aed079c}{fill\+\_\+time}
+\item 
+const \hyperlink{fill_8h_a0735734beae0a6b094ce815e727eeca0}{Exchange} \hyperlink{classFill_affe8391a70b7231659a2c54d38c449ee}{exchange}
+\item 
+const unsigned int \hyperlink{classFill_a6a19e54b16e7025f2196e6658acf8976}{quantity}
+\item 
+const \hyperlink{fill_8h_a224b9163917ac32fc95a60d8c1eec3aa}{Direction} \hyperlink{classFill_ab2451992abc07d5a0a217225bea39d3b}{direction}
+\item 
+const double \hyperlink{classFill_ac7415e2ba0339c0060d13b4900971f25}{order\+\_\+price}
+\item 
+const double \hyperlink{classFill_aee5774c287161b4b453d688fd75d24af}{execute\+\_\+price}
+\item 
+const unsigned int \hyperlink{classFill_afd7bfe98f2df0ae03a662083b0526ad1}{order\+\_\+id}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classFill_ab2f91079415160baf6bae4ce4e651882}\label{classFill_ab2f91079415160baf6bae4ce4e651882}} 
+\index{Fill@{Fill}!Time@{Time}}
+\index{Time@{Time}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{Time}{Time}}
+{\footnotesize\ttfamily using \hyperlink{classFill_ab2f91079415160baf6bae4ce4e651882}{Fill\+::\+Time} =  std\+::chrono\+::time\+\_\+point$<$std\+::chrono\+::system\+\_\+clock$>$}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFill_ac7abcfc5d69d92624d820ac2c54b26a9}\label{classFill_ac7abcfc5d69d92624d820ac2c54b26a9}} 
+\index{Fill@{Fill}!Fill@{Fill}}
+\index{Fill@{Fill}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{Fill()}{Fill()}}
+{\footnotesize\ttfamily Fill\+::\+Fill (\begin{DoxyParamCaption}\item[{const \hyperlink{classInstrument}{Instrument} \&}]{instr,  }\item[{const \hyperlink{classFill_ab2f91079415160baf6bae4ce4e651882}{Time} \&}]{f\+\_\+time,  }\item[{const \hyperlink{fill_8h_a0735734beae0a6b094ce815e727eeca0}{Exchange} \&}]{exch,  }\item[{const unsigned int \&}]{qty,  }\item[{const \hyperlink{fill_8h_a224b9163917ac32fc95a60d8c1eec3aa}{Direction} \&}]{dir,  }\item[{const double \&}]{o\+Price,  }\item[{const double \&}]{e\+Price,  }\item[{const unsigned int \&}]{o\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+ctor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instr} & an \hyperlink{classInstrument}{Instrument} object \\
+\hline
+{\em fill\+\_\+time} & time order was filled \\
+\hline
+{\em exch} & the exchange it was filled on \\
+\hline
+{\em qty} & the number of shares \\
+\hline
+{\em dir} & whether they were bought, sold or shorted \\
+\hline
+{\em o\+Price} & the price on the order. \\
+\hline
+{\em e\+Price} & the price that was executed \\
+\hline
+{\em order\+\_\+id} & a unique order id number \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classFill_afc13ac8bde0a76cb798f5fc9a62014fd}\label{classFill_afc13ac8bde0a76cb798f5fc9a62014fd}} 
+\index{Fill@{Fill}!get\+Slippage@{get\+Slippage}}
+\index{get\+Slippage@{get\+Slippage}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{get\+Slippage()}{getSlippage()}}
+{\footnotesize\ttfamily double Fill\+::get\+Slippage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the slippage 
+
+\begin{DoxyReturn}{Returns}
+how much slippage you endured (as a positive number) 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classFill_ab2451992abc07d5a0a217225bea39d3b}\label{classFill_ab2451992abc07d5a0a217225bea39d3b}} 
+\index{Fill@{Fill}!direction@{direction}}
+\index{direction@{direction}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily const \hyperlink{fill_8h_a224b9163917ac32fc95a60d8c1eec3aa}{Direction} Fill\+::direction}
+
+\mbox{\Hypertarget{classFill_affe8391a70b7231659a2c54d38c449ee}\label{classFill_affe8391a70b7231659a2c54d38c449ee}} 
+\index{Fill@{Fill}!exchange@{exchange}}
+\index{exchange@{exchange}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{exchange}{exchange}}
+{\footnotesize\ttfamily const \hyperlink{fill_8h_a0735734beae0a6b094ce815e727eeca0}{Exchange} Fill\+::exchange}
+
+\mbox{\Hypertarget{classFill_aee5774c287161b4b453d688fd75d24af}\label{classFill_aee5774c287161b4b453d688fd75d24af}} 
+\index{Fill@{Fill}!execute\+\_\+price@{execute\+\_\+price}}
+\index{execute\+\_\+price@{execute\+\_\+price}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{execute\+\_\+price}{execute\_price}}
+{\footnotesize\ttfamily const double Fill\+::execute\+\_\+price}
+
+\mbox{\Hypertarget{classFill_a3c16af5c63d428b20e145bdd8aed079c}\label{classFill_a3c16af5c63d428b20e145bdd8aed079c}} 
+\index{Fill@{Fill}!fill\+\_\+time@{fill\+\_\+time}}
+\index{fill\+\_\+time@{fill\+\_\+time}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{fill\+\_\+time}{fill\_time}}
+{\footnotesize\ttfamily const \hyperlink{classFill_ab2f91079415160baf6bae4ce4e651882}{Time} Fill\+::fill\+\_\+time}
+
+\mbox{\Hypertarget{classFill_ad8cc2217100d31b29c61554adfae4c89}\label{classFill_ad8cc2217100d31b29c61554adfae4c89}} 
+\index{Fill@{Fill}!instrument@{instrument}}
+\index{instrument@{instrument}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{instrument}{instrument}}
+{\footnotesize\ttfamily const \hyperlink{classInstrument}{Instrument} Fill\+::instrument}
+
+\mbox{\Hypertarget{classFill_afd7bfe98f2df0ae03a662083b0526ad1}\label{classFill_afd7bfe98f2df0ae03a662083b0526ad1}} 
+\index{Fill@{Fill}!order\+\_\+id@{order\+\_\+id}}
+\index{order\+\_\+id@{order\+\_\+id}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{order\+\_\+id}{order\_id}}
+{\footnotesize\ttfamily const unsigned int Fill\+::order\+\_\+id}
+
+\mbox{\Hypertarget{classFill_ac7415e2ba0339c0060d13b4900971f25}\label{classFill_ac7415e2ba0339c0060d13b4900971f25}} 
+\index{Fill@{Fill}!order\+\_\+price@{order\+\_\+price}}
+\index{order\+\_\+price@{order\+\_\+price}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{order\+\_\+price}{order\_price}}
+{\footnotesize\ttfamily const double Fill\+::order\+\_\+price}
+
+\mbox{\Hypertarget{classFill_a6a19e54b16e7025f2196e6658acf8976}\label{classFill_a6a19e54b16e7025f2196e6658acf8976}} 
+\index{Fill@{Fill}!quantity@{quantity}}
+\index{quantity@{quantity}!Fill@{Fill}}
+\subsubsection{\texorpdfstring{quantity}{quantity}}
+{\footnotesize\ttfamily const unsigned int Fill\+::quantity}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{fill_8h}{fill.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,78 @@
+\hypertarget{classbase__mod}{}\section{base\+\_\+mod Class Reference}
+\label{classbase__mod}\index{base\+\_\+mod@{base\+\_\+mod}}
+
+
+each model must inherit from this abstract base class  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+bank.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classbase__mod_a347fb7e0a320a2c29cadfdd9d084c311}{on\+\_\+data} (const Eigen\+::\+Vector\+Xd \&yt)=0
+\begin{DoxyCompactList}\small\item\em processes a new data point in the form of an Eigen\+::\+Vector\+Xd \end{DoxyCompactList}\item 
+virtual Eigen\+::\+Vector\+Xd \hyperlink{classbase__mod_a4191d277945f98b4a6eaa663cb70d678}{mean\+Vec} () const =0
+\begin{DoxyCompactList}\small\item\em returns a point forecast for the one step ahead log-\/returns \end{DoxyCompactList}\item 
+virtual Eigen\+::\+Matrix\+Xd \hyperlink{classbase__mod_a7cad99311e5ea17679f3eae2b5fd4319}{cov\+Mat} () const =0
+\begin{DoxyCompactList}\small\item\em returns a covariance matrix estimate for the one-\/step ahead log-\/returns \end{DoxyCompactList}\item 
+virtual double \hyperlink{classbase__mod_a7d580c83175fab5d1f553afabca9da50}{get\+LL} () const =0
+\begin{DoxyCompactList}\small\item\em returns the up-\/to-\/date log-\/likelihood \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+each model must inherit from this abstract base class 
+
+\begin{DoxyAuthor}{Author}
+taylor 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classbase__mod_a7cad99311e5ea17679f3eae2b5fd4319}\label{classbase__mod_a7cad99311e5ea17679f3eae2b5fd4319}} 
+\index{base\+\_\+mod@{base\+\_\+mod}!cov\+Mat@{cov\+Mat}}
+\index{cov\+Mat@{cov\+Mat}!base\+\_\+mod@{base\+\_\+mod}}
+\subsubsection{\texorpdfstring{cov\+Mat()}{covMat()}}
+{\footnotesize\ttfamily virtual Eigen\+::\+Matrix\+Xd base\+\_\+mod\+::cov\+Mat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+returns a covariance matrix estimate for the one-\/step ahead log-\/returns 
+
+\mbox{\Hypertarget{classbase__mod_a7d580c83175fab5d1f553afabca9da50}\label{classbase__mod_a7d580c83175fab5d1f553afabca9da50}} 
+\index{base\+\_\+mod@{base\+\_\+mod}!get\+LL@{get\+LL}}
+\index{get\+LL@{get\+LL}!base\+\_\+mod@{base\+\_\+mod}}
+\subsubsection{\texorpdfstring{get\+L\+L()}{getLL()}}
+{\footnotesize\ttfamily virtual double base\+\_\+mod\+::get\+LL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+returns the up-\/to-\/date log-\/likelihood 
+
+\mbox{\Hypertarget{classbase__mod_a4191d277945f98b4a6eaa663cb70d678}\label{classbase__mod_a4191d277945f98b4a6eaa663cb70d678}} 
+\index{base\+\_\+mod@{base\+\_\+mod}!mean\+Vec@{mean\+Vec}}
+\index{mean\+Vec@{mean\+Vec}!base\+\_\+mod@{base\+\_\+mod}}
+\subsubsection{\texorpdfstring{mean\+Vec()}{meanVec()}}
+{\footnotesize\ttfamily virtual Eigen\+::\+Vector\+Xd base\+\_\+mod\+::mean\+Vec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+returns a point forecast for the one step ahead log-\/returns 
+
+\mbox{\Hypertarget{classbase__mod_a347fb7e0a320a2c29cadfdd9d084c311}\label{classbase__mod_a347fb7e0a320a2c29cadfdd9d084c311}} 
+\index{base\+\_\+mod@{base\+\_\+mod}!on\+\_\+data@{on\+\_\+data}}
+\index{on\+\_\+data@{on\+\_\+data}!base\+\_\+mod@{base\+\_\+mod}}
+\subsubsection{\texorpdfstring{on\+\_\+data()}{on\_data()}}
+{\footnotesize\ttfamily virtual void base\+\_\+mod\+::on\+\_\+data (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{yt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+processes a new data point in the form of an Eigen\+::\+Vector\+Xd 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{model__bank_8h}{model\+\_\+bank.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="include/data_readers.h" name="include/data_readers.h">
+<area shape="rect" id="node5" href="$market__snapshot_8h.html" title="Represents a snapshot of the market at a particular point in time. " alt="" coords="210,80,343,107"/>
+<area shape="rect" id="node7" href="$instrument_8h.html" title="Represents a tradable instrument in the financial markets. " alt="" coords="168,155,262,181"/>
+<area shape="rect" id="node8" href="$market__bar_8h.html" title="Represents a summary of market data for a particular instrument over a given period of time..." alt="" coords="287,155,386,181"/>
+</map>

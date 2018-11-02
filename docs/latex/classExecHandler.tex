@@ -1,0 +1,77 @@
+\hypertarget{classExecHandler}{}\section{Exec\+Handler Class Reference}
+\label{classExecHandler}\index{Exec\+Handler@{Exec\+Handler}}
+
+
+{\ttfamily \#include $<$execution\+\_\+handler.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classExecHandler_a93dc054d2361eac1f6ca3856d22d197f}{Exec\+Handler} (const double \&market\+Slippage=.\+01)
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+void \hyperlink{classExecHandler_a041152ee704c3688b1097babbc830494}{process\+\_\+orders\+\_\+yield\+\_\+fills} (\hyperlink{classMarketSnapshot}{Market\+Snapshot} ms, std\+::queue$<$ \hyperlink{classFill}{Fill} $>$ \&fills\+\_\+q)
+\begin{DoxyCompactList}\small\item\em process orders to see if they were filled \end{DoxyCompactList}\item 
+void \hyperlink{classExecHandler_aee7a8bd39ed6fc1f9818c22103c0820a}{add\+Order} (const \hyperlink{classOrder}{Order} \&incoming\+\_\+order)
+\begin{DoxyCompactList}\small\item\em add an order to the queue \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+t 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+08/07/18 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classExecHandler_a93dc054d2361eac1f6ca3856d22d197f}\label{classExecHandler_a93dc054d2361eac1f6ca3856d22d197f}} 
+\index{Exec\+Handler@{Exec\+Handler}!Exec\+Handler@{Exec\+Handler}}
+\index{Exec\+Handler@{Exec\+Handler}!Exec\+Handler@{Exec\+Handler}}
+\subsubsection{\texorpdfstring{Exec\+Handler()}{ExecHandler()}}
+{\footnotesize\ttfamily Exec\+Handler\+::\+Exec\+Handler (\begin{DoxyParamCaption}\item[{const double \&}]{market\+Slippage = {\ttfamily .01} }\end{DoxyParamCaption})}
+
+
+
+ctor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em market\+Slippage} & is the dollar amount of slippage that will be assessed \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classExecHandler_aee7a8bd39ed6fc1f9818c22103c0820a}\label{classExecHandler_aee7a8bd39ed6fc1f9818c22103c0820a}} 
+\index{Exec\+Handler@{Exec\+Handler}!add\+Order@{add\+Order}}
+\index{add\+Order@{add\+Order}!Exec\+Handler@{Exec\+Handler}}
+\subsubsection{\texorpdfstring{add\+Order()}{addOrder()}}
+{\footnotesize\ttfamily void Exec\+Handler\+::add\+Order (\begin{DoxyParamCaption}\item[{const \hyperlink{classOrder}{Order} \&}]{incoming\+\_\+order }\end{DoxyParamCaption})}
+
+
+
+add an order to the queue 
+
+incoming\+\_\+order an order that may or may not be triggered \mbox{\Hypertarget{classExecHandler_a041152ee704c3688b1097babbc830494}\label{classExecHandler_a041152ee704c3688b1097babbc830494}} 
+\index{Exec\+Handler@{Exec\+Handler}!process\+\_\+orders\+\_\+yield\+\_\+fills@{process\+\_\+orders\+\_\+yield\+\_\+fills}}
+\index{process\+\_\+orders\+\_\+yield\+\_\+fills@{process\+\_\+orders\+\_\+yield\+\_\+fills}!Exec\+Handler@{Exec\+Handler}}
+\subsubsection{\texorpdfstring{process\+\_\+orders\+\_\+yield\+\_\+fills()}{process\_orders\_yield\_fills()}}
+{\footnotesize\ttfamily void Exec\+Handler\+::process\+\_\+orders\+\_\+yield\+\_\+fills (\begin{DoxyParamCaption}\item[{\hyperlink{classMarketSnapshot}{Market\+Snapshot}}]{ms,  }\item[{std\+::queue$<$ \hyperlink{classFill}{Fill} $>$ \&}]{fills\+\_\+q }\end{DoxyParamCaption})}
+
+
+
+process orders to see if they were filled 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ms} & the most recent \hyperlink{classMarketSnapshot}{Market\+Snapshot} \\
+\hline
+{\em fills\+\_\+q} & is the place that fills will be put \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{execution__handler_8h}{execution\+\_\+handler.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,37 @@
+\hypertarget{portfolio_8h}{}\section{include/portfolio.h File Reference}
+\label{portfolio_8h}\index{include/portfolio.\+h@{include/portfolio.\+h}}
+
+
+This represents the top level of all accounting details.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}position\+\_\+summary.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}execution\+\_\+handler.\+h\char`\"{}}\newline
+Include dependency graph for portfolio.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{portfolio_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classPortfolio}{Portfolio}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This represents the top level of all accounting details. 
+
+
+\begin{DoxyEnumerate}
+\item (or 2.) Read all fills and update positions accordingly (read\+All\+Fills)
+\item (or 1.) Read in the most recent prices and update positions/info accordingly ( read\+New\+Prices )
+\item Receive new ideal weights, calculate orders, and then submit these orders. (update\+On\+New\+Ideal\+Wts) NB\+: this is meant to be subclassed 
+\end{DoxyEnumerate}
