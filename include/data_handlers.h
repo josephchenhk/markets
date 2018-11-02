@@ -39,6 +39,13 @@ public:
 
 
     /**
+     * @brief returns the vector of arithmetic returns
+     * @return an Eigen::VectorXd of returns
+     */
+    Eigen::VectorXd arithReturns() const;
+
+
+    /**
      * @brief returns the vector of open prices
      * @return an Eigen::VectorXd of the open prices
      */

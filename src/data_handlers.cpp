@@ -40,6 +40,23 @@ Eigen::VectorXd DataHandler::logReturns() const
 }
 
 
+Eigen::VectorXd DataHandler::arithReturns() const
+{
+    if(m_num_data_seen < 2)
+        throw std::runtime_error("there is not enough data to get a return vector");
+
+    unsigned int n = m_ordered_tickers.size();
+    Eigen::VectorXd rets(n);
+    std::map<Instrument,MarketBar> new_bars = m_new_snapshot.bars();
+    std::map<Instrument,MarketBar> old_bars = m_old_snapshot.bars();
+    for(size_t i = 0; i < n; ++i){
+        rets(i) = 100*(new_bars[Instrument(m_ordered_tickers[i])].close() - old_bars[Instrument(m_ordered_tickers[i])].close())/(old_bars[Instrument(m_ordered_tickers[i])].close());
+
+    }
+    return rets;
+}
+
+
 Eigen::VectorXd DataHandler::opens() const
 {
     if(m_num_data_seen == 0) throw std::runtime_error("you need at least 1 datum to look at the opens");
