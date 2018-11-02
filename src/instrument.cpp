@@ -7,7 +7,7 @@ Instrument::Instrument(const std::string& sym)
     : symbol(sym)
 {
     if( std::any_of(symbol.begin(), symbol.end(), &::islower) ){
-        throw std::invalid_argument("ticker symbol must be lower case\n");
+        throw std::invalid_argument("ticker symbol must be upper-case\n");
     }
 }
 
