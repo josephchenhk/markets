@@ -57,8 +57,15 @@ private:
 class MarketSnapshotsMaker
 {
 private:
+
+    /* the tickers for which data are being produced */
     std::vector<std::string> m_tickers;
+
+    /* the data itself in snapshot form*/
     std::vector<MarketSnapshot> m_data;
+
+    /* a function that gets tickers from the file paths. Assumes files are of the form e.g. TICKER.csv */
+    std::vector<std::string> get_tickers_from_paths(const std::vector<std::string>& paths);
 
 public:
 

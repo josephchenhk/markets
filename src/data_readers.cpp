@@ -3,8 +3,9 @@
 #include <fstream>      // std::ifstream
 #include <sstream>      // std::istringstream
 #include <filesystem>
+#include <algorithm> // transform
 
-
+#include <iostream>//tmp
 CSVReader::CSVReader(std::string filename, std::string delm, unsigned int meaningless_rows) 
     : m_fileName(filename), m_delimeter(delm[0]), m_ignore_rows(meaningless_rows)
 { 
@@ -41,28 +42,59 @@ std::vector<std::vector<std::string> > CSVReader::getData()
 }
 
 
+std::vector<std::string> MarketSnapshotsMaker::get_tickers_from_paths(const std::vector<std::string>& paths)
+{
+    std::vector<std::string> tickers;
+    std::string tmpstring;
+    for(size_t i = 0; i < paths.size(); ++i){
+        const size_t lastSlashIndex = paths[i].find_last_of("/\\");
+        tmpstring = paths[i].substr(lastSlashIndex + 1); 
+        std::transform(tmpstring.begin(), tmpstring.end(), tmpstring.begin(), ::toupper);
+        // now remove the ".csv" part
+        std::string::size_type const p(tmpstring.find_last_of('.'));
+        tickers.push_back( tmpstring.substr(0,p) );
+    }
+    return tickers;
+}
+
 
 MarketSnapshotsMaker::MarketSnapshotsMaker(const std::string& data_directory, std::string delimiter)
 {
-    // this is almost identical to the code in the construtor below
 
-    unsigned int num_tickers, num_rows, csv_reader_start_row;
-    num_tickers = 0; // incremement this in the first for loop
-    csv_reader_start_row = 1;
+    unsigned int num_tickers = 0;
+    unsigned int num_rows = 0;
+    unsigned int csv_reader_start_row = 1;
+    std::vector<std::string> file_paths;
     std::vector<std::vector<std::vector<std::string>>> all_raw_data;
-    
-    for(auto & p : std::filesystem::directory_iterator(data_directory)){
-    
-        // TODO get the ticker symbol and store it
-        CSVReader csvr(p.path().string(), delimiter, csv_reader_start_row);
+
+    // make the file paths into a vector
+    for(auto & p : std::filesystem::directory_iterator(data_directory))
+    { 
+        file_paths.push_back(p.path());
+        num_tickers++;
+    }
+
+    // get the tickers from the paths
+    m_tickers = get_tickers_from_paths(file_paths);
+
+    if(num_tickers == 0){
+        std::cerr << "the directory was empty\n";
+        throw std::runtime_error("the directory was empty!\n");
+    }
+
+    for(size_t i = 0; i < num_tickers; ++i){
+
+        CSVReader csvr(file_paths[i], delimiter, csv_reader_start_row);
         all_raw_data.push_back(csvr.getData());
 
-        if(num_tickers == 0){
+        if(i == 0){
             num_rows = all_raw_data[0].size();
         }
-
-        // count the number of tickers
-        num_tickers++;
+    }
+    
+    if(num_rows == 0){
+        std::cerr << "the files are not being read in correctly or have no bservations\n";
+        throw std::runtime_error("files are not being read in correctly or have zero obsrevations\n");
     }
 
     for(size_t time = 0; time < num_rows; ++time){
