@@ -1,7 +1,7 @@
 <map id="include/execution_handler.h" name="include/execution_handler.h">
-<area shape="rect" id="node3" href="$order_8h.html" title="an order class with const public data members " alt="" coords="157,80,220,107"/>
-<area shape="rect" id="node6" href="$fill_8h.html" title="fill.h" alt="" coords="87,80,133,107"/>
-<area shape="rect" id="node8" href="$market__snapshot_8h.html" title="Represents a snapshot of the market at a particular point in time. " alt="" coords="245,80,378,107"/>
-<area shape="rect" id="node4" href="$instrument_8h.html" title="Represents a tradable instrument in the financial markets. " alt="" coords="143,155,237,181"/>
-<area shape="rect" id="node10" href="$market__bar_8h.html" title="Represents a summary of market data for a particular instrument over a given period of time..." alt="" coords="262,155,361,181"/>
+<area shape="rect" id="node4" href="$order_8h.html" title="an order class with const public data members " alt="" coords="255,80,317,107"/>
+<area shape="rect" id="node7" href="$fill_8h.html" title="fill.h" alt="" coords="184,80,231,107"/>
+<area shape="rect" id="node9" href="$market__snapshot_8h.html" title="Represents a snapshot of the market at a particular point in time. " alt="" coords="342,80,475,107"/>
+<area shape="rect" id="node5" href="$instrument_8h.html" title="Represents a tradable instrument in the financial markets. " alt="" coords="240,155,335,181"/>
+<area shape="rect" id="node11" href="$market__bar_8h.html" title="Represents a summary of market data for a particular instrument over a given period of time..." alt="" coords="359,155,458,181"/>
 </map>

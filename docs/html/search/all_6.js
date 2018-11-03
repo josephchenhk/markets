@@ -9,8 +9,10 @@ var searchData=
   ['getcurrentsum',['getCurrentSum',['../classMoveAve.html#a8976714955c304bea3149c51e0c8cd95',1,'MoveAve']]],
   ['getdata',['getData',['../classCSVReader.html#a809c75b0401dd459b88102c2dcaefadd',1,'CSVReader']]],
   ['getinstrumentmktval',['getInstrumentMktVal',['../classPositionSummary.html#acb0534c73c95999d2ff2739caedf0773',1,'PositionSummary::getInstrumentMktVal(const Instrument &amp;instr) const'],['../classPositionSummary.html#a66ed8d8382b50aaca12fd889a2fd6c31',1,'PositionSummary::getInstrumentMktVal(const std::string &amp;sym) const']]],
+  ['getinstrumentshares',['getInstrumentShares',['../classPositionSummary.html#a9337188fb6f76eff2d72be77d30ac77a',1,'PositionSummary::getInstrumentShares(const Instrument &amp;instr) const'],['../classPositionSummary.html#a793bab7b233e00e5110440446ba5b3be',1,'PositionSummary::getInstrumentShares(const std::string &amp;sym) const']]],
   ['getll',['getLL',['../classbase__mod.html#a7d580c83175fab5d1f553afabca9da50',1,'base_mod']]],
   ['getmktval',['getMktVal',['../classPortfolio.html#aca678d7a74e62ea9fa30843685585b48',1,'Portfolio']]],
+  ['getnumshares',['getNumShares',['../classPortfolio.html#a4362d4cfc98f8cf060e611a74b91673a',1,'Portfolio']]],
   ['getslippage',['getSlippage',['../classFill.html#afc13ac8bde0a76cb798f5fc9a62014fd',1,'Fill']]],
   ['getweights1',['getWeights1',['../classPortfolio.html#a7a932e1e5b68e8fc8b91d16287f6de30',1,'Portfolio']]]
 ];

@@ -85,6 +85,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a66ed8d8382b50aaca12fd889a2fd6c31"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPositionSummary.html#a66ed8d8382b50aaca12fd889a2fd6c31">getInstrumentMktVal</a> (const std::string &amp;sym) const</td></tr>
 <tr class="memdesc:a66ed8d8382b50aaca12fd889a2fd6c31"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the market value for a particular position  <a href="#a66ed8d8382b50aaca12fd889a2fd6c31">More...</a><br /></td></tr>
 <tr class="separator:a66ed8d8382b50aaca12fd889a2fd6c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9337188fb6f76eff2d72be77d30ac77a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPositionSummary.html#a9337188fb6f76eff2d72be77d30ac77a">getInstrumentShares</a> (const <a class="el" href="classInstrument.html">Instrument</a> &amp;instr) const</td></tr>
+<tr class="memdesc:a9337188fb6f76eff2d72be77d30ac77a"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the number of shares currently held (negative if short)  <a href="#a9337188fb6f76eff2d72be77d30ac77a">More...</a><br /></td></tr>
+<tr class="separator:a9337188fb6f76eff2d72be77d30ac77a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793bab7b233e00e5110440446ba5b3be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPositionSummary.html#a793bab7b233e00e5110440446ba5b3be">getInstrumentShares</a> (const std::string &amp;sym) const</td></tr>
+<tr class="memdesc:a793bab7b233e00e5110440446ba5b3be"><td class="mdescLeft">&#160;</td><td class="mdescRight">gives you the number of shares currently held (negative for short)  <a href="#a793bab7b233e00e5110440446ba5b3be">More...</a><br /></td></tr>
+<tr class="separator:a793bab7b233e00e5110440446ba5b3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c8772fe401f8d00de795ff09b856d44"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPositionSummary.html#a1c8772fe401f8d00de795ff09b856d44">getBalance</a> () const</td></tr>
 <tr class="memdesc:a1c8772fe401f8d00de795ff09b856d44"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the current balance (starting cash plus all realized pnls)  <a href="#a1c8772fe401f8d00de795ff09b856d44">More...</a><br /></td></tr>
 <tr class="separator:a1c8772fe401f8d00de795ff09b856d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,6 +213,60 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the current market value for <a class="el" href="classInstrument.html">Instrument</a> "instr" </dd></dl>
+
+</div>
+</div>
+<a id="a9337188fb6f76eff2d72be77d30ac77a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9337188fb6f76eff2d72be77d30ac77a">&#9670;&nbsp;</a></span>getInstrumentShares() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PositionSummary::getInstrumentShares </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classInstrument.html">Instrument</a> &amp;&#160;</td>
+          <td class="paramname"><em>instr</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the number of shares currently held (negative if short) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">an</td><td>instrument of type Instr </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of shares as an int </dd></dl>
+
+</div>
+</div>
+<a id="a793bab7b233e00e5110440446ba5b3be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a793bab7b233e00e5110440446ba5b3be">&#9670;&nbsp;</a></span>getInstrumentShares() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PositionSummary::getInstrumentShares </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>sym</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gives you the number of shares currently held (negative for short) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sym</td><td>the ticker symbol in all caps </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the current number of shares for sym </dd></dl>
 
 </div>
 </div>

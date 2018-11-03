@@ -12,7 +12,9 @@
 \hyperlink{classMarketSnapshotsMaker_a8107a3b92c32118a667b5e86099ecde8}{Market\+Snapshots\+Maker} (std\+::vector$<$ std\+::string $>$ filenames, std\+::string delimiter, std\+::vector$<$ std\+::string $>$ tickers)
 \begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
 std\+::vector$<$ \hyperlink{classMarketSnapshot}{Market\+Snapshot} $>$ \hyperlink{classMarketSnapshotsMaker_a1fbc9bc9f9e8c6bb1641211b027f7b0d}{data} () const
-\begin{DoxyCompactList}\small\item\em returns data in a useable format \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em returns data in a useable format \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classMarketSnapshotsMaker_a029dc542bbf03a3e1b1af72d5b72efd1}{ordered\+\_\+tickers} () const
+\begin{DoxyCompactList}\small\item\em gives you the tickers currently available. they are ordered according to the order using by the \hyperlink{classInstrument}{Instrument} class. @ return the tickers in a std\+::vector$<$std\+::string$>$ \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -77,6 +79,16 @@ returns data in a useable format
 \begin{DoxyReturn}{Returns}
 a std\+::vector of Market\+Snapshots 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classMarketSnapshotsMaker_a029dc542bbf03a3e1b1af72d5b72efd1}\label{classMarketSnapshotsMaker_a029dc542bbf03a3e1b1af72d5b72efd1}} 
+\index{Market\+Snapshots\+Maker@{Market\+Snapshots\+Maker}!ordered\+\_\+tickers@{ordered\+\_\+tickers}}
+\index{ordered\+\_\+tickers@{ordered\+\_\+tickers}!Market\+Snapshots\+Maker@{Market\+Snapshots\+Maker}}
+\subsubsection{\texorpdfstring{ordered\+\_\+tickers()}{ordered\_tickers()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Market\+Snapshots\+Maker\+::ordered\+\_\+tickers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gives you the tickers currently available. they are ordered according to the order using by the \hyperlink{classInstrument}{Instrument} class. @ return the tickers in a std\+::vector$<$std\+::string$>$ 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

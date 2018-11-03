@@ -8,7 +8,7 @@
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classInstrument_af6112f02c5739bd166b78a1734e79b2c}{Instrument} (const std\+::string \&sym)
-\begin{DoxyCompactList}\small\item\em Constructs an \hyperlink{classInstrument}{Instrument} with the provided symbol. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Constructs an \hyperlink{classInstrument}{Instrument} with the provided \hyperlink{classInstrument}{Instrument}. \end{DoxyCompactList}\item 
 bool \hyperlink{classInstrument_a8ffc6368e7b12588e422145f2b659f9e}{operator$<$} (const \hyperlink{classInstrument}{Instrument} \&other) const
 \begin{DoxyCompactList}\small\item\em relational operator that orders the ticker symbols \end{DoxyCompactList}\item 
 bool \hyperlink{classInstrument_a5fff991d72c20b0def886d743b6ae0b3}{operator==} (const \hyperlink{classInstrument}{Instrument} \&other) const
@@ -38,11 +38,13 @@ Benjamin
 
 
 
-Constructs an \hyperlink{classInstrument}{Instrument} with the provided symbol. 
+Constructs an \hyperlink{classInstrument}{Instrument} with the provided \hyperlink{classInstrument}{Instrument}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & denotes the symbol \\
+{\em instr} & is the instrument you\textquotesingle{}re copying. Constructs an \hyperlink{classInstrument}{Instrument} with the provided symbol \\
+\hline
+{\em sym} & denotes the symbol \\
 \hline
 \end{DoxyParams}
 

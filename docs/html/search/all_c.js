@@ -17,5 +17,6 @@ var searchData=
   ['order_2eh',['order.h',['../order_8h.html',1,'']]],
   ['order_5fid',['order_id',['../classFill.html#afd7bfe98f2df0ae03a662083b0526ad1',1,'Fill']]],
   ['order_5fprice',['order_price',['../classFill.html#ac7415e2ba0339c0060d13b4900971f25',1,'Fill']]],
+  ['ordered_5ftickers',['ordered_tickers',['../classMarketSnapshotsMaker.html#a029dc542bbf03a3e1b1af72d5b72efd1',1,'MarketSnapshotsMaker']]],
   ['ordertype',['OrderType',['../order_8h.html#a57124e387290311f33f3b54a54930418',1,'order.h']]]
 ];

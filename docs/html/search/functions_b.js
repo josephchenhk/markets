@@ -13,5 +13,6 @@ var searchData=
   ['operator_3d',['operator=',['../classMarketBar.html#aa0a4209809deddf5fb61272d405b1ddc',1,'MarketBar']]],
   ['operator_3d_3d',['operator==',['../classInstrument.html#a5fff991d72c20b0def886d743b6ae0b3',1,'Instrument']]],
   ['operator_5b_5d',['operator[]',['../classMarketSnapshot.html#ad8ad2cc84487f9b21d3db3604d2b1590',1,'MarketSnapshot::operator[](Instrument instr_name)'],['../classMarketSnapshot.html#a5029cc166d5c7b895686a25feb0c3af4',1,'MarketSnapshot::operator[](std::string instr_name)']]],
-  ['order',['Order',['../classOrder.html#a936dad01587c163c6f697c5f3b6406bb',1,'Order']]]
+  ['order',['Order',['../classOrder.html#a936dad01587c163c6f697c5f3b6406bb',1,'Order']]],
+  ['ordered_5ftickers',['ordered_tickers',['../classMarketSnapshotsMaker.html#a029dc542bbf03a3e1b1af72d5b72efd1',1,'MarketSnapshotsMaker']]]
 ];

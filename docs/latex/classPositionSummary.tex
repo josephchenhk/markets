@@ -17,6 +17,10 @@ double \hyperlink{classPositionSummary_acb0534c73c95999d2ff2739caedf0773}{get\+I
 \begin{DoxyCompactList}\small\item\em gets the market value for a particular position. \end{DoxyCompactList}\item 
 double \hyperlink{classPositionSummary_a66ed8d8382b50aaca12fd889a2fd6c31}{get\+Instrument\+Mkt\+Val} (const std\+::string \&sym) const
 \begin{DoxyCompactList}\small\item\em gets the market value for a particular position \end{DoxyCompactList}\item 
+int \hyperlink{classPositionSummary_a9337188fb6f76eff2d72be77d30ac77a}{get\+Instrument\+Shares} (const \hyperlink{classInstrument}{Instrument} \&instr) const
+\begin{DoxyCompactList}\small\item\em gets the number of shares currently held (negative if short) \end{DoxyCompactList}\item 
+int \hyperlink{classPositionSummary_a793bab7b233e00e5110440446ba5b3be}{get\+Instrument\+Shares} (const std\+::string \&sym) const
+\begin{DoxyCompactList}\small\item\em gives you the number of shares currently held (negative for short) \end{DoxyCompactList}\item 
 double \hyperlink{classPositionSummary_a1c8772fe401f8d00de795ff09b856d44}{get\+Balance} () const
 \begin{DoxyCompactList}\small\item\em gets the current balance (starting cash plus all realized pnls) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -97,6 +101,42 @@ gets the market value for a particular position
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 the current market value for \hyperlink{classInstrument}{Instrument} \char`\"{}instr\char`\"{} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPositionSummary_a9337188fb6f76eff2d72be77d30ac77a}\label{classPositionSummary_a9337188fb6f76eff2d72be77d30ac77a}} 
+\index{Position\+Summary@{Position\+Summary}!get\+Instrument\+Shares@{get\+Instrument\+Shares}}
+\index{get\+Instrument\+Shares@{get\+Instrument\+Shares}!Position\+Summary@{Position\+Summary}}
+\subsubsection{\texorpdfstring{get\+Instrument\+Shares()}{getInstrumentShares()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int Position\+Summary\+::get\+Instrument\+Shares (\begin{DoxyParamCaption}\item[{const \hyperlink{classInstrument}{Instrument} \&}]{instr }\end{DoxyParamCaption}) const}
+
+
+
+gets the number of shares currently held (negative if short) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em an} & instrument of type Instr \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of shares as an int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPositionSummary_a793bab7b233e00e5110440446ba5b3be}\label{classPositionSummary_a793bab7b233e00e5110440446ba5b3be}} 
+\index{Position\+Summary@{Position\+Summary}!get\+Instrument\+Shares@{get\+Instrument\+Shares}}
+\index{get\+Instrument\+Shares@{get\+Instrument\+Shares}!Position\+Summary@{Position\+Summary}}
+\subsubsection{\texorpdfstring{get\+Instrument\+Shares()}{getInstrumentShares()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int Position\+Summary\+::get\+Instrument\+Shares (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sym }\end{DoxyParamCaption}) const}
+
+
+
+gives you the number of shares currently held (negative for short) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sym} & the ticker symbol in all caps \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the current number of shares for sym 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classPositionSummary_a057618b9fbc23598a7353555ff280a44}\label{classPositionSummary_a057618b9fbc23598a7353555ff280a44}} 
 \index{Position\+Summary@{Position\+Summary}!on\+Fill@{on\+Fill}}

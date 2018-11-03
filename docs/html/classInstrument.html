@@ -72,7 +72,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af6112f02c5739bd166b78a1734e79b2c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInstrument.html#af6112f02c5739bd166b78a1734e79b2c">Instrument</a> (const std::string &amp;sym)</td></tr>
-<tr class="memdesc:af6112f02c5739bd166b78a1734e79b2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classInstrument.html">Instrument</a> with the provided symbol.  <a href="#af6112f02c5739bd166b78a1734e79b2c">More...</a><br /></td></tr>
+<tr class="memdesc:af6112f02c5739bd166b78a1734e79b2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classInstrument.html">Instrument</a> with the provided <a class="el" href="classInstrument.html">Instrument</a>.  <a href="#af6112f02c5739bd166b78a1734e79b2c">More...</a><br /></td></tr>
 <tr class="separator:af6112f02c5739bd166b78a1734e79b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ffc6368e7b12588e422145f2b659f9e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInstrument.html#a8ffc6368e7b12588e422145f2b659f9e">operator&lt;</a> (const <a class="el" href="classInstrument.html">Instrument</a> &amp;other) const</td></tr>
 <tr class="memdesc:a8ffc6368e7b12588e422145f2b659f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">relational operator that orders the ticker symbols  <a href="#a8ffc6368e7b12588e422145f2b659f9e">More...</a><br /></td></tr>
@@ -106,10 +106,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs an <a class="el" href="classInstrument.html">Instrument</a> with the provided symbol. </p>
+<p>Constructs an <a class="el" href="classInstrument.html">Instrument</a> with the provided <a class="el" href="classInstrument.html">Instrument</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>denotes the symbol </td></tr>
+    <tr><td class="paramname">instr</td><td>is the instrument you're copying. Constructs an <a class="el" href="classInstrument.html">Instrument</a> with the provided symbol </td></tr>
+    <tr><td class="paramname">sym</td><td>denotes the symbol </td></tr>
   </table>
   </dd>
 </dl>
