@@ -6,6 +6,7 @@
 *.exe
 *.o
 *.so
+*.a
 
 # Packages #
 ############
@@ -35,6 +36,4 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# other stuff
 .Rhistory
