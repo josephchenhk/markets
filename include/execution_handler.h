@@ -2,6 +2,8 @@
 #define EXECUTION_HANDLER_H
 
 #include <queue>
+#include <iostream> // stdd:Cerr
+
 #include "order.h"
 #include "fill.h"
 #include "market_snapshot.h"
@@ -12,7 +14,7 @@
  * @author t
  * @date 08/07/18
  * @file execution_handler.h
- * @brief 
+ * @brief a glorified std::queue. Accepts orders via addOrder(), and processes them via process_orders_yield_fills().
  */
 class ExecHandler{
    
@@ -22,7 +24,7 @@ public:
      * @brief ctor
      * @param marketSlippage is the dollar amount of slippage that will be assessed
      */
-    ExecHandler(const double& marketSlippage = .01);
+    ExecHandler(const double& marketSlippage = .01, bool log = false);
 
 
     /**
@@ -41,7 +43,8 @@ public:
 
 private:
     std::queue<Order> m_orders;
-    double m_ave_slip;    
+    double m_ave_slip; 
+    bool m_logging;   
 };
 
 

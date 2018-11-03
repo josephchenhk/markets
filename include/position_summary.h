@@ -1,4 +1,3 @@
-
 #ifndef POSITION_SUMMARY_H
 #define POSITION_SUMMARY_H
 

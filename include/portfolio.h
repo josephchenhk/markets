@@ -4,13 +4,15 @@
 #include <vector>
 #include <Eigen/Dense>
 #include <queue>
-#include <iostream>
+#include <iostream> // std::cerr
+
 
 #include "position_summary.h"
 #include "execution_handler.h"
 
 //TODO: shouldn't this contain a fill queue?
 //TODO: allow changing the execution strategy
+//TODO: store performance measures
 
 /**
  * @class Portfolio
@@ -34,7 +36,7 @@ public:
      * @param tickers: all tickers that might have a position on at least once
      * @param cs commission style
      */
-    Portfolio(double starting_cash, std::vector<std::string> tickers, CommissionStyle cs = CommissionStyle::IBFixed);
+    Portfolio(double starting_cash, std::vector<std::string> tickers, CommissionStyle cs = CommissionStyle::IBFixed, bool log = false);
     
     
     /**
@@ -101,6 +103,7 @@ private:
     std::vector<Instrument> m_ordered_tickers;
     PositionSummary m_pos_summary;
     unsigned int m_todo_step;
+    bool m_logging;
 
 };
 

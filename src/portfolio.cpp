@@ -1,9 +1,10 @@
 #include "portfolio.h"
 
 
-Portfolio::Portfolio(double starting_cash, std::vector<std::string> tickers, CommissionStyle cs)
+Portfolio::Portfolio(double starting_cash, std::vector<std::string> tickers, CommissionStyle cs, bool log)
     : m_pos_summary(starting_cash, tickers, cs)
     , m_todo_step(1)
+    , m_logging(log)
 {   
      for(size_t i = 0; i < tickers.size(); ++i)
         m_ordered_tickers.push_back(Instrument(tickers[i]));
@@ -17,7 +18,10 @@ void Portfolio::readAllFills(std::queue<Fill>& q)
     
     while(!q.empty()){
         m_pos_summary.onFill(q.front());
-        std::cout << "reading a fill for " << q.front().instrument.symbol << " at price " << q.front().execute_price << " for " << q.front().quantity << "shares\n";
+        
+        if(m_logging)
+            std::cerr << "reading a fill for " << q.front().instrument.symbol << " at price " << q.front().execute_price << " for " << q.front().quantity << "shares\n";
+        
         q.pop();
     }
     
@@ -97,15 +101,21 @@ void Portfolio::updateOnNewIdealWts(const Eigen::VectorXd& ideal_wts_to_be, Exec
         if(signed_qty < 0){ 
             pos_qty = -signed_qty;
             order_q.addOrder(Order(instr, OrderType::limitSell, this_orders_price, pos_qty));
-            std::cout << "submitted an order for symbol " << m_ordered_tickers[i].symbol << ": " << signed_qty << " shares at price " << this_orders_price << "    \n";
+            
+            if(m_logging)
+                std::cerr << "submitted an order for symbol " << m_ordered_tickers[i].symbol << ": " << signed_qty << " shares at price " << this_orders_price << "    \n";
 
         }else if(signed_qty > 0){ 
             pos_qty = signed_qty;
             order_q.addOrder(Order(instr, OrderType::limitBuy, this_orders_price, pos_qty));
-            std::cout << "submitted an order for symbol " << m_ordered_tickers[i].symbol << ": " << signed_qty << " shares at price " << this_orders_price << "    \n";
+            
+            if(m_logging)
+                std::cerr << "submitted an order for symbol " << m_ordered_tickers[i].symbol << ": " << signed_qty << " shares at price " << this_orders_price << "    \n";
 
         }else{ // signed_qty == 0
-            std::cout << "sending no order for symbol " << m_ordered_tickers[i].symbol << " at price " << this_orders_price << "\n";
+
+            if(m_logging)
+                std::cerr << "sending no order for symbol " << m_ordered_tickers[i].symbol << " at price " << this_orders_price << "\n";
         }
     }
 

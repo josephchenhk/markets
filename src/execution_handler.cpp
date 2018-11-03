@@ -1,7 +1,7 @@
 #include "execution_handler.h"
-#include <iostream>
 
-ExecHandler::ExecHandler(const double& marketSlippage) : m_ave_slip(marketSlippage)
+
+ExecHandler::ExecHandler(const double& marketSlippage, bool log) : m_ave_slip(marketSlippage), m_logging(log)
 {
     if(m_ave_slip < 0)
         throw std::invalid_argument("slippage must be positive\n");
@@ -65,7 +65,8 @@ void ExecHandler::process_orders_yield_fills(MarketSnapshot ms, std::queue<Fill>
             }else{
 
                 // TODO: think more carefully about what you want todo here, and whether the order should stay in the queue
-                // std::cout << "limit buy failed to fill for " << o.instrument.symbol << "\n";
+                if(m_logging)
+                    std::cerr << "limit buy failed to fill for " << o.instrument.symbol << "\n";
             }
 
             
@@ -83,7 +84,9 @@ void ExecHandler::process_orders_yield_fills(MarketSnapshot ms, std::queue<Fill>
             }else{
 
                 // TODO: think more carefully about wha tyou want to do here... should the order stay here or disappear
-                //std::cout << "limit buy failed to fill for " << o.instrument.symbol << "\n";
+                
+                if(m_logging)
+                    std::cerr << "limit buy failed to fill for " << o.instrument.symbol << "\n";
             }
 
         }else{
