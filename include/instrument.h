@@ -17,10 +17,18 @@ public:
     
     // uniquely identifying ticker symbol
     const std::string symbol;
+
     
+//    /**
+//     * @brief Constructs an Instrument with the provided Instrument.
+//     * @param instr is the instrument you're copying. 
+//     */
+//    Instrument(const Instrument& instr);
+
+
     /**
      * @brief Constructs an Instrument with the provided symbol
-     * @param s denotes the symbol
+     * @param sym denotes the symbol
      */
     Instrument(const std::string& sym);
     

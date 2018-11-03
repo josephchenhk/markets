@@ -3,9 +3,9 @@
 #include <fstream>      // std::ifstream
 #include <sstream>      // std::istringstream
 #include <filesystem>
-#include <algorithm> // transform
+#include <algorithm> // transform, sort
+#include <iostream> // cerr
 
-#include <iostream>//tmp
 CSVReader::CSVReader(std::string filename, std::string delm, unsigned int meaningless_rows) 
     : m_fileName(filename), m_delimeter(delm[0]), m_ignore_rows(meaningless_rows)
 { 
@@ -75,7 +75,8 @@ MarketSnapshotsMaker::MarketSnapshotsMaker(const std::string& data_directory, st
     }
 
     // get the tickers from the paths
-    m_tickers = get_tickers_from_paths(file_paths);
+    m_ordered_tickers = get_tickers_from_paths(file_paths);
+    std::sort(m_ordered_tickers.begin(), m_ordered_tickers.end());
 
     if(num_tickers == 0){
         std::cerr << "the directory was empty\n";
@@ -114,7 +115,7 @@ MarketSnapshotsMaker::MarketSnapshotsMaker(const std::string& data_directory, st
             vol         = std::stoul(all_raw_data[ticker][time][9]);
     
             MarketBar bar(open, high, low, close, vol, tstamp);
-            Instrument instr(m_tickers[ticker]);
+            Instrument instr(m_ordered_tickers[ticker]);
             temp_map.insert(std::pair<Instrument,MarketBar>(instr, bar));
         }
 
@@ -131,7 +132,7 @@ MarketSnapshotsMaker::MarketSnapshotsMaker(
                                     std::vector<std::string> filenames, 
                                     std::string delimiter, 
                                     std::vector<std::string> tickers) 
-    : m_tickers(tickers)
+    : m_ordered_tickers(tickers)
 {
     // NB: assumes all files have the same number of rows
     // NB: you kind of have to iterate in a weird way because you need to go a row at a time for each data file for each market snapshot! 
@@ -140,8 +141,9 @@ MarketSnapshotsMaker::MarketSnapshotsMaker(
     // period,bid_price_open,bid_price_high,bid_price_low,bid_price_close,ask_price_open,ask_price_high,ask_price_low,ask_price_close,volume
     // 2000-01-03 00:00:00,17.48,17.49,17.00,17.02,17.48,17.49,17.00,17.02,140500
 
+    std::sort(m_ordered_tickers.begin(), m_ordered_tickers.end());
     unsigned int num_tickers, num_rows, csv_reader_start_row; 
-    num_tickers = m_tickers.size();
+    num_tickers = m_ordered_tickers.size();
     csv_reader_start_row = 1; // skip the column names
     std::vector<std::vector<std::vector<std::string>>> all_raw_data;
 
@@ -176,7 +178,7 @@ MarketSnapshotsMaker::MarketSnapshotsMaker(
             vol         = std::stoul(all_raw_data[ticker][time][9]);
     
             MarketBar bar(open, high, low, close, vol, tstamp);
-            Instrument instr(m_tickers[ticker]);
+            Instrument instr(m_ordered_tickers[ticker]);
             temp_map.insert(std::pair<Instrument,MarketBar>(instr, bar));
         }
 
@@ -193,9 +195,9 @@ std::vector<MarketSnapshot> MarketSnapshotsMaker::data() const
 }
 
 
-std::vector<std::string> MarketSnapshotsMaker::tickers() const
+std::vector<std::string> MarketSnapshotsMaker::ordered_tickers() const
 {
-    return m_tickers;
+    return m_ordered_tickers;
 }
 
 

@@ -11,7 +11,8 @@
 TEST(test_exec_handler){
 
     // init a handler
-    ExecHandler e(SLIP);
+    double slippage = SLIP;
+    ExecHandler e(slippage);
 
     // make a market snapshot
     MarketBar::Time t1 = std::chrono::system_clock::now();

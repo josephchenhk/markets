@@ -70,7 +70,54 @@ Eigen::VectorXd Portfolio::quadProg1(const Eigen::MatrixXd& Q, const Eigen::Vect
 }
 
 
-void Portfolio::updateOnNewIdealWts(const Eigen::VectorXd& ideal_wts_to_be, ExecHandler& order_q)
+void Portfolio::react_and_send_orders(Eigen::VectorXd ideal_wts_to_be, ExecHandler& order_q)
+{
+ 
+    // check if weights sum to 1
+    if( ( ideal_wts_to_be.sum() -1.0) > .00001){
+        
+        if(m_logging)
+            std::cerr << "weights do not sum to 1\n";
+
+        throw std::runtime_error("portfolio weights need to sum to 1\n"); 
+    }
+
+    // check if balance is below $1k
+    if( this->getBalance() < 1000){
+       
+        if(m_logging)
+            std::cerr << "balance too low. setting weights to 0\n";
+
+        unsigned int n = ideal_wts_to_be.size();
+        for(size_t i = 0; i < n; ++i){
+            ideal_wts_to_be(i) = 0.0;
+       }
+    }
+
+
+    if( ideal_wts_to_be.maxCoeff()  > .5){
+        if(m_logging)
+            std::cerr << "max weight is greater than .5\n";
+        throw std::runtime_error("one weight is greater than .5\n");
+    }
+    
+    if( ideal_wts_to_be.minCoeff()  < -.5){
+        if(m_logging)
+            std::cerr << "min weight is less than -.5\n";
+        throw std::runtime_error("one weight is less than -.5\n");
+    }
+
+
+
+    Portfolio::updateOnNewIdealWts(ideal_wts_to_be, order_q);
+
+}
+
+
+
+
+
+void Portfolio::updateOnNewIdealWts(Eigen::VectorXd ideal_wts_to_be, ExecHandler& order_q)
 {
     // generate and submit orders based on these new ideal weights.
     // to calculate the order_qty, keep in mind that:
@@ -93,11 +140,22 @@ void Portfolio::updateOnNewIdealWts(const Eigen::VectorXd& ideal_wts_to_be, Exec
     unsigned int pos_qty;
     for(size_t i = 0; i < m_ordered_tickers.size(); ++i){
 
-        Instrument instr(m_ordered_tickers[i]);
+        Instrument instr(m_ordered_tickers[i].symbol);
         double this_orders_price = m_last_snapshot[instr].close();
         double current_position_value = m_pos_summary.getInstrumentMktVal(instr);
-        signed_qty = std::trunc((m_pos_summary.getBalance()*ideal_wts_to_be[i] - current_position_value)/this_orders_price);
-
+        signed_qty = std::trunc((m_pos_summary.getBalance()*ideal_wts_to_be(i) - current_position_value)/this_orders_price);
+        
+        
+//       if(m_ordered_tickers[i].symbol == "XLF"){
+//            std::cout << "--------------------------------------------\n";
+//            std::cout << "balance: " << m_pos_summary.getBalance() << "\n";
+//            std::cout << "weight: " << ideal_wts_to_be(i) << "\n";
+//            std::cout << "current position value: " << current_position_value << "\n";
+//            std::cout << "this order's price: " << this_orders_price << "\n";
+//            std::cout << "signed qty: " << signed_qty << "\n";
+//            std::cout << "--------------------------------------------\n";
+//        }
+//          
         if(signed_qty < 0){ 
             pos_qty = -signed_qty;
             order_q.addOrder(Order(instr, OrderType::limitSell, this_orders_price, pos_qty));
@@ -140,6 +198,7 @@ int Portfolio::getNumShares(const std::string& sym) const
 {
     return m_pos_summary.getInstrumentShares(sym);
 }
+
 
 
 

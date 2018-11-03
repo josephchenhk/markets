@@ -59,7 +59,7 @@ class MarketSnapshotsMaker
 private:
 
     /* the tickers for which data are being produced */
-    std::vector<std::string> m_tickers;
+    std::vector<std::string> m_ordered_tickers;
 
     /* the data itself in snapshot form*/
     std::vector<MarketSnapshot> m_data;
@@ -94,10 +94,12 @@ public:
 
 
     /**
-     * @brief gives you the tickers currently available
+     * @brief gives you the tickers currently available.
+     * they are ordered according to the order using by
+     * the Instrument class.
      * @ return the tickers in a std::vector<std::string>
      */
-    std::vector<std::string> tickers() const;
+    std::vector<std::string> ordered_tickers() const;
 
 };
 

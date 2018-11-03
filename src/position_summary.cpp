@@ -1,6 +1,6 @@
 #include "position_summary.h"
 
-
+#include <iostream>
 PositionSummary::PositionSummary(double initial_capital, const std::vector<std::string>& tickers, CommissionStyle cs) : m_starting_cash(initial_capital), m_cs(cs)
 {
     for(auto ticker : tickers){
@@ -19,11 +19,22 @@ void PositionSummary::onSnapshot(const MarketSnapshot& ms)
 
         auto right_bar = ms.bars().find(pos.first);
         if( right_bar != ms.bars().end() ){ // if the key is found in the data
+            
+//            if(right_bar->first.symbol == "XLF"){
+//                std::cout << "before qty: " << pos.second.get_qty() << "\n";
+//            }
+//
             pos.second.on_price(right_bar->second.close());
+
+//            if(right_bar->first.symbol == "XLF"){
+//                std::cout << "after qty for xlf: " << pos.second.get_qty() << "\n";
+//            }
+//
+
         }else{ // if key is not found in data
             throw std::runtime_error("error! data are not being found/recognized\n");
         }
-    }
+   }
 }
 
 
@@ -50,7 +61,6 @@ double PositionSummary::getInstrumentMktVal(const std::string& sym) const
 
 int PositionSummary::getInstrumentShares(const Instrument& instr) const
 {
-
     return m_positions.at(instr).get_qty();
 }
 

@@ -65,15 +65,18 @@ public:
 
     
     /**
-     * @brief take in suggested weights from a statistical model for one time period ahead in the future, compute orders, then submit orders to a queue
+     * @brief take in suggested weights from a statistical model for 
+     * one time period ahead in the future, 
+     * compute orders, then submit orders to a queue. Also, take the 
+     * appropriate action if not all conditions are met.
      * @param ideal_wts_to_be these are based on an optimization procedure (probably) using the mean vector and covariace matrix of the future log returns
      * @param order_q, the order_q you submit orders to
      */
-    void updateOnNewIdealWts(const Eigen::VectorXd& ideal_wts_to_be, ExecHandler& order_q);
-    
+     void react_and_send_orders(Eigen::VectorXd ideal_wts_to_be, ExecHandler& order_q);
+ 
 
     /**
-     * @brief gets your balance
+     * @brief gets your balance (starting cash plus realized pnls)
      * @return the balance in dollars (double)
      */
     double getBalance() const;
@@ -99,6 +102,9 @@ private:
     // solves quadratic program with equality constraints
     Eigen::VectorXd quadProg1(const Eigen::MatrixXd& Q, const Eigen::VectorXd& c, const Eigen::MatrixXd&A, const Eigen::VectorXd& b);
 
+    // sends orders based on weights 
+    void updateOnNewIdealWts(Eigen::VectorXd ideal_wts_to_be, ExecHandler& order_q);
+ 
     MarketSnapshot m_last_snapshot;
     std::vector<Instrument> m_ordered_tickers;
     PositionSummary m_pos_summary;

@@ -88,7 +88,7 @@ TEST(test_portfolio){
     // TODO: check other weights
     Eigen::VectorXd ideal_weights = Eigen::VectorXd(2);
     ideal_weights(0) = ideal_weights(1) = .5;
-    p.updateOnNewIdealWts(ideal_weights, exec_handler);
+    p.react_and_send_orders(ideal_weights, exec_handler);
 
     // check to make sure nothing happened yet
     CHECK_CLOSE(start_cash, 
