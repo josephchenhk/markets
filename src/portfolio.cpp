@@ -126,4 +126,10 @@ double Portfolio::getMktVal(const std::string& sym) const
 }
 
 
+int Portfolio::getNumShares(const std::string& sym) const
+{
+    return m_pos_summary.getInstrumentShares(sym);
+}
+
+
 

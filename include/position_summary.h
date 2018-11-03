@@ -62,6 +62,22 @@ public:
 
 
     /**
+     * @brief gets the number of shares currently held (negative if short)
+     * @param an instrument of type Instr
+     * @return the number of shares as an int
+     */
+    int getInstrumentShares(const Instrument& instr) const;
+
+
+    /**
+     * @brief gives you the number of shares currently held (negative for short)
+     * @param sym the ticker symbol in all caps
+     * @return the current number of shares for sym
+     */
+    int getInstrumentShares(const std::string& sym) const;
+
+
+    /**
      * @brief gets the current balance (starting cash plus all realized pnls)
      * @return the balance as a double
      */

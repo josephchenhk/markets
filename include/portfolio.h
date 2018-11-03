@@ -84,6 +84,14 @@ public:
     double getMktVal(const std::string& sym) const;
 
 
+    /**
+     * @brief gets the number of shares held (negative for short)
+     * @param sym the ticker symbol in all caps
+     * @return the number of shares as int (shares sold are negative)
+     */
+    int getNumShares(const std::string& sym) const;
+
+
 private:
     
     // solves quadratic program with equality constraints

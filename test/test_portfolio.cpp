@@ -37,7 +37,10 @@ TEST(test_portfolio){
                 p.getMktVal("ABC"),
                 0.0);    
     
-    // step 1/3 read some fills
+// ROUND 1:
+
+    // step 1/3 
+    // read some fills
     p.readAllFills(fill_q);
 
     // check to see nothing was there
@@ -51,6 +54,9 @@ TEST(test_portfolio){
                 p.getMktVal("ABC"),
                 0.0);    
     
+    // step 2 of 3: 
+    // process a market snapshot
+    
     // make a market snapshot
     MarketBar::Time t1 = std::chrono::system_clock::now();
     Instrument instr1("ABC");
@@ -62,7 +68,7 @@ TEST(test_portfolio){
     test_bars.insert(std::pair<Instrument,MarketBar>(instr2, bar2));
     MarketSnapshot ms1(test_bars);
 
-    // step 2 of 3: process a market snapshot
+    // read those prices
     p.readNewPrices(ms1);
 
     // check to make sure nothing happened
@@ -76,7 +82,8 @@ TEST(test_portfolio){
                 p.getMktVal("ABC"),
                 0.0);    
 
-    // step 3 of 3: send it some new weights
+    // step 3 of 3: 
+    // send it some new weights
     // TODO: check to make sure bogus weights throw an error or somethingi
     // TODO: check other weights
     Eigen::VectorXd ideal_weights = Eigen::VectorXd(2);
@@ -106,10 +113,14 @@ TEST(test_portfolio){
     MarketSnapshot ms2(test_bars2);
     exec_handler.process_orders_yield_fills(ms2, fill_q);
 
-    // step 1/3 round two! check for fills
+
+// ROUND TWO
+
+    // step 1/3: 
+    // check for fills (should get back two)
     p.readAllFills(fill_q);
 
-    //
+    // recall that we put even weight in both stocks
     int correct_shares_abc = std::floor(.5*start_cash/100.00);
     int correct_shares_xyz = std::floor(.5*start_cash/120.00);
     // TODO: investigate a potential other bug: if you try to get balance before you see up-to-date data (eg fill came more recently than data)
@@ -119,9 +130,9 @@ TEST(test_portfolio){
     CHECK_CLOSE(correct_shares_xyz*120.00,
                 p.getMktVal("XYZ"),
                 PREC);
-    
-
-    // step 2/3 round two: read in the most recent prices
+ 
+    // step 2/3 round two: 
+    // read in the most recent prices
     MarketBar::Time t3 = std::chrono::system_clock::now();
     MarketBar bar5(1000.0, 1010.00, 990.00, 1000.0, 1000, t3);
     MarketBar bar6(1200.0, 1210.00, 1190.00, 1200.00, 1000, t3);
@@ -131,15 +142,31 @@ TEST(test_portfolio){
     MarketSnapshot ms3(test_bars3);
     p.readNewPrices(ms3);
 
-    // step 2 of 3: process a market snapshot
+    // check new prices register with pnl calculcator
     CHECK_CLOSE(1000*correct_shares_abc,
                 p.getMktVal("ABC"),
                 PREC);
     CHECK_CLOSE(1200*correct_shares_xyz,
                 p.getMktVal("XYZ"),
                 PREC);
-    
 
+    // TODO: finish this
+    // optimization tests!
+    // problem:
+    // min .5 x'Px + q'x 
+    // st Gx \le h
+    // Ax = b
+    // 
+    // we choose P as 
+    //      65  -22  -16
+    //     -22   14    7
+    //     -16    7    5
+
+    //
+    // note that P = Sigma
+    // q = - lambda \mu
+    //
+    //p.getweights(
 
 
 

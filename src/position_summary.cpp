@@ -20,6 +20,8 @@ void PositionSummary::onSnapshot(const MarketSnapshot& ms)
         auto right_bar = ms.bars().find(pos.first);
         if( right_bar != ms.bars().end() ){ // if the key is found in the data
             pos.second.on_price(right_bar->second.close());
+        }else{ // if key is not found in data
+            throw std::runtime_error("error! data are not being found/recognized\n");
         }
     }
 }
@@ -43,6 +45,20 @@ double PositionSummary::getInstrumentMktVal(const std::string& sym) const
 {
     Instrument instr(sym);
     return PositionSummary::getInstrumentMktVal(instr);
+}
+
+
+int PositionSummary::getInstrumentShares(const Instrument& instr) const
+{
+
+    return m_positions.at(instr).get_qty();
+}
+
+
+int PositionSummary::getInstrumentShares(const std::string& sym) const
+{
+    Instrument instr(sym);
+    return PositionSummary::getInstrumentShares(instr);
 }
 
 
