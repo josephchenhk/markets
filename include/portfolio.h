@@ -10,6 +10,8 @@
 #include "position_summary.h"
 #include "execution_handler.h"
 
+enum class ExecutionStyle { Market, Limit };
+
 //TODO: shouldn't this contain a fill queue?
 //TODO: allow changing the execution strategy
 //TODO: store performance measures
@@ -35,8 +37,11 @@ public:
      * @param starting_cash
      * @param tickers: all tickers that might have a position on at least once
      * @param cs commission style
+     * @param es execution style 
+     * @param log whether to log things or not
+     * @param limit_markup whether to be more aggressive (positve) or less aggressive (negative) on your limit order submissions. Ignored if Market exec straty.
      */
-    Portfolio(double starting_cash, std::vector<std::string> tickers, CommissionStyle cs = CommissionStyle::IBFixed, bool log = false);
+    Portfolio(double starting_cash, std::vector<std::string> tickers, CommissionStyle cs = CommissionStyle::IBFixed, ExecutionStyle es = ExecutionStyle::Market, bool log = false, double limit_markup = 0.0);
     
     
     /**
@@ -110,7 +115,8 @@ private:
     PositionSummary m_pos_summary;
     unsigned int m_todo_step;
     bool m_logging;
-
+    ExecutionStyle m_es;
+    double m_limit_markup;
 };
 
 #endif // PORTFOLIO_H
