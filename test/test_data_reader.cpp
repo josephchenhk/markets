@@ -48,7 +48,7 @@ TEST(test_market_snapshot_maker_from_csv){
 
     // constructor 2. 
     MarketSnapshotsMaker msm2("test_data", ",");
-    std::vector<std::string> tickers2 = msm2.tickers();
+    std::vector<std::string> tickers2 = msm2.ordered_tickers();
     bool xleInTickers = false; 
     if( std::find(tickers2.begin(), tickers2.end(), "XLE") != tickers2.end()){
         xleInTickers = true;   
@@ -59,7 +59,6 @@ TEST(test_market_snapshot_maker_from_csv){
     std::vector<MarketSnapshot> data2 = msm2.data();
     MarketSnapshot second_snapshot = data2[0].bars();
     MarketBar bar3 = second_snapshot["XLF"];
-    std::cout << bar3.close() << "\n";
 
 
 }

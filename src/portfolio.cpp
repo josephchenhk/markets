@@ -8,7 +8,8 @@ Portfolio::Portfolio(double starting_cash, std::vector<std::string> tickers, Com
     , m_es(es)
     , m_limit_markup(limit_markup)
 {   
-     for(size_t i = 0; i < tickers.size(); ++i)
+    std::sort(tickers.begin(), tickers.end());
+    for(size_t i = 0; i < tickers.size(); ++i)
         m_ordered_tickers.push_back(Instrument(tickers[i]));
 }
 

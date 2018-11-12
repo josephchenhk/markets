@@ -65,7 +65,7 @@ private:
     std::vector<MarketSnapshot> m_data;
 
     /* a function that gets tickers from the file paths. Assumes files are of the form e.g. TICKER.csv */
-    std::vector<std::string> get_tickers_from_paths(const std::vector<std::string>& paths);
+    std::vector<std::string> get_ordered_tickers_from_paths(const std::vector<std::string>& paths);
 
 public:
 

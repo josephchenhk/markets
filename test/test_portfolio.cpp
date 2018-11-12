@@ -124,13 +124,18 @@ TEST(test_portfolio){
     int correct_shares_abc = std::floor(.5*start_cash/100.00);
     int correct_shares_xyz = std::floor(.5*start_cash/120.00);
     // TODO: investigate a potential other bug: if you try to get balance before you see up-to-date data (eg fill came more recently than data)
-    CHECK_CLOSE(correct_shares_abc*100.0,
-                p.getMktVal("ABC"),
-                PREC);
-    CHECK_CLOSE(correct_shares_xyz*120.00,
-                p.getMktVal("XYZ"),
-                PREC);
- 
+//    CHECK_CLOSE(correct_shares_abc*100.0,
+//                p.getMktVal("ABC"),
+//                PREC);
+//    CHECK_CLOSE(correct_shares_xyz*120.00,
+//                p.getMktVal("XYZ"),
+//                PREC);
+
+    CHECK_EQUAL(correct_shares_abc,
+                p.getNumShares("ABC"));
+    CHECK_EQUAL(correct_shares_xyz,
+                p.getNumShares("XYZ"));
+
     // step 2/3 round two: 
     // read in the most recent prices
     MarketBar::Time t3 = std::chrono::system_clock::now();

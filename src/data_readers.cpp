@@ -42,7 +42,7 @@ std::vector<std::vector<std::string> > CSVReader::getData()
 }
 
 
-std::vector<std::string> MarketSnapshotsMaker::get_tickers_from_paths(const std::vector<std::string>& paths)
+std::vector<std::string> MarketSnapshotsMaker::get_ordered_tickers_from_paths(const std::vector<std::string>& paths)
 {
     std::vector<std::string> tickers;
     std::string tmpstring;
@@ -54,6 +54,7 @@ std::vector<std::string> MarketSnapshotsMaker::get_tickers_from_paths(const std:
         std::string::size_type const p(tmpstring.find_last_of('.'));
         tickers.push_back( tmpstring.substr(0,p) );
     }
+    std::sort(tickers.begin(), tickers.end()); // guarantee alphabetically ordered
     return tickers;
 }
 
@@ -75,7 +76,7 @@ MarketSnapshotsMaker::MarketSnapshotsMaker(const std::string& data_directory, st
     }
 
     // get the tickers from the paths
-    m_ordered_tickers = get_tickers_from_paths(file_paths);
+    m_ordered_tickers = get_ordered_tickers_from_paths(file_paths);
     std::sort(m_ordered_tickers.begin(), m_ordered_tickers.end());
 
     if(num_tickers == 0){
