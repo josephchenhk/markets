@@ -101,13 +101,11 @@ void Portfolio::react_and_send_orders(Eigen::VectorXd ideal_wts_to_be, ExecHandl
     if( ideal_wts_to_be.maxCoeff()  > .5){
         if(m_logging)
             std::cerr << "max weight is greater than .5\n";
-        throw std::runtime_error("one weight is greater than .5\n");
     }
     
     if( ideal_wts_to_be.minCoeff()  < -.5){
         if(m_logging)
             std::cerr << "min weight is less than -.5\n";
-        throw std::runtime_error("one weight is less than -.5\n");
     }
 
 
