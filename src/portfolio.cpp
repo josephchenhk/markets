@@ -1,12 +1,13 @@
 #include "portfolio.h"
 
 
-Portfolio::Portfolio(double starting_cash, std::vector<std::string> tickers, CommissionStyle cs, ExecutionStyle es, bool log, double limit_markup)
+Portfolio::Portfolio(double starting_cash, std::vector<std::string> tickers, CommissionStyle cs, ExecutionStyle es, bool log, double limit_markup, unsigned int share_thresh)
     : m_pos_summary(starting_cash, tickers, cs)
     , m_todo_step(1)
     , m_logging(log)
     , m_es(es)
     , m_limit_markup(limit_markup)
+    , m_share_thresh(share_thresh)
 {   
     std::sort(tickers.begin(), tickers.end());
     for(size_t i = 0; i < tickers.size(); ++i)
@@ -165,7 +166,7 @@ void Portfolio::updateOnNewIdealWts(Eigen::VectorXd ideal_wts_to_be, ExecHandler
         // now revise the quantity based on the new price
         // this seems roundabout but there's no sure-fire way to get the sign of the order for the pric erevision 
         // above unless we do it this way
-        signed_qty = std::trunc((m_pos_summary.getBalance()*ideal_wts_to_be(i) - current_position_value)/this_orders_price);
+        signed_qty = std::trunc((wealth*ideal_wts_to_be(i) - current_position_value)/this_orders_price);
         
         // selling 
         if(signed_qty < 0){ 
@@ -174,18 +175,20 @@ void Portfolio::updateOnNewIdealWts(Eigen::VectorXd ideal_wts_to_be, ExecHandler
 
            if(m_es == ExecutionStyle::Market){
                
-               order_q.addOrder(Order(instr, OrderType::marketSell, this_orders_price, pos_qty));
+               if(pos_qty > m_share_thresh)
+                   order_q.addOrder(Order(instr, OrderType::marketSell, this_orders_price, pos_qty));
                          
                if(m_logging)
                    std::cerr << "submitted a market order for symbol " << m_ordered_tickers[i].symbol << ": " << signed_qty << " shares at price " << this_orders_price << "    \n";         
 
            }else if(m_es == ExecutionStyle::Limit){
                
-               order_q.addOrder(Order(instr, OrderType::limitSell, this_orders_price, pos_qty));
+               if(pos_qty > m_share_thresh)
+                   order_q.addOrder(Order(instr, OrderType::limitSell, this_orders_price, pos_qty));
                           
                if(m_logging)
                    std::cerr << "submitted a limit order for symbol " << m_ordered_tickers[i].symbol << ": " << signed_qty << " shares at price " << this_orders_price << "    \n";
-           
+                           
            }else{
                
                if(m_logging)
@@ -198,14 +201,16 @@ void Portfolio::updateOnNewIdealWts(Eigen::VectorXd ideal_wts_to_be, ExecHandler
             
            if(m_es == ExecutionStyle::Market){
                
-               order_q.addOrder(Order(instr, OrderType::marketBuy, this_orders_price, pos_qty));
+               if(pos_qty > m_share_thresh)
+                   order_q.addOrder(Order(instr, OrderType::marketBuy, this_orders_price, pos_qty));
             
                if(m_logging)
                    std::cerr << "submitted a market order for symbol " << m_ordered_tickers[i].symbol << ": " << signed_qty << " shares at price " << this_orders_price << "    \n";
             
            }else if(m_es == ExecutionStyle::Limit){
                 
-               order_q.addOrder(Order(instr, OrderType::limitBuy, this_orders_price, pos_qty));
+                if(pos_qty > m_share_thresh)
+                    order_q.addOrder(Order(instr, OrderType::limitBuy, this_orders_price, pos_qty));
             
                if(m_logging)
                    std::cerr << "submitted a limit order for symbol " << m_ordered_tickers[i].symbol << ": " << signed_qty << " shares at price " << this_orders_price << "    \n";

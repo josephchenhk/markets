@@ -40,8 +40,15 @@ public:
      * @param es execution style 
      * @param log whether to log things or not
      * @param limit_markup whether to be more aggressive (positve) or less aggressive (negative) on your limit order submissions. Ignored if Market exec straty.
+     * @param share_thresh only submit order if number of shares is greater than this number
      */
-    Portfolio(double starting_cash, std::vector<std::string> tickers, CommissionStyle cs = CommissionStyle::IBFixed, ExecutionStyle es = ExecutionStyle::Market, bool log = false, double limit_markup = 0.0);
+    Portfolio(double starting_cash, 
+              std::vector<std::string> tickers, 
+              CommissionStyle cs = CommissionStyle::IBFixed, 
+              ExecutionStyle es = ExecutionStyle::Market, 
+              bool log = false, 
+              double limit_markup = 0.0,
+              unsigned int share_thresh = 0);
     
     
     /**
@@ -117,6 +124,7 @@ private:
     bool m_logging;
     ExecutionStyle m_es;
     double m_limit_markup;
+    unsigned int m_share_thresh;
 };
 
 #endif // PORTFOLIO_H
