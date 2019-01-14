@@ -77,15 +77,19 @@ MarketSnapshotsMaker::MarketSnapshotsMaker(const std::string& data_directory, st
 
     // get the tickers from the paths
     m_ordered_tickers = get_ordered_tickers_from_paths(file_paths);
-    std::sort(m_ordered_tickers.begin(), m_ordered_tickers.end());
+    
+    // make sure the paths are ordered as well otherwise tickers and data won't match
+    std::sort(file_paths.begin(), file_paths.end());
 
     if(num_tickers == 0){
         std::cerr << "the directory was empty\n";
         throw std::runtime_error("the directory was empty!\n");
     }
 
+    std::cout << "\nprinting order of raw data: \n";
     for(size_t i = 0; i < num_tickers; ++i){
-
+        std::cout << file_paths[i] << ", ";
+        
         CSVReader csvr(file_paths[i], delimiter, csv_reader_start_row);
         all_raw_data.push_back(csvr.getData());
 
@@ -93,6 +97,7 @@ MarketSnapshotsMaker::MarketSnapshotsMaker(const std::string& data_directory, st
             num_rows = all_raw_data[0].size();
         }
     }
+    std::cout << "\n";
     
     if(num_rows == 0){
         std::cerr << "the files are not being read in correctly or have no bservations\n";
