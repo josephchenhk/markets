@@ -226,3 +226,14 @@ TEST(unsuccessful_short){
     CHECK_CLOSE(0.0, mc.get_avg_price(), PREC);
 }
 
+TEST(specific_situation){
+
+    pnl_calc pnc;
+
+    // 22 shares, 
+    pnc.on_fill(22, 44.15, CommissionStyle::ZERO);
+    CHECK_CLOSE(22*44.15, pnc.get_mkt_val(), PREC);
+    CHECK_CLOSE(22, pnc.get_qty(), PREC);
+    CHECK_CLOSE(44.15, pnc.get_avg_price(), PREC); 
+
+}
