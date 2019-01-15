@@ -17,7 +17,7 @@ TEST(test_data_handler){
     // make some test tickers
     std::vector<std::string> tickers;
     tickers.push_back(std::string("ABC"));
-    tickers.push_back(std::string("XYZ"));
+    tickers.push_back(std::string("WXYZ"));
     
     // make a test market snapshot
     MarketBar::Time t1 = std::chrono::system_clock::now();

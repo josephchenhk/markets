@@ -17,7 +17,7 @@ TEST(test_exec_handler){
     // make a market snapshot
     MarketBar::Time t1 = std::chrono::system_clock::now();
     Instrument instr1("ABC");
-    Instrument instr2("XYZ");
+    Instrument instr2("WXYZ");
     MarketBar bar1(100.0, 101.00, 99.00, 100.0, 1000, t1);
     MarketBar bar2(120.0, 121.00, 119.00, 120.00, 1000, t1);
     std::map<Instrument,MarketBar> test_bars;

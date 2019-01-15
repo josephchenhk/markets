@@ -11,7 +11,7 @@
 
 TEST(test_fill){
 
-    Instrument instr("ABC");
+    Instrument instr("ABCD");
     Fill myFill(instr, 
                 std::chrono::system_clock::now(),
                 Exchange::NYSE,
