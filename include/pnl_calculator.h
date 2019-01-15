@@ -4,7 +4,7 @@
 #include "instrument.h"
 
 /** Enum class used for deciding which commission formula. */ 
-enum class CommissionStyle {IBFixed};
+enum class CommissionStyle {IBFixed, ZERO};
 
 class pnl_calc{
 

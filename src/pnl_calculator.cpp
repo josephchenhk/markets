@@ -105,8 +105,11 @@ double pnl_calc::get_commission(const int& qty, const double& price, CommissionS
             comm += 0.000119 * abs_qty; // finra fees
         }
         return comm;
+    }else if( cstyle == CommissionStyle::ZERO){
+        
+        return 0.0;
+    
     }else{
-
         throw std::invalid_argument("invalid commission style\n");
     }
 }
