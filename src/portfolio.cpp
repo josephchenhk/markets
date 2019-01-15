@@ -149,25 +149,33 @@ void Portfolio::updateOnNewIdealWts(Eigen::VectorXd ideal_wts_to_be, ExecHandler
     for(size_t i = 0; i < m_ordered_tickers.size(); ++i){
         
         Instrument instr(m_ordered_tickers[i].symbol);
-        this_orders_price = m_last_snapshot[instr].close(); 
         current_position_value = m_pos_summary.getInstrumentMktVal(instr);
-        init_signed_qty= std::trunc((wealth*ideal_wts_to_be(i) - current_position_value)/this_orders_price);
         
-        // revise this_orders_price
-        if( (m_es == ExecutionStyle::Limit) & (init_signed_qty > 0) ){            
-            this_orders_price += m_limit_markup; // positive markup is more aggressive
-        }else if( (m_es == ExecutionStyle::Limit) & (init_signed_qty < 0) ){
-            this_orders_price -= m_limit_markup; // positve markup is more aggressive
-        }else{
-            if(m_logging)
-                std::cerr << "only nonzero qty limit orders have their order price shifted\n";
+        // get the order price and adjust if there is limit order price modifications
+        this_orders_price = m_last_snapshot[instr].close();
+        if( (m_es == ExecutionStyle::Limit) ){
+            
+            init_signed_qty= std::trunc((wealth*ideal_wts_to_be(i) - current_position_value)/this_orders_price);
+   
+            // if it's a buy, shift up for more aggression
+            if(init_signed_qty > 0){
+                this_orders_price += m_limit_markup;
+            
+            // if it's a sell, shift down for more aggression
+            }else if(init_signed_qty < 0){
+                this_orders_price -= m_limit_markup;
+            }else{
+                if(m_logging)
+                    std::cerr << "limit order was not adjustd because the qty is zero\n";
+            }
         }
 
         // now revise the quantity based on the new price
         // this seems roundabout but there's no sure-fire way to get the sign of the order for the pric erevision 
         // above unless we do it this way
         signed_qty = std::trunc((wealth*ideal_wts_to_be(i) - current_position_value)/this_orders_price);
-        
+        std::cerr << m_ordered_tickers[i].symbol << "weight: " << ideal_wts_to_be(i) << ", and order_price: " << this_orders_price << ", current_pos_val: " << current_position_value << ", and wealth: " << wealth << "\n";
+        std::cerr << m_ordered_tickers[i].symbol << " signed_qty: " << signed_qty << "\n"; 
         // selling 
         if(signed_qty < 0){ 
            
