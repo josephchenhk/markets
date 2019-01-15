@@ -16,14 +16,15 @@ int main(int argc, char* argv[]){
     ////////////////////////////////////////
     // read in stuff from the command line
     ///////////////////////////////////////
-    if(argc != 7){
+    if(argc != 8){
         std::cerr << "please enter:\n"
                      "1. starting cash\n"
                      "2. data directory (each file corresponds with a ticker, and it includes train data *and* test data) \n"
                      "3. estimated slippage on market orders\n"
                      "4. the first out of sample row (start counting at 0) \n"
                      "5. execution strategy ('market' or 'limit')\n"
-                     "6. limit order aggressiveness (positive is more aggressive)\n";
+                     "6. limit order aggressiveness (positive is more aggressive)\n"
+                     "7. share threshold for order to be triggered\n";
         return 1;
     }
 
@@ -42,6 +43,7 @@ int main(int argc, char* argv[]){
         return 1;
     }
     double limit_aggressiveness = atof(argv[6]);
+    int order_thresh = atoi(argv[7]);
 
     
     //////////////////////
@@ -56,7 +58,8 @@ int main(int argc, char* argv[]){
             CommissionStyle::IBFixed, // commission structure depends on broker
             execution_strategy, // how you're going to execute
             false, // logging?
-            limit_aggressiveness); // 
+            limit_aggressiveness, // shift limit order price? 
+            order_thresh); // order threshold 
     ExecHandler exec_handler(market_order_slippage); 
     std::queue<Fill> fills;    
     DataHandler data_handler(ordered_tickers); // TODO: how can we not rely on the ordering of DataHandler's vectors? if they don't coincide all hell breaks loose
