@@ -174,10 +174,7 @@ void Portfolio::updateOnNewIdealWts(Eigen::VectorXd ideal_wts_to_be, ExecHandler
         // this seems roundabout but there's no sure-fire way to get the sign of the order for the pric erevision 
         // above unless we do it this way
         signed_qty = std::trunc((wealth*ideal_wts_to_be(i) - current_position_value)/this_orders_price);
-        std::cerr << m_ordered_tickers[i].symbol << "weight: " << ideal_wts_to_be(i) << ", and order_price: " << this_orders_price << ", current_pos_val: " << current_position_value << ", and wealth: " << wealth << "\n";
-        std::cerr << m_ordered_tickers[i].symbol << " signed_qty: " << signed_qty << "\n"; 
-        // selling 
-        if(signed_qty < 0){ 
+        if(signed_qty < 0){ // selling
            
            pos_qty = -signed_qty;
 

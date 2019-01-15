@@ -1,6 +1,5 @@
 #include "position_summary.h"
 
-
 PositionSummary::PositionSummary(double initial_capital, const std::vector<std::string>& tickers, CommissionStyle cs) : m_starting_cash(initial_capital), m_cs(cs)
 {
     for(auto ticker : tickers){
@@ -14,20 +13,33 @@ PositionSummary::PositionSummary(double initial_capital, const std::vector<std::
 void PositionSummary::onSnapshot(const MarketSnapshot& ms)
 {
     // for each one of your positions, get the relevant bar, and register the last price
-    // if the bar cannot be found, do nothing
+    // TODO: what happens when bar cannot be found?
     for(auto& pos : m_positions){
-
-        auto right_bar = ms.bars().find(pos.first);
-        if( right_bar != ms.bars().end() ){ // if the key is found in the data
-            
-            pos.second.on_price(right_bar->second.close());
-
-        }else{ // if key is not found in data
-            throw std::runtime_error("error! data are not being found/recognized\n");
-        }
+	    Instrument symbol = pos.first;
+	    MarketBar data_bar = ms.bars().at(symbol);	
+	    double cl = data_bar.close();
+	    pos.second.on_price(cl);	
    }
 }
 
+
+//void PositionSummary::onSnapshot(const MarketSnapshot& ms)
+//{
+//    // for each one of your positions, get the relevant bar, and register the last price
+//    // if the bar cannot be found, do nothing
+//    for(auto& pos : m_positions){
+//
+//        auto right_bar = ms.bars().find(pos.first);
+//        if( right_bar != ms.bars().end() ){ // if the key is found in the data
+//            
+//            pos.second.on_price(right_bar->second.close());
+//            std::cerr << "PositionSummary::onSnapshot() " << "pos: " << pos.first.symbol << ", price: " << right_bar->second.close() << "\n";
+//        }else{ // if key is not found in data
+//            throw std::runtime_error("error! data are not being found/recognized\n");
+//        }
+//   }
+//}
+//
 
 void PositionSummary::onFill(const Fill& fill)
 {
