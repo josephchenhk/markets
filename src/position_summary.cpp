@@ -1,4 +1,5 @@
 #include "position_summary.h"
+#include <iostream> // std::cerr
 
 PositionSummary::PositionSummary(double initial_capital, const std::vector<std::string>& tickers, CommissionStyle cs) : m_starting_cash(initial_capital), m_cs(cs)
 {
@@ -16,9 +17,18 @@ void PositionSummary::onSnapshot(const MarketSnapshot& ms)
     // TODO: what happens when bar cannot be found?
     for(auto& pos : m_positions){
 	    Instrument symbol = pos.first;
-	    MarketBar data_bar = ms.bars().at(symbol);	
-	    double cl = data_bar.close();
-	    pos.second.on_price(cl);	
+	    
+        // wrap this in a try block because sometimes the snapshots won't have all the data that we're keeping track of in our portfolio
+        try
+        {
+            MarketBar data_bar = ms.bars().at(symbol);	
+            double cl = data_bar.close();
+	        pos.second.on_price(cl);	
+        }
+        catch (std::out_of_range& e) 
+        {
+            //std::cerr << e.what() << "PositionSummary::onSnapshot() is checking for data that doesn't exist (which is fine)\n";
+        }
    }
 }
 
