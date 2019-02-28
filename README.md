@@ -1,7 +1,24 @@
 # markets
 
+Git configuration
+----------------
+
+`Configuring a remote for a folk`
+```Shell
+$ git remote -v # list current configured remote repository for your fork
+$ git remote add upstream https://github.com/tbrown122387/markets
+$ git remote -v # Verify the new upstream repository you've specified for your fork
+```
+
+`Syncing a fork`
+```Shell
+$ git fetch upstream # Fetch commits and store it in local branch upstream/master
+$ git checkout master # Check out your fork's local master branch
+$ git merge upstream/master # Merge the changes from upstream/master into your local master
+```
+
 Description
-----------
+----------------
 
 `markets` is a small event-driven program that backtests trading strategies. It will show the outcome of any strategy can change based on 
 
